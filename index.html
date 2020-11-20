@@ -64,18 +64,19 @@
 <!-- <link rel="stylesheet" type="text/css" href="thumb-item.css"> -->
 <script>
     // var x,y
-    function show() {
-            var welcome = document.getElementById('sub11');
-            welcome.style.display = '';
-        }
-    function hide() {
-            var welcome = document.getElementById('sub11');
-            welcome.style.display = 'none';
-        }
-         function init() {
-             var surround = document.getElementById('SD11');
-             surround.onmouseover = show;
-            surround.onmouseout = hide;
+    // function show() {
+    //         var welcome = document.getElementById('sub11');
+    //         welcome.style.display = '';
+    //     }
+    // function hide() {
+    //         var welcome = document.getElementById('sub11');
+    //         welcome.style.display = 'none';
+    //     }
+         function init(x,y) {
+             var xe = document.getElementById(x);
+             var ye = document.getElementById(y);
+            ye.onmouseover = function(){xe.style.display = '';};
+            ye.onmouseout = function(){xe.style.display = 'none';}
          }
 
          window.onload = init;  
@@ -90,7 +91,7 @@
         <h1>Siyang Liu's Homepage</h1>
 
         <div class="fig">
-            <img src="https://github.com/SYLiu-TheWildCat/syliu/blob/master/20201021_120704282_iOS.jpg?raw=true" style="width: 100px;">
+            <img src="https://github.com/SYLiu-TheWildCat/syliu/blob/master/20201021_120704282_iOS.jpg?raw=true" style="width: 300px;">
         </div>
 
         <p>Welcome to my homepage! I'm a first year PhD student at University of Southern California, interested in geometry and topology. I'm now visiting Peking University with professor Huijun Fan.</p>
@@ -102,13 +103,13 @@
         <p>Here is some of my unpublished notes(Chinese or English) and links to seminars.</p>
         <h3>Notes(English):</h3>
         <ul>
-            <li><div id="SD11"><a href="https://www.overleaf.com/read/cgnsnhxqzpnk">My Undergraduate Thesis</a>.</div>
+            <li><div id="SD11" onmouseover="init('sub11','SD11')"><a href="https://www.overleaf.com/read/cgnsnhxqzpnk">My Undergraduate Thesis</a>.</div>
                 <div id="sub11" style="display:none; position: relative;"><h4>Abstract:</h4>This is a survey on Floer's original proof of the Arnold conjecture for Lagrangian intersections, and we replace some of his result by a slightly general ones, done by his successors J. W. Robbin, D. A. Salamon, Dusa Mcduff, and Y.-G. Oh.</div></li>
         </ul>
         <h3>Seminars:</h3>
         <ul>
-            <li><div x="sub21" onmouseover="show(x)" onmouseout="show(x)"><a href="https://syliu-thewildcat.github.io/Seminar-Webpage.github.io/seminar-Riemann-Roch.html">Online Seminars on Riemann-Roch Theorem</a></div><div id="sub21" style="display: none; position:relative;"><h4>Description:</h4>This is an online seminar held in the summer of 2020, where I explain the statement, usage and proof of the Riemann-Roch Theorem in Mcduff and Salamon's book <i>J-holomorphic Curves and Symplectic Topology</i>.</div></li>
-            <li><div id="SD22"><a href="Galois-theory.html">Galois Theory</a></div><div id="sub22" style="display: none; position: relative;"><h4>Description:</h4>This is a volunteering lecture for freshmen and sophomore in Sun Yat-Sen University. I'm going to introduce the Galoi theory in some details to them, in order to help them find their interests in study.</div></li>
+            <li><div id="SD21" onmouseover="init('sub21','SD21')"><a href="https://syliu-thewildcat.github.io/Seminar-Webpage.github.io/seminar-Riemann-Roch.html">Online Seminars on Riemann-Roch Theorem</a></div><div id="sub21" style="display: none; position:relative;"><h4>Description:</h4>This is an online seminar held in the summer of 2020, where I explain the statement, usage and proof of the Riemann-Roch Theorem in Mcduff and Salamon's book <i>J-holomorphic Curves and Symplectic Topology</i>.</div></li>
+            <li><div id="SD22" onmouseover="init('sub22','SD22')"><a href="Galois-theory.html">Galois Theory</a></div><div id="sub22" style="display: none; position: relative;"><h4>Description:</h4>This is a volunteering lecture for freshmen and sophomore in Sun Yat-Sen University. I'm going to introduce the Galoi theory in some details to them, in order to help them find their interests in study.</div></li>
         </ul>
     </article>
 </body>

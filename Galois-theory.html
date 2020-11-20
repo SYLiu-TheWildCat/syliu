@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="author" content="Siyang Liu">
-    <meta name="description" content="Siyang Liu's Personal Homepage">
-    <title>Siyang Liu's Personal Homepage</title>
+    <meta name="description" content="Introduction to Galois Theory">
+    <title>Introduction to Galois Theory</title>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
         h1 {
@@ -14,6 +14,11 @@
 
         p {
             font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        p.ref{
+            font-family: Arial;
+            font-size: 10pt;
         }
 
         a.chapter {
@@ -63,26 +68,28 @@
     </style>
     <link rel="stylesheet" type="text/css" href="button.css">
     <!-- <link rel="stylesheet" type="text/css" href="thumb-item.css"> -->
-    <script>
-        // var x,y
-        function show() {
-            var welcome = document.getElementById('sub11');
-            welcome.style.display = '';
-        }
-        function hide() {
-            var welcome = document.getElementById('sub11');
-            welcome.style.display = 'none';
-        }
-        function init() {
-            var surround = document.getElementById('SD11');
-            surround.onmouseover = show;
-            surround.onmouseout = hide;
-        }
-
-        window.onload = init;  
-    </script>
+    <link rel="javascript" type="text/javascript" src="init.js">
 </head>
 <article>
+    <div class="sidenav">
+        <a href="index.html">Back to Home</a>
+        <a href="Galois-theory.html">Galois Theory</a>
+        <a href="Galois-theory.html#Outline">Outline</a>
+        <a href="Galois-theory.html#references">References</a>
+        <a href="Galois-theory.html#NotesRecordings">Notes & Recordings</a>
+    </div>
+    <h1>Introduction to Galois Theory</h1>
+    
+    <p>This website is intended to offer information for this seminar on Galois Theory. I'm going to introduce Galois theory to freshmen and sophomores in Sun Yat-Sen University.</p>
 
+    <h2 id="Outline">Outline</h2> This would be a "course" for freshmen in mathematics, so I'm not going to require too much on background. I'll spend the first few weeks talking about field extensions, and then some notions on group theory. They're the basic concepts we need to know. Then I'll talk about the statement and proof of the fundamental theorem of Galois. Afther this, I'll talk about the relation of field extensions to roots of polynomials, and try to give a rigorous proof of the famous fact that in general, there're no algorithms for quintic equations to be solved.
+
+    <h2 id="references">References</h2>The main reference for this seminar is
+    <p class="ref">J. S. Milne(2020). Fields and Galois Theory (v4.61). Available at <a href="www.jmilne.org/math/">www.jmilne.org/math/</a>.</p>
+    <p>I'll give some explanations on some group theory, and the reference for the group theory is</p>
+    <p class="ref">Hungerford, T. W. (1974). Algebra. Springer, New York, NY. doi: 10.1007/978-1-4612-6101-8.</p>
+    <p>There maybe more references added during the seminar.</p>
+
+    <h2 id="NotesRecordings">Notes & Recordings</h2>
 </article>
 </html>
