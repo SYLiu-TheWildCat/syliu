@@ -1,0 +1,33 @@
+.thumb-item {
+  width: 400px;
+  position: relative;
+  overflow: hidden;
+}
+.thumb-item__image {
+  width: 100%;
+}
+.thumb-item__info {
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  box-sizing: border-box;
+  color: #fff;
+  padding: 10px 20px;
+}
+.thumb-item__info h5 {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  font-family: tahoma;
+  font-weight: bold;
+}
+.thumb-item__info p {
+  font-size: 12px;
+  margin: 4px 0 14px;
+}
+.thumb-item:hover .thumb-item__info {
+  opacity: 1;
+  bottom: -5px;
+}
