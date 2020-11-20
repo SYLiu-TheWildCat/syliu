@@ -1,0 +1,202 @@
+ h1{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Comic Sans', Geneva, Verdana, sans-serif;
+            text-align: center;
+        }
+        p{
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Comic Sans', Geneva, Verdana, sans-serif;
+            text-indent: 2em;
+        }
+        h2{
+            counter-increment: sec;
+        }
+        h2.section{
+            font-weight: bold;
+            margin-right: 2ex;
+            float: left;
+            font-size: medium;
+            margin-top: 0em;
+            margin-bottom: 0em;
+            margin-left: 2em;
+        }
+        h2.section::after{
+            content: ".";
+        }
+        div.s{
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+            counter-increment: statement;
+        }
+        div.s.definition{
+            font-weight: bold;
+            color: orange;
+        }
+        div.s.definition::after{
+            content: ".";
+        }
+        div.s.theorem{
+            font-weight: bold;
+            color: orange;
+        }
+        div.s.theorem::after{
+            content: ".";
+        }
+        div.s.lemma{
+            font-weight: bold;
+            color: palevioletred;
+        }
+        div.s.lemma::after{
+            content: ".";
+        }
+        div.s.remark{
+            font-weight: bold;
+            color: palevioletred;
+        }
+        div.s.remark::after{
+            content: ".";
+        }
+        div.s.prp{
+            font-weight: bold;
+            color: palevioletred;
+        }
+        div.s.prp::after{
+            content: ".";
+        }
+        div.s.crl{
+            font-weight: bold;
+            color: palevioletred;
+        }
+        div.s.crl::after{
+            content: ".";
+        }
+        div.pf{
+            font-weight: bold;
+            color: orangered;
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+        }
+        div.pf::after{
+            content: ".";
+        }
+        div.scap{
+            float: left;
+            margin-right: 2em;
+            font-variant: small-caps;
+            font-size: 13pt;
+        }
+        div.proof{
+            margin-top: 2em;
+            margin-left: 0em;
+        }
+        div.proof::after{
+            float: right;
+            border: 1px white solid;
+            display: block;
+            height: 14px;
+            width: 14px;
+            right: 0px;
+            bottom: 0px;
+            content: "";
+        }
+        b.textbf{
+            font-weight: bold;
+            margin-right: 0ex;
+            color: royalblue;
+        }
+        p.proof{
+            margin-top: 0em;
+            margin-bottom: 0em;
+            margin-left: 0em;
+        }
+        p.proof::before{
+            color: orangered;
+            font-weight: bold;
+            content: "Proof. ";
+        }
+        p.proof::after{
+            float: right;
+            content: "";
+            border: 1px white solid;
+            display: block;
+            height: 14px;
+            width: 14px;
+            right: 0px;
+            bottom: 0px;
+        }
+        body{
+            counter-reset: footnotes;
+            counter-reset: statement;
+            counter-reset: sec;
+            background-color: rgb(0, 49, 0);
+            color: white;
+            margin-left: 140px;
+            font-size: 12pt;
+            padding: 0px 10px;
+        }
+        .sidenav{
+            width: 130px;
+            position: fixed;
+            z-index: 1;
+            top: 20px;
+            left: 10px;
+            background-color :rgb(0, 49, 0); opacity: 0.8; backdrop-filter: blur(5px);
+            overflow-x: hidden;
+            padding: 8px 0;
+        }
+        .sidenav a{
+            padding: 6px 8px 6px 16px;
+            text-decoration: none;
+            font-size: 9pt;
+            color: white;
+            display: block;
+        }
+        .sidenav a:hover{
+            color: whitesmoke;
+        }
+        @media screen and (max-height :450px){
+            .sidenav {padding-top: 15px;}
+            .sidenav a {font-size: 18pt;}
+        }
+        article{
+            font-family: Lucida, "Geneva", Tahoma, sans-serif;
+        }
+        hr.new2{
+            border: 0.5px solid;
+        }
+        h3.subsection{
+            font-weight: bold;
+            margin-right: 2ex;
+            float: left;
+            font-size: medium;
+            margin-top: 0em;
+            margin-bottom: 0em;
+            margin-left: 2em;
+        }
+        ol.thm{
+            list-style-type: none;
+            counter-reset: thmpart;
+        }
+        ol.thm li{
+            counter-increment: thmpart;
+        }
+        ol.thm li::before{
+            content: "("counter(thmpart,lower-roman)")";
+        }
+        ul.thm>li{
+            list-style-type: none;
+            margin-bottom: 10px;
+        }
+        a{
+            color: violet;
+        }
+        img.center{
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        figcaption{
+            
+            color: gray;
+        }

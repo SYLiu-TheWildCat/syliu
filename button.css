@@ -1,0 +1,42 @@
+.fold {
+	/* background: -webkit-linear-gradient(top, #e5e5e5, #ccc);
+	padding: 10px;
+	width: 280px;
+	height: 80px; */
+	/* color: #999; */
+	-webkit-transition: all 0.3s linear;
+	-moz-transition: all 0.3s linear;
+	transition: all 0.3s linear;
+}
+
+.unfolder { display: none; }
+
+.toggle-label {
+	display: inline-block;
+	cursor: pointer;
+	font-size: 11px;
+	border-radius: 5px;
+	padding: 5px;
+}
+.unfold-icon, .fold-icon {
+  color: #999;
+  // fixed width to stop the icon from wiggling
+  width: 10px;
+  display: inline-block;
+}
+.unfolder ~ .fold {
+  display: none;
+}
+.unfolder ~ label .fold-icon {
+  display: none;
+}
+
+.unfolder:checked ~ .fold {
+  display: block;
+}
+.unfolder:checked ~ label .fold-icon {
+  display: inline-block;
+}
+.unfolder:checked ~ label .unfold-icon {
+  display: none;
+}
