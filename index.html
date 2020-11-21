@@ -6,9 +6,20 @@
 <title>Siyang Liu's Personal Homepage</title>
 <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 <style>
+    article{
+        color: rgb(50, 30, 90);
+    }
     h1 {
         font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-align: center;
+    }
+
+    h4{
+        display: inline;
+    }
+
+    h4::after{
+        content: ' ';
     }
 
     p {
@@ -52,12 +63,26 @@
         padding: 6px 8px 6px 16px;
         text-decoration: none;
         font-size: 9pt;
-        color: darkgreen;
+        color: palevioletred;
         display: block;
     }
     
     .fig{
         float: right;
+    }
+
+    .hov{
+        display: none;
+        width: 400px;
+        position: fixed;
+        background-color: white;
+        color: palevioletred;
+        border-style: dotted;
+        padding: 6px 8px 6px 16px;
+    }
+    
+    a{
+        color: palevioletred;
     }
 </style>
 <link rel="stylesheet" type="text/css" href="button.css">
@@ -75,7 +100,7 @@
          function init(x,y) {
              var xe = document.getElementById(x);
              var ye = document.getElementById(y);
-            ye.onmouseover = function(){xe.style.display = '';};
+            ye.onmouseover = function(){xe.style.display = 'block';};
             ye.onmouseout = function(){xe.style.display = 'none';}
          }
 
@@ -104,12 +129,17 @@
         <h3>Notes(English):</h3>
         <ul>
             <li><div id="SD11" onmouseover="init('sub11','SD11')"><a href="https://www.overleaf.com/read/cgnsnhxqzpnk">My Undergraduate Thesis</a>.</div>
-                <div id="sub11" style="display:none; position: relative;"><h4>Abstract:</h4>This is a survey on Floer's original proof of the Arnold conjecture for Lagrangian intersections, and we replace some of his result by a slightly general ones, done by his successors J. W. Robbin, D. A. Salamon, Dusa Mcduff, and Y.-G. Oh.</div></li>
+                <div id="sub11" class="hov"><h4>Abstract:</h4>This is a survey on Floer's original proof of the Arnold conjecture for Lagrangian intersections, and we replace some of his result by a slightly general ones, done by his successors J. W. Robbin, D. A. Salamon, Dusa Mcduff, and Y.-G. Oh.</div></li>
+                <li>I'm attending the Symplectic Reading semianr at USC, with websites <a href="https://sites.google.com/usc.edu/alec-sahakian/seminars/symplectic-geometry-and-floer-theory-seminar" title="Symplectic Reading Seminar">here</a>.
+                <ul>
+                    <li><div id="SD12" onmouseover="init('sub12','SD12')"><a href="https://www.overleaf.com/read/rwbyhzmnwvpn">Floer theory on cotangent bundle</a></div><div id="sub12" class="hov"><h4>Abstract:</h4>This is a note for the seminar in USC, which summarizes the main results of Oh's paper <i>Symplectic Topology as the Geometry of Action Functional, I</i> and hopes to explain the technical details of this paper as well as its applications, the famous Oh's spectral invariant.</div></li>
+                    <li><div id="SD13" onmouseover="init('sub13','SD13')"><a href="https://www.overleaf.com/read/gjvtbvsxgsvd">Homological Mirror Symmetry on \(\mathbb{CP}^2\)</a></div><div id="sub13" class="hov"><h4>Abstract:</h4> This is about Seidel's series of papers on the large project trying to prove the homological mirror symmetry proposal on \(\mathbb{CP}^2\). There're many interesting phenomena and geometric topological theories involved, and I'm trying to explain them as my term paper for MATH 641.</div></li>
+                </ul></li>
         </ul>
         <h3>Seminars:</h3>
         <ul>
-            <li><div id="SD21" onmouseover="init('sub21','SD21')"><a href="https://syliu-thewildcat.github.io/Seminar-Webpage.github.io/seminar-Riemann-Roch.html">Online Seminars on Riemann-Roch Theorem</a></div><div id="sub21" style="display: none; position:relative;"><h4>Description:</h4>This is an online seminar held in the summer of 2020, where I explain the statement, usage and proof of the Riemann-Roch Theorem in Mcduff and Salamon's book <i>J-holomorphic Curves and Symplectic Topology</i>.</div></li>
-            <li><div id="SD22" onmouseover="init('sub22','SD22')"><a href="Galois-theory.html">Galois Theory</a></div><div id="sub22" style="display: none; position: relative;"><h4>Description:</h4>This is a volunteering lecture for freshmen and sophomore in Sun Yat-Sen University. I'm going to introduce the Galoi theory in some details to them, in order to help them find their interests in study.</div></li>
+            <li><div id="SD21" onmouseover="init('sub21','SD21')"><a href="https://syliu-thewildcat.github.io/Seminar-Webpage.github.io/seminar-Riemann-Roch.html">Online Seminars on Riemann-Roch Theorem</a></div><div id="sub21" class="hov"><h4>Description:</h4>This is an online seminar held in the summer of 2020, where I explain the statement, usage and proof of the Riemann-Roch Theorem in Mcduff and Salamon's book <i>J-holomorphic Curves and Symplectic Topology</i>.</div></li>
+            <li><div id="SD22" onmouseover="init('sub22','SD22')"><a href="Galois-theory.html">Galois Theory</a></div><div id="sub22" class="hov"><h4>Description:</h4>This is a volunteering lecture for freshmen and sophomore in Sun Yat-Sen University. I'm going to introduce the Galoi theory in some details to them, in order to help them find their interests in study.</div></li>
         </ul>
     </article>
 </body>
