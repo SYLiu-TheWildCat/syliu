@@ -84,6 +84,22 @@
     a{
         color: palevioletred;
     }
+
+    table{
+        position: relative;
+        border: none;
+        text-align: left;
+    }
+    th,td{
+        column-gap: 0px;
+        row-gap: 0px;
+    }
+    table{
+        width: 100%;
+    }
+
+    tr:nth-child(even) {background-color: lightskyblue;}
+    tr:nth-child(odd) {background-color: lightcyan;}
 </style>
 <link rel="stylesheet" type="text/css" href="button.css">
 <!-- <link rel="stylesheet" type="text/css" href="thumb-item.css"> -->
@@ -122,6 +138,21 @@
         <p>Welcome to my homepage! I'm a first year PhD student at University of Southern California, interested in geometry and topology. I'm now visiting Peking University with professor Huijun Fan.</p>
 
         <p>The right-hand picture is one of my favourite characters in anime, that I use it as my profile pictures(and also here, as a symbol for my personal homepage). I hope I could be as kind and brave as her.</p>
+
+        <h2 id="Education">Education</h2>
+
+        <table>
+            <tr>
+                <td>Year</td><td>School</td><td>Degree</td><td>Description</td>
+            </tr>
+            <tr>
+                <td>2020-Now</td><td>University of Southern California</td><td>PhD in Mathematics</td><td></td>
+            </tr>
+            <tr>
+                <td>2016-2020</td><td>Sun Yat-Sen University</td><td>Bachelor in Science</td><td>In mathematics; Advisor: Prof. Jianxun Hu; Thesis: The Arnold Conjecture for Lagrangian Intersections.</td>
+            </tr>
+        </table>
+
 
         <h2 id="SeminarsNotes">Seminars & Notes</h2>
 
