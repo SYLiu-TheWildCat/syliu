@@ -31,14 +31,6 @@
         color: yellowgreen;
     }
 
-    table,
-    th,
-    td {
-        border: 1px solid black;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
     body {
         counter-reset: footnotes;
         counter-reset: statement;
@@ -65,6 +57,7 @@
         font-size: 9pt;
         color: palevioletred;
         display: block;
+        position: relative;
     }
     
     .fig{
@@ -89,13 +82,15 @@
         border: none;
         text-align: left;
         border-collapse: collapse;
+        position: relative;
+        /* float: left; */
     }
     th,td{
         column-gap: 0px;
         row-gap: 0px;
     }
     table{
-        width: 100%;
+        width: relative;
     }
 
     tr:nth-child(even) {background-color: lightskyblue;}
