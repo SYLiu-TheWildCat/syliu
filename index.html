@@ -110,6 +110,18 @@
                 var div = document.getElementById(id);
                 div.scrollTop = div.scrollHeight - div.clientHeight;
             }
+
+            function clit(x, y) {
+                    var xe = document.getElementById(x);
+                    var ye = document.getElementById(y);
+                    ye.onclick = function () {if (xe.display) {
+                    xe.display = ((xe.display != 'none') ? 'none' : 'block');
+                }
+                else { xe.display = 'block' }
+            }
+                }
+
+                window.onload = clit;
 </script>
 </head>
 <body>
@@ -149,9 +161,9 @@
         <p>Here is some of my unpublished notes(Chinese or English) and links to seminars.</p>
         <h3>Notes(English):</h3>
         <ul>
-            <li><div id="SD11" onmouseover="init('sub11','SD11')"><h4>My Undergraduate Thesis.</h4>
-                <iframe src="files/Siyang Liu, Floer theory for Lagrangian Intersections.pdf" type="application/pdf" width="100%" height="500px"></iframe></div>
-                <div id="sub11" class="hov"><h4>Abstract:</h4>This is a survey on Floer's original proof of the Arnold conjecture for Lagrangian intersections, and we replace some of his result by a slightly general ones, done by his successors J. W. Robbin, D. A. Salamon, Dusa Mcduff, and Y.-G. Oh.</div></li>
+            <li><div id="SD11" onclick="clit('sub11','SD11')"><h4>My Undergraduate Thesis.</h4></div><div id="sub11" class="hov">
+                <iframe src="files/Siyang Liu, Floer theory for Lagrangian Intersections.pdf" type="application/pdf" width="100%" height="500px"></iframe>
+                <h4>Abstract:</h4>This is a survey on Floer's original proof of the Arnold conjecture for Lagrangian intersections, and we replace some of his result by a slightly general ones, done by his successors J. W. Robbin, D. A. Salamon, Dusa Mcduff, and Y.-G. Oh.</div></li>
                 <li>I'm attending the Symplectic Reading semianr at USC, with websites <a href="https://sites.google.com/usc.edu/alec-sahakian/seminars/symplectic-geometry-and-floer-theory-seminar" title="Symplectic Reading Seminar">here</a>.
                 <ul>
                     <li><div id="SD12" onmouseover="init('sub12','SD12')"><a href="https://www.overleaf.com/read/rwbyhzmnwvpn">Floer theory on cotangent bundle</a></div><div id="sub12" class="hov"><h4>Abstract:</h4>This is a note for the seminar in USC, which summarizes the main results of Oh's paper <i>Symplectic Topology as the Geometry of Action Functional, I</i> and hopes to explain the technical details of this paper as well as its applications, the famous Oh's spectral invariant.</div></li>
