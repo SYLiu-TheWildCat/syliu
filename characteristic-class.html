@@ -1,0 +1,51 @@
+<html lang="cn">
+<head>
+    <meta charset="utf8">
+    <meta name="author" content="Siyang Liu">
+    <meta name="description" content="notes on characteristic classes">
+    <title>Notes on Characteristic Classes</title>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        table, th, td{
+            border: 1px solid lightyellow;
+            border-collapse: collapse;
+            width: relative;
+            text-align: center;
+        }
+
+        article{
+            color: rgb(244, 245, 214);
+            background-color: rgb(43, 13, 13);
+        }
+    </style>
+    <script>
+        $('[data-step]').each(function () {
+                var s = $(this).data('step');
+                var i = $(this).parent().parent().find('li[data-step-name=' + s + ']').index();
+                $(this).html(i + 1);
+            })
+    </script>
+</head>
+<body>
+    <article>
+        <h1>Characteristic Classes</h1>
+        <p>This is the webpage for my series of lectures on characteristic classes giving to undergraduate students in Sun Yat-Sen University. They're given in Chinese. There're notes and recordings. Any suggestions and corrections for my notes and recordings can be sent to <a href="mailto:liusiyan@usc.edu">liusiyan@usc.edu</a>.</p>
+        <h2>Notes</h2>
+        <ul>
+            <li><a href="characteristic-classes/1-definition-and-line-bundles.html">1. Definition and Line Bundles.</a></li>
+        </ul>
+        <h2>Recordings</h2>
+            <table style="border: lightyellow;">
+                <tr>
+                    <th>Title</th><th>Link</th><th>References</th>
+                </tr>
+                <tr>
+                    <td>Definition of Characteristic Classes and Line bundles</td><td><a href="https://www.bilibili.com/video/BV1v5411T7mG/">Click Here</a></td><td>[<span data-step="Coh98"></span>], Chapter 3</td>
+                </tr>
+            </table>
+        <h2>References</h2>
+        <ol>
+            <li data-step-name="Coh98">Cohen, R. (1998) Topology of Fibre Bundles. Available <a href="http://math.stanford.edu/~ralph/fiber.pdf">here</a>.</li>
+        </ol>
+    </article>
+</body>
