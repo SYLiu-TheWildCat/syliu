@@ -5,6 +5,7 @@
     <meta name="description" content="notes on characteristic classes">
     <title>Notes on Characteristic Classes</title>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="https://unpkg.com/vue@next"></script>
     <style>
         table, th, td{
             border: 1px solid lightyellow;
@@ -16,12 +17,18 @@
 
         body{
             color: rgb(244, 245, 214);
-            background-color: rgb(43, 13, 13);
+            background-color: rgb(16, 9, 29);
+        }
+
+        a{
+            color: yellow;
         }
     </style>
     <script>
         function findnumber("reference"){
-            return document.getElementById("reference").getAttribute("value");
+            var nb;
+            nb= document.getElementById("reference").getAttribute("value");
+            return nb;  
         }
     </script>
 </head>
@@ -39,7 +46,7 @@
                     <th>Title</th><th>Link</th><th>References</th>
                 </tr>
                 <tr>
-                    <td>Definition of Characteristic Classes and Line bundles</td><td><a href="https://www.bilibili.com/video/BV1v5411T7mG/">Click Here</a></td><td>[<span style="prefix: "findnumber(Coh98)""></span>], Chapter 3</td>
+                    <td>Definition of Characteristic Classes and Line bundles</td><td><a href="https://www.bilibili.com/video/BV1v5411T7mG/">Click Here</a></td><td>[{{ findnumber("Coh98") }}], Chapter 3</td>
                 </tr>
             </table>
         <h2>References</h2>
