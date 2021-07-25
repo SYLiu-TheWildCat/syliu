@@ -5,13 +5,7 @@
     <meta name="description" content="notes on characteristic classes">
     <title>Notes on Characteristic Classes</title>
     <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.js">
-    $('[data-step]').each(function () {
-            var s = $(this).data('step');
-            var i = $(this).parent().parent().find('li[data-step-name=' + s + ']').index();
-            $(this).html(i + 1);
-        });
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <style>
         table, th, td{
             border: 1px solid lightyellow;
@@ -30,6 +24,11 @@
             color: yellow;
         }
     </style>
+    <script>
+        function findnumber(reference){
+            return document.getElementById(reference).getAttribute("value");
+        }
+    </script>
 </head>
 <body>
     <article>
@@ -45,7 +44,7 @@
                     <th>Title</th><th>Link</th><th>References</th>
                 </tr>
                 <tr>
-                    <td>Definition of Characteristic Classes and Line bundles</td><td><a href="https://www.bilibili.com/video/BV1v5411T7mG/">Click Here</a></td><td>[<span data-step = "Coh98"></span>], Chapter 3</td>
+                    <td>Definition of Characteristic Classes and Line bundles</td><td><a href="https://www.bilibili.com/video/BV1v5411T7mG/">Click Here</a></td><td>[1], Chapter 3</td>
                 </tr>
             </table>
         <h2>References</h2>
