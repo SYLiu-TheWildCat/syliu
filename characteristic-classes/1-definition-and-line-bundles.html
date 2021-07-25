@@ -18,6 +18,33 @@
     body {
         color: rgb(244, 245, 214);
         background-color: rgb(16, 9, 29);
+        counter-reset: statement;
+        font-size: 12pt;
+    }
+
+    div.s{
+        float: left;
+        margin-left: 2em;
+        margin-right: 2ex;
+        counter-increment: statement;
+    }
+
+    div.s.dfn{
+        font-weight: bold;
+        color: chartreuse;
+    }
+
+    div.s.fact{
+        font-weight: bold;
+        color: lightsalmon;
+    }
+
+    div.s.dfn::before{
+        content: "1."counter(statement)". 定义.";
+    }
+
+    div.s.fact::before{
+        content: "事实.";
     }
 </style>
 </head>
@@ -25,5 +52,19 @@
     <article>
         <h1>§1. 示性类的定义.</h1>
         <p>我们从示性类的定义开始说起. 设\(G\)是一个拓扑群，\(E\)是一个CW复形，并且\(G\)自由连续地作用在\(E\)上，则我们有纤维丛\(E\to B=E/G\)，并且\(B\)也是一个CW复形.</p>
+
+        <p><div class="s dfn"></div>设\(B\)是一个拓扑空间，\(G\)是一个拓扑群. 我们称\(P\)是\(B\)上的一个<b>主\(\mathbf{G}\)-丛</b>，若\(P\)上有一个自由的\(G\)-作用使得\(P/G\cong B\). 为了方便，我们记这个作用为一个右作用，即\(g.x=xg\).</p>
+
+        <p>若\(F\)是一个拓扑空间，且\(G\curvearrowright F\)，即存在一个拓扑群的同态\(\rho\colon G\to\mathrm{Homeo} (F)\)，则对一个主\(G\)-丛\(P\to B\)，我们可以构造一个<b>关联向量丛</b>\(P\times_{\rho} F =\{(x,f)\vert (xg,f)=(x,\rho (g)f)\}\).</p>
+
+        <p>特别地，如果\(F\)是一个域\(\mathbb{F}\)上的向量空间（这里\(\mathbb{F}\)是实数域\(\mathbb{R}\)或者复数域\(\mathbb{C}\))且\(G\)在\(F\)上的作用是线性的，那么\(E=P\times_{\rho} F\)是\(B\)上的一个向量丛. 反之，如果\(E\to B\)是一个向量丛，我们有一个自然的\(\mathrm{GL} (k,\mathbb{F})\)-主丛\(P\to B\)使得\(P\times_{\rho}\mathbb{F}\cong E\). 这是因为对任何秩为\(k\)的向量丛\(E\to B\)，我们可以选取一个对应的<b>标架丛</b>\(F(E)\to B\)，其中\(F(E)\)的定义如下：记\(p\colon E\to B\)为投影映射. 对每个\(b\in B\)，选取\(b\)的一个开邻域\(U\ni p\)满足\(p^{-1} (U)\cong U\times\mathbb{F}^k\), 令\(\pi^{-1} (U)=\{(p, v_1 ,v_2 ,\dotsb ,v_k)\vert p\in B,\ \{v_1 ,\dotsb ,v_k\}\subseteq\mathbb{F}^k\text{ 构成 }\mathbb{F}^k\text{ 的一组基}\} =U\times\mathrm{GL} (k,\mathbb{F})\). 对另一个这样的开集\(V\subseteq B\)，若转移函数为\(\Phi\colon U\cap V\to\mathrm{GL} (k,\mathbb{F})\)，则在\(U\cap V\)上转移函数仍然由\(\Phi\)（通过左乘作用）给出. 因此按这样定义的集合族\(\{\pi^{-1} (U)\}\)自然拼接成一个\(\mathrm{GL} (k,\mathbb{F})\)-主丛\(F(E)\to B\).</p>
+
+        <p><div class="s dfn"></div>设\(f\colon G\to H\)是拓扑群的连续同态，\(P\to B\)是一个主\(H\)-丛，则我们称\(P\)通过\(f\)<b>约化到</b>主\(G\)-丛\(Q\)，如果\(Q\times_f H\cong P\).</p>
+
+        <p><div class="s fact"></div>\(\mathrm{O} (n)\hookrightarrow\mathrm{GL} (n,\mathbb{R})\)以及\(\mathrm{U} (n)\hookrightarrow\mathrm{GL} (n,\mathbb{C} )\)都是形变收缩.</p>
+
+        <p>这告诉我们如果\(B\)是一个CW复形，那么任何一个主\(\mathrm{GL} (n,\mathbb{R})\)-丛都可以约化成一个主\(\mathrm{O}(n)\)-丛，且任何一个主\(\mathrm{GL} (n,\mathbb{C})\)(或者\(\mathrm{Sp} (2n,\mathbb{R} )\))-丛都可以约化成一个主\(\mathrm{U} (n)\)-丛. 上述事实的证明可以参考[2，第一章].</p>
+
+        <p>现在，对任何拓扑空间\(X\)，我们令\(\mathrm{Prin}_G (X)\)为所有\(X\)上主\(G\)-丛的等价类的空间.</p>
     </article>
 </body>
