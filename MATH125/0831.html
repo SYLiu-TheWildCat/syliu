@@ -1,0 +1,73 @@
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Siyang Liu">
+        <meta name="title" content="08/31">
+        <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <style>
+            body{
+        background-color: black;
+    }
+    article{
+        color: blanchedalmond;
+        font-size: 12pt;
+    }
+    h1{
+        font-size: 24pt;
+    }
+    table.sel{
+        text-align: center;
+        position: relative;
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 18pt;
+    }
+    td{
+        border: 1px solid;
+    }
+    a{
+        color: lightpink;
+    }
+    div.s{
+        float: left;
+        margin-left: 2em;
+        margin-right: 2ex;
+        counter-increment: statement;
+    }
+
+    div.s.dfn{
+        font-weight: bold;
+        color: lightblue;
+    }
+
+    div.s.fact{
+        font-weight: bold;
+        color: lightsalmon;
+    }
+
+    div.s.dfn::before{
+        content: "1."counter(statement)". Definition.";
+    }
+
+    div.s.fact::before{
+        content: "Fact.";
+    }
+
+    b{
+        color: lightsalmon;
+    }
+        </style>
+    </head>
+    <body>
+        <article>
+            <h1>08/31/2021</h1>
+            <p>Today we're going to review the limit of a function and see some examples. First of all, let's recall the rigorous definition of the limit of a function:</p>
+            <p><div class="s dfn"></div>Let \(f\) be any function and \(a, L\in\mathbb{R}\) real numbers, then we say the <b>limit</b> of \(f\) at \(a\) is \(L\), written as
+            $$
+        \lim_{x\to a} f(x)=L, 
+    $$
+if for any given real number \(\varepsilon >0\), there exists a positive real number \(\delta >0\) such that for any \(x\in\mathbb{R}\) satisfying \(0<\vert x-a\vert <\delta\), we have \(\vert f(x)-L\vert <\epsilon\).</p>
+<p>The definition is not easy to understand. In fact, mathematicians spent about two hundred years to rigorously write down the definition of a limit. It was firstly supposed by Newton and finally written down by Weierstrass. In this course we don't quite need to understand this in much detail. This would be done in MATH 425a.</p>
+        </article>
+    </body>
+</html>
