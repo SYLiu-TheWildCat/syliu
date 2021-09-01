@@ -44,13 +44,21 @@
         font-weight: bold;
         color: lightsalmon;
     }
+    div.s.exp{
+        font-weight: bold;
+        color: lightcyan;
+    }
 
     div.s.dfn::before{
-        content: "1."counter(statement)". Definition.";
+        content: "3."counter(statement)". Definition.";
     }
 
     div.s.fact::before{
         content: "Fact.";
+    }
+    
+    div.s.exp::before{
+        content: "3."counter(statement)".Example.";
     }
 
     b{
@@ -61,13 +69,67 @@
     <body>
         <article>
             <h1>08/31/2021</h1>
-            <p>Today we're going to review the limit of a function and see some examples. First of all, let's recall the rigorous definition of the limit of a function:</p>
+            <h2>Transformations of Functions</h2>
+            <p>We'll continue our discussion of graph of functions. The type of elementary transformations of functions is listed below:</p>
+            <ul>
+                <li>\(f(x)\leadsto cf(x)\) for some real number \(c\);</li>
+                <li>\(f(x)\leadsto f(x)+c\) for some real number \(c\);</li>
+                <li>\(f(x)\leadsto f(cx)\);</li>
+                <li>\(f(x)\leadsto f(x+c)\).</li>
+            </ul>
+            We can see how these transformations affect behaviour of functions via their graphs. Here're some examples.
+            <p><div class="s exp"></div>\(y=\sin\left(\frac{x}{2}\right)\).</p>
+            <p>To analyse the graph of this function, we start with the "standard model" \(y=\sin x\): the graph of this function has been drawn last week and we know that the graph looks like.</p>
+            <div>
+                <img src="sine-function1.png">
+            </div>
+            <p>This is the graph of function \(y=\sin (x)\), and in order to draw the graph of function \(y=\sin\left(\frac{x}{2}\right)\), notice that for the value of \(\frac{x}{2}\) to be \(a\), \(x\) must be \(2a\), so the graph would be a horizontal stretch of \(y=\sin (x)\), so the graph of \(y=\sin\left(\frac{x}{2}\right)\) looks like</p>
+            <div><img src="sine-function2.png"></div>
+            <p>Putting these two graphs into one canvas, we get</p>
+            <div><img src="sine-function3.png"></div>
+            <p>which gives you an intuition of what is meant by "horizontal stretch".</p>
+
+            <p>Now let's see another example.</p>
+
+            <p><div class="s exp"></div>\(y=\vert x\vert -2\).</p>
+
+            <p>This is a relatively easy one. We start with the "standard model" \(y=\vert x\vert\). The graph of this function is</p>
+
+            <div><img src="absolute-value1.png"></div>
+
+            <p>subtracting from this function by \(2\) means moving the graph downwards by \(2\) units. So the graph of the transformed function is</p>
+
+            <div><img src="absolute-value2.png"></div>
+
+            <p>The purple line is the graph of the function \(y=\vert x\vert -2\).</p>
+
+            <p><div class="s exp"></div>The third example is the tangent function \(y=\tan\left(x-\frac{\pi }{4}\right)\). Note that the standard model is \(y=\tan (x)\), whose picture looks like</p>
+
+            <div><img src="tangent-function1.png"></div>
+
+            <p>For the function \(y=\tan\left(x-\frac{\pi }{4}\right)\), note that for \(x-\frac{\pi}{4} =a\), we have \(x=a+\frac{\pi}{4}\), so the graph of \(y=\tan\left( x-\frac{\pi}{4}\right)\) would be a translation of the standard model \(y=\tan (x)\) to the right by \(\frac{\pi}{4}\) units. So the graph of the function \(y=\tan\left(x-\frac{\pi }{4}\right)\) would look like</p>
+
+            <div><img src="tangent-function2.png"></div>
+
+            <p> where the blue curve is the graph of the function \(y=\tan\left( x-\frac{\pi}{4}\right)\).</p>
+
+            <p><div class="s exp"></div>Finally, we consider the more complicated function \(y=\frac{1}{4}\tan\left(x-\frac{\pi}{4}\right)\). This is obtained from the previous example by multiplying by \(\frac{1}{4}\), and so the resulting graph would be a compression of the previous graph. So the graph is shown as follows:</p>
+
+            <div><img src="tangent-function3.png"></div>
+
+            <p>Now we have seen how elementary transformations affect the graph of a function. If we have multiple elementary transformations, we can firstly write them as a composition of several elementary transformations of a "standard model", the essential functions that we have met before, and to sketch the graph of this function using the standard model and the elementary transformations. We can also analyse the domain and the range of the function.</p>
+            
+            <p>As an exercise, try to analyse the function \(y=2\sin \left(3x+\frac{\pi}{6}\right)\), that is, try to figure out its domain, range and try to sketch a graph of this function.</p>
+
+            <h2>Limit of Functions</h2>
+            <p>Now we're going to review the limit of a function and see some examples. First of all, let's recall the rigorous definition of the limit of a function:</p>
             <p><div class="s dfn"></div>Let \(f\) be any function and \(a, L\in\mathbb{R}\) real numbers, then we say the <b>limit</b> of \(f\) at \(a\) is \(L\), written as
             $$
         \lim_{x\to a} f(x)=L, 
     $$
 if for any given real number \(\varepsilon >0\), there exists a positive real number \(\delta >0\) such that for any \(x\in\mathbb{R}\) satisfying \(0<\vert x-a\vert <\delta\), we have \(\vert f(x)-L\vert <\epsilon\).</p>
-<p>The definition is not easy to understand. In fact, mathematicians spent about two hundred years to rigorously write down the definition of a limit. It was firstly supposed by Newton and finally written down by Weierstrass. In this course we don't quite need to understand this in much detail. This would be done in MATH 425a.</p>
+<p>The definition is not easy to understand. In fact, mathematicians spent about two hundred years to rigorously write down the definition of a limit. It was firstly supposed by Newton and finally written down by Weierstrass. In this course we don't quite need to understand this in much detail. This would be done in MATH 425a. Today we'll just see some examples of limits of functions.</p>
+
         </article>
     </body>
 </html>
