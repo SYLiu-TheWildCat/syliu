@@ -35,51 +35,54 @@
             color: lightpink;
         }
 
-        div.s {
+        span.s {
             float: left;
             margin-left: 2em;
             margin-right: 2ex;
             counter-increment: statement;
+            display: inline;
         }
 
-        div.r{
+        span.r{
             float: left;
             margin-left: 2em;
             margin-right: 2ex;
+            display: inline;
         }
 
-        div.s.prb {
+        span.s.prb {
             font-weight: bold;
             color: whitesmoke;
         }
 
-        div.r.rmk{
+        span.r.rmk{
             font-weight: bold;
             color: wheat;
         }
 
-        div.r.sol{
+        span.r.sol{
             font-weight: bold;
             color: tomato;
         }
 
-        div.r.csol{
+        span.r.csol{
             margin-left: 0em;
+            float: right;
         }
 
-        div.s.prb::before{
+        span.s.prb::before{
             content: counter(statement)".";
         }
 
-        div.r.rmk::before{
+        span.r.rmk::before{
             content: "Remark.";
         }
 
-        div.r.sol::before{
+        span.r.sol::before{
             content: "Solution.";
         }
         
-        div.r.csol::after{
+        span.r.csol::after{
             font-weight: bold;
             color: tomato;
             content: "  \25C1";
@@ -114,17 +117,17 @@
     <td><a href="#paperA">Paper A</a></td><td><a href="#paperB">Paper B</a></td>
 </table>
         <h2 id="paperA">Paper A</h2>
-        <p><div class="s prb"></div>Find the domain and range of the function \(f(x)=\frac{1}{\sqrt{3-x}+\sqrt{x+2}}\).(10 points)</p>
-        <p><div class="r rmk"></div>6 points on the domain, and 4 bonus points on the range of this function. It's not easy to find the range and requires some detailed computations and tricks.</p>
-        <p><div class="r sol"></div>To find the domain of \(f\), note that \(f(x)=g\circ h(x)\) where \(g(y)=\frac{1}{y}\) and \(h(x)=\sqrt{3-x} +\sqrt{x+2}\), so we must require that \(y=h(x)\neq 0\) and that \(3-x\geq 0\) and \(x+2\geq 0\). The latter conditions imply \(-2\leq x\leq 3\), and the first condition reads \(\sqrt{3-x}+\sqrt{x+2}\neq 0\), which is always the case since the only possibility for \(h(x)\) to be zero is both \(\sqrt{3-x}\) and \(\sqrt{x+2}\) are zero. This is impossible, since the first equation reads \(x=3\) while the second one implies \(x=-2\). Therefore we conclude that the domain of \(f\) is exactly \(-2\leq x\leq 3\).</p>
+        <p><span class="s prb"></span>Find the domain and range of the function \(f(x)=\frac{1}{\sqrt{3-x}+\sqrt{x+2}}\).(10 points)</p>
+        <p><span class="r rmk"></span>6 points on the domain, and 4 bonus points on the range of this function. It's not easy to find the range and requires some detailed computations and tricks.</p>
+        <p><span class="r sol"></span>To find the domain of \(f\), note that \(f(x)=g\circ h(x)\) where \(g(y)=\frac{1}{y}\) and \(h(x)=\sqrt{3-x} +\sqrt{x+2}\), so we must require that \(y=h(x)\neq 0\) and that \(3-x\geq 0\) and \(x+2\geq 0\). The latter conditions imply \(-2\leq x\leq 3\), and the first condition reads \(\sqrt{3-x}+\sqrt{x+2}\neq 0\), which is always the case since the only possibility for \(h(x)\) to be zero is both \(\sqrt{3-x}\) and \(\sqrt{x+2}\) are zero. This is impossible, since the first equation reads \(x=3\) while the second one implies \(x=-2\). Therefore we conclude that the domain of \(f\) is exactly \(-2\leq x\leq 3\).</p>
 
-        <p>To determine the range of \(f\), we need some observations. Observe that \(h(x)^2 =(\sqrt{3-x}+\sqrt{x+2})^2 =3-x+x+2+2\sqrt{(3-x)(x+2)} =5+\sqrt{-x^2 +x+6}\), and the term in the square root is a quadratic polynomial, so it has the same monotonicity as quadratic polynomials, and we read that the minimum of \(h(x)\) is the minimum of its values at two endpoints, that is, \(\min\left\{h(3),h(-2)\right\}=\sqrt{5}\), and the maximum of \(h\) is its value at \(\frac{1}{2}\), which is \(h(\frac{1}{2} )=\sqrt{10}\).<div class="r csol">Therefore the range of \(f\) is \([\frac{1}{\sqrt{10}}, \frac{1}{\sqrt{5}}]\).</div>&nbsp;</p>
+        <p>To determine the range of \(f\), we need some observations. Observe that \(h(x)^2 =(\sqrt{3-x}+\sqrt{x+2})^2 =3-x+x+2+2\sqrt{(3-x)(x+2)} =5+\sqrt{-x^2 +x+6}\), and the term in the square root is a quadratic polynomial, so it has the same monotonicity as quadratic polynomials, and we read that the minimum of \(h(x)\) is the minimum of its values at two endpoints, that is, \(\min\left\{h(3),h(-2)\right\}=\sqrt{5}\), and the maximum of \(h\) is its value at \(\frac{1}{2}\), which is \(h(\frac{1}{2} )=\sqrt{10}\). Therefore the range of \(f\) is \([\frac{1}{\sqrt{10}}, \frac{1}{\sqrt{5}}]\).<span class="r csol"></span>&nbsp;</p>
 
-        <p><div class="s prb"></div>Find the domain and range of the function \(f(x)=2\cos(2x+\frac{\pi}{6})\), and try to sketch the graph by hand.(25 points)</p>
+        <p><span class="s prb"></span>Find the domain and range of the function \(f(x)=2\cos(2x+\frac{\pi}{6})\), and try to sketch the graph by hand.(25 points)</p>
 
-        <p><div class="r rmk"></div>10 points for the domain and range, and 5 points for the sketch of graph. There's a bonus point for the graph because there's a mistake that many students may make.</p>
+        <p><span class="r rmk"></span>10 points for the domain and range, and 5 points for the sketch of graph. There's a bonus point for the graph because there's a mistake that many students may make.</p>
 
-        <p><div class="r sol"></div>We write \(f\) as a composition \(f=2g\circ h\), where \(g(y)=\cos y\) and \(h(x)= 2x+\frac{\pi}{6}\). Both of these two functions have domain the whole real line \(\mathbb{R}\), so the domain of \(f\) is exactly \((-\infty ,+\infty)\).</p>
+        <p><span class="r sol"></span>We write \(f\) as a composition \(f=2g\circ h\), where \(g(y)=\cos y\) and \(h(x)= 2x+\frac{\pi}{6}\). Both of these two functions have domain the whole real line \(\mathbb{R}\), so the domain of \(f\) is exactly \((-\infty ,+\infty)\).</p>
 
         <p>For the range of \(f\), note that the range of \(g\) is \([-1,1]\), and we scale the function by \(2\), so the range of \(f\) would be \([-2,2]\).</p>
 
@@ -132,24 +135,24 @@
 
         <p><img src="IMG_0205.PNG"></p>
 
-        <p><div class="r csol">Some important markers: minimum and maximum points and zeros.</div>&nbsp;</p>
+        <p>Some important markers: minimum and maximum points and zeros.<span class="r csol"></span>&nbsp;</p>
 
         <h2 id="paperB">Paper B</h2>
 
-        <p><div class="s prb"></div>Find the domain and range of the function \(f(x)=\frac{1}{\sqrt{2-x}+\sqrt{x+3}}\).(10 points)</p>
+        <p><span class="s prb"></span>Find the domain and range of the function \(f(x)=\frac{1}{\sqrt{2-x}+\sqrt{x+3}}\).(10 points)</p>
 
-        <p><div class="r rmk"></div>6 points on the domain, and 4 bonus points on the range of this function. It's not easy to find the range and requires some detailed computations and tricks.</p>
+        <p><span class="r rmk"></span>6 points on the domain, and 4 bonus points on the range of this function. It's not easy to find the range and requires some detailed computations and tricks.</p>
 
-        <p><div class="r sol"></div>To find the domain of \(f\), note that \(f(x)=g\circ h(x)\) where \(g(y)=\frac{1}{y}\) and \(h(x)=\sqrt{2-x}+\sqrt{x+3}\), so we must require that \(y=h(x)\neq 0\) and that \(2-x\geq 0\) and \(x+3\geq 0\). The latter conditions imply \(-3\leq x\leq 2\), and the first condition reads \(\sqrt{2-x}+\sqrt{x+3}\neq 0\), which is always the case since the only possibility for \(h(x)\) to be zero is both \(\sqrt{2-x}\) and \(\sqrt{x+3}\) are zero. This is impossible, since the first equation reads \(x=2\) while the second one implies \(x=-3\). Therefore we conclude that the domain of \(f\) is exactly \(-3\leq x\leq 2\).</p>
+        <p><span class="r sol"></span>To find the domain of \(f\), note that \(f(x)=g\circ h(x)\) where \(g(y)=\frac{1}{y}\) and \(h(x)=\sqrt{2-x}+\sqrt{x+3}\), so we must require that \(y=h(x)\neq 0\) and that \(2-x\geq 0\) and \(x+3\geq 0\). The latter conditions imply \(-3\leq x\leq 2\), and the first condition reads \(\sqrt{2-x}+\sqrt{x+3}\neq 0\), which is always the case since the only possibility for \(h(x)\) to be zero is both \(\sqrt{2-x}\) and \(\sqrt{x+3}\) are zero. This is impossible, since the first equation reads \(x=2\) while the second one implies \(x=-3\). Therefore we conclude that the domain of \(f\) is exactly \(-3\leq x\leq 2\).</p>
 
         <p>To determine the range of \(f\), we need some observations. Observe that \(h(x)^2 =(\sqrt{2-x}+\sqrt{x+3})^2
-        =2-x+x+3+2\sqrt{(2-x)(x+3)} =5+\sqrt{-x^2 -x+6}\), and the term in the square root is a quadratic polynomial, so it has the same monotonicity as quadratic polynomials, and we read that the minimum of \(h(x)\) is the minimum of its values at two endpoints, that is, \(\min\left\{h(3),h(-2)\right\}=\sqrt{5}\), and the maximum of \(h\) is its value at \(-\frac{1}{2}\), which is \(h(-\frac{1}{2} )=\sqrt{10}\).<div class="r csol">Therefore the range of \(f\) is \([\frac{1}{\sqrt{10}}, \frac{1}{\sqrt{5}}]\).</div>&nbsp;</p>
+        =2-x+x+3+2\sqrt{(2-x)(x+3)} =5+\sqrt{-x^2 -x+6}\), and the term in the square root is a quadratic polynomial, so it has the same monotonicity as quadratic polynomials, and we read that the minimum of \(h(x)\) is the minimum of its values at two endpoints, that is, \(\min\left\{h(3),h(-2)\right\}=\sqrt{5}\), and the maximum of \(h\) is its value at \(-\frac{1}{2}\), which is \(h(-\frac{1}{2} )=\sqrt{10}\). Therefore the range of \(f\) is \([\frac{1}{\sqrt{10}}, \frac{1}{\sqrt{5}}]\).<span class="r csol"></span></p>
 
-        <p><div class="s prb"></div>Find the domain and range of the function \(f(x)=\frac{1}{2}\cos (4x+\frac{\pi}{3}))\), and try to sketch the graph by hand.(25 points)</p>
+        <p><span class="s prb"></span>Find the domain and range of the function \(f(x)=\frac{1}{2}\cos (4x+\frac{\pi}{3}))\), and try to sketch the graph by hand.(25 points)</p>
 
-        <p><div class="r rmk"></div>10 points for the domain and range, and 5 points for the sketch of graph. There's a bonus point for the graph because there's a mistake that many students may make.</p>
+        <p><span class="r rmk"></span>10 points for the domain and range, and 5 points for the sketch of graph. There's a bonus point for the graph because there's a mistake that many students may make.</p>
 
-        <p><div class="r sol"></div>We write \(f\) as a composition \(f=\frac{1}{2} g\circ h\), where \(g(y)=\cos y\) and \(h(x)=4x+\frac{\pi}{6}\). Both of these two functions have domain the whole real line \(\mathbb{R}\), so the domain of \(f\) is exactly \((-\infty ,+\infty)\).</p>
+        <p><span class="r sol"></span>We write \(f\) as a composition \(f=\frac{1}{2} g\circ h\), where \(g(y)=\cos y\) and \(h(x)=4x+\frac{\pi}{6}\). Both of these two functions have domain the whole real line \(\mathbb{R}\), so the domain of \(f\) is exactly \((-\infty ,+\infty)\).</p>
         
         <p>For the range of \(f\), note that the range of \(g\) is \([-1,1]\), and we scale the function by \(\frac{1}{2}\), so the range of \(f\) would be \([-\frac{1}{2},\frac{1}{2}]\).</p>
         
@@ -157,6 +160,6 @@
         
         <p><img src="IMG_0208.PNG"></p>
         
-        <p><div class="r csol">Some important markers: minimum and maximum points and zeros.</div>&nbsp;</p>
+        <p>Some important markers: minimum and maximum points and zeros.<span class="r csol"></span>&nbsp;</p>
         </article>
         </body>
