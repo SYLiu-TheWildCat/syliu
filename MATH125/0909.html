@@ -1,0 +1,201 @@
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Siyang Liu">
+    <meta name="title" content="09/09">
+    <style>
+        body {
+            background-color: black;
+        }
+
+        article {
+            color: blanchedalmond;
+            font-size: 12pt;
+        }
+
+        h1 {
+            font-size: 24pt;
+        }
+
+        table.sel {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18pt;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        a {
+            color: lightpink;
+        }
+
+        div.s {
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+            counter-increment: statement;
+            counter-reset: problem;
+        }
+
+        div.r {
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+        }
+
+        div.s.dfn {
+            font-weight: bold;
+            color: lightblue;
+        }
+
+        div.s.fact {
+            font-weight: bold;
+            color: lightsalmon;
+        }
+
+        div.s.exp {
+            font-weight: bold;
+            color: lightcyan;
+        }
+
+        div.s.thm {
+            font-weight: bold;
+            color: chocolate;
+        }
+
+        div.r.rmk {
+            font-weight: bold;
+            color: wheat;
+        }
+
+        div.r.sol {
+            font-weight: bold;
+            color: crimson;
+        }
+
+        div.s.dfn::before {
+            content: "5."counter(statement)". Definition.";
+        }
+
+        div.s.fact::before {
+            content: "5."counter(statement)".Fact.";
+        }
+
+        div.s.exp::before {
+            content: "5."counter(statement)".Example.";
+        }
+
+        div.s.thm::before{
+            content: "5."counter(statement)".Theorem.";
+        }
+
+        div.r.rmk::before {
+            content: "Remark.";
+        }
+
+        div.r.sol::before {
+            content: "Solution.";
+        }
+
+        b {
+            color: lightsalmon;
+        }
+
+        span.p {
+            counter-increment: problem;
+            font-weight: bold;
+            margin-right: 1em;
+            margin-left: 2em;
+        }
+
+        span.r.csol {
+            font-weight: bold;
+            float: right;
+            color: crimson;
+        }
+
+        span.p::before {
+            content: "5."counter(statement)"."counter(problem)"."
+        }
+
+        span.r.csol::after {
+            content: "////";
+        }
+    </style>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+</head>
+
+<body>
+    <article>
+        <h1>09/09/2021</h1>
+
+        <p>Today we still focus on calculating limits and continuity.</p>
+
+        <h2>Calculating Limits(Continued)</h2>
+
+        <p>Let's review some of the material in the textbook first. Limits in general are very hard to compute, and what we can do is to start from well-known limits and use the rules we present here to turn any complicated functions into algebraic combinations of functions with well-known limits.</p>
+
+        <p><div class="s fact"></div> The following algebraic operations commute with limits, assuming all the limits exist:
+        <ol>
+            <li>\(\lim_{x\to a} (f(x)\pm g(x))=\lim_{x\to a} f(x)\pm\lim_{x\to a} g(x)\);</li>
+            <li>\(\lim_{x\to a} f(x)g(x)=\lim_{x\to a} f(x)\lim_{x\to a} g(x)\);</li>
+            <li>\(\lim_{x\to a}\frac{f(x)}{g(x)} =\frac{\lim_{x\to a} f(x)}{\lim_{x\to a} g(x)}\), assuming the limit of \(g\) at \(a\) is non-zero.</li>
+        </ol>
+    The limit of the following functions are well-known:
+<ol>
+    <li>\(\lim_{x\to a} x^r=a^r\), assuming that \(x^r\) is well-defined at \(a\);</li>
+    <li>\(\lim_{x\to a} \sin (x)=\sin (a)\);</li>
+    <li>\(\lim_{x\to a} r^x =r^a\), for any positive real number \(r\);</li>
+    <li>\(\lim_{x\to a} \log_b x =\log_b a\), for any \(a>0\) and \(b>0\) but \(b\neq 1\).</li>
+    <li>\(\lim_{x\to 0}\frac{\sin x}{x} =1\).</li>
+</ol></p>
+
+<p><div class="s thm">(Squeeze Theorem)</div>If we have the inequality \(g(x)\leq f(x)\leq h(x)\) holds in an open interval \((a-\delta ,a+\delta )\) containing \(a\), where \(\delta >0\) is a positive real number, and there exists \(L>0\) such that \(\lim_{x\to a} g(x)=\lim_{x\to a} h(x)=L\), then we have \(\lim_{x\to a} f(x)=L\).</p>
+
+<p>You can imagine this intuitively: if a real number \(x\) satisfies \(a\leq x\leq a\), then \(x\) must be \(a\). Here we just present a limit version of this tautological argument.</p>
+
+<p>Now we explore some examples.</p>
+
+<p><div class="s exp"></div>Compute the limit \(\displaystyle\lim_{x\to 4}\frac{x^2 -4x}{x^2-3x-4}\).</p>
+
+<p><div class="r sol"></div>We can firstly try to substitute \(x=4\) to both the numerator and the denominator. Write
+\(\displaystyle f(x)=\frac{x^2 -4x}{x^2 -3x-4}=\frac{g(x)}{h(x)}\), then we have \(g(4)=0\) and \(h(4)=0\), so we cannot
+directly substitute \(x\) by \(4\) to get the limit and it requires further observation. Note that \(g(x)=x^2
+-4x=x(x-4)\) and \(h(x)=x^2 -3x-4 =(x-4)(x+1)\), so we have $$\lim_{x\to 4} f(x)=\lim_{x\to 4}\frac{g(x)}{h(x)}
+=\lim_{x\to 4}\frac{x(x-4)}{(x+1)(x-4)} =\lim_{x\to 4}\frac{x}{x+1} =\frac{4}{5}.$$<span class="r csol"></span></p>
+
+<h2>Continuity</h2>
+
+<p>Continuity is a concept related to limits. We say a function \(f(x)\) is <b>continuous</b> at a point \(a\) if it's defined at \(a\) and \(\displaystyle\lim_{x\to a} f(x)=f(a)\). There're two useful Corollaries from continuity, one can help us compute some more limits, and one can tell us the existence of roots.</p>
+
+<p><div class="s thm" id="thm54"></div>If \(f\) is continuous and \(g\) has limit at \(a\) for some real number \(a\), then$$\lim_{x\to a} f\circ g(x)=f(\lim_{x\to a} g(x)).$$</p>
+
+<p><div class="s thm">(Intermediate Value Theorem)</div>Let \(f\) be continuous in the interval \([a,b]\). If \(f(a)f(b)< 0\), then \(f\) must have a root in \((a,b)\).</p>
+
+<p><div class="s exp"></div> Find the limit \(\lim_{x\to 0}\cos (x+\sin x)\).</p>
+
+<p><div class="r sol"></div> We can decompose the function as \(f(g(x))\), where \(f(y)=\cos y\) and \(g(x)=x+\sin x\). Note that \(g(x)\) and \(f(x)\) are all continuous, we can apply <a href="#thm54">Theorem 5.4</a> to this function and obtain that $$\lim_{x\to 0}\cos (x+\sin x)=\cos (\lim_{x\to 0} (x+\sin x))=\cos (0)=1.$$<span class="r csol"></span></p>
+
+<p><div class="s exp"></div>Show that there's a root of the following equation:</p>
+
+<p><span class="p"></span>\(2\sin x=3-2x\);<span class="p"></span>\(x^5-x^3+3x-5=0\).</p>
+
+<p><div class="r sol"></div>For the first one, let \(f(x)=2\sin x-3+2x\). If we plug in values \(0\) and \(1\), then we get \(f(0)=-3\) and \(f(1)=2\sin 1-1\). Note that \(\sin 1>\sin\frac{\pi}{6} =\frac{1}{2}\), so \(f(1)>0\), and hence by the Intermediate Value Theorem, \(f\) has a root in the interval \((0,1)\). This means that there is a real number \(0 < a< 1\) so that \(f(a)=0\), which implies that \(2\sin a=3-2a\), i.e. \(a\) solves the equation \(2\sin x=3-2x\).</p>
+
+<p>For the second one, let \(f(x)=x^5-x^3+3x-5\), then we have \(f(0)=-5\) and \(f(2)=25\), hence by the Intermediate Value Theorem, \(f\) should have a root in the interval \((0,2)\).<span class="r csol"></span></p>
+    </article>
+</body>
