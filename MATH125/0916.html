@@ -1,0 +1,236 @@
+<html lang="en-US">
+    <head>
+        <meta charset="utf-8">
+        <meta name="author" content="Siyang Liu">
+        <meta name="title" content="09/09">
+        <style>
+            body {
+                background-color: black;
+            }
+        
+            article {
+                color: blanchedalmond;
+                font-size: 12pt;
+            }
+        
+            h1 {
+                font-size: 24pt;
+            }
+        
+            table.sel {
+                text-align: center;
+                position: relative;
+                width: 100%;
+                border-collapse: collapse;
+                font-size: 18pt;
+            }
+        
+            td {
+                border: 1px solid;
+            }
+        
+            a {
+                color: lightpink;
+            }
+        
+            div.s {
+                float: left;
+                margin-left: 2em;
+                margin-right: 2ex;
+                counter-increment: statement;
+                counter-reset: problem;
+            }
+        
+            div.r {
+                float: left;
+                margin-left: 2em;
+                margin-right: 2ex;
+            }
+        
+            div.s.dfn {
+                font-weight: bold;
+                color: lightblue;
+            }
+        
+            div.s.fact {
+                font-weight: bold;
+                color: lightsalmon;
+            }
+        
+            div.s.exp {
+                font-weight: bold;
+                color: lightcyan;
+            }
+        
+            div.s.thm {
+                font-weight: bold;
+                color: chocolate;
+            }
+        
+            div.r.rmk {
+                font-weight: bold;
+                color: wheat;
+            }
+        
+            div.r.sol {
+                font-weight: bold;
+                color: crimson;
+            }
+        
+            div.s.dfn::before {
+                content: "6."counter(statement)". Definition.";
+            }
+        
+            div.s.fact::before {
+                content: "6."counter(statement)".Fact.";
+            }
+        
+            div.s.exp::before {
+                content: "6."counter(statement)".Example.";
+            }
+        
+            div.s.thm::before {
+                content: "6."counter(statement)".Theorem.";
+            }
+        
+            div.r.rmk::before {
+                content: "Remark.";
+            }
+        
+            div.r.sol::before {
+                content: "Solution.";
+            }
+        
+            b {
+                color: lightsalmon;
+            }
+        
+            span.p {
+                counter-increment: problem;
+                font-weight: bold;
+                margin-right: 1em;
+                margin-left: 2em;
+            }
+        
+            span.r.csol {
+                font-weight: bold;
+                float: right;
+                color: crimson;
+            }
+        
+            span.p::before {
+                content: "6."counter(statement)"."counter(problem)"."
+            }
+        
+            span.r.csol::after {
+                content: "////";
+            }
+            
+            img{
+                max-width: 75%;
+            }
+        </style>
+        <script>
+            MathJax = {
+                tex: {
+                    inlineMath: [['$', '$'], ['\\(', '\\)']]
+                },
+                svg: {
+                    fontCache: 'global'
+                }
+            };
+        </script>
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+        </script>
+    </head>
+    <body>
+        <article>
+            <h1>09/16/2021</h1>
+
+            <p>Today we're going to talk about limits involving infinity and derivatives of functions. These would be included in the quiz next week.</p>
+
+            <h2>Limits Involving Infinity</h2>
+
+            <p>Let's recall some of the basic definition for limits involving infinity. Infinity enters limits in two ways: it can be where the variable tends to and the result of the limit.</p>
+
+            <p><div class="s dfn"></div>Let $f$ be a function and $L\in\mathbb{R}$ any real number. We say the limit of $f$ at positive infinity is $L$, written $\lim_{x\to +\infty } f(x)=L$, if for any $\varepsilon >0$, there exists a positive real number $M$ such that for all $x\geq M$, we have $\vert f(x)-L\vert <\varepsilon$. Replacing $+\infty$ by $-\infty$, we get the definition for limits at negative infinity.</p>
+
+            <p>We can just ignore the definition and explain intuitively about the definition. Having finite limit at infinity means that the value of the function $f$ would be close to a given value when the variable becomes larger and larger. Let's see some examples.</p>
+
+            <p><div class="s exp"></div>Let $f(x)=\sqrt{x^2 +4x+1} -x)$ and consider the limit of $f$ when $x$ tends to $+\infty$. It's not hard to compute this limit:
+                $$
+                \lim_{x\to +\infty} f(x)=\lim_{x\to +\infty}(\sqrt{x^2 +4x+1}-x)=\lim_{x\to +\infty}\frac{4x+1}{\sqrt{x^2+4x+1}+x} =2.
+                $$
+                So the limit of this function at positive infinity is $2$. We can draw the graph of this function using Geogebra:
+            <div>
+                <img src="0916.png">
+            </div>
+            you'll see that the graph of this function has a <b>horizontal asymptote</b> given by $y=2$, which is exactly the limit of the function at positive infinity.</p>
+
+            <p>It's not necessary that all of the horizontal asymptotes look like this, where functions approach from exactly one side of the asymptote. It can oscillate around the asymptote with amplitude smaller and smaller. For an example, let's visit our old friend:</p>
+
+            <p><div class="s exp"></div>Consider the function $f(x)=\frac{\sin x}{x}$. We have already know that its limit at $0$ is $1$, and to compute its limit at $+\infty$, recall that last week we have showed the limit of the function $g(x)=x\sin\frac{1}{x}$ at $0$ is $0$. $f(x)$ just comes from $g(x)$ by a transformation $f(x)=g(\frac{1}{x})$, hence the limit of $f$ at $+\infty$ is just the right limit of $g(x)$ at $0$, which is $0$. Hence we know that the graph of $f(x)$ has a horizontal asymptote $y=0$. the graph of $f$ is drawn below:
+            <div>
+                <img src="0916-2.png">
+            </div>
+        You can see that the graph of the function wrapps around the horizontal asymptote, and the value of the function just oscillates around $0$, with smaller and smaller amplitudes as $x$ goes to $+\infty$.</p>
+
+        <p>Another way infinity comes into limits is to act as the result of a limit. Let's just formally write down the precise definition:</p>
+
+        <p><div class="s dfn"></div>Let $f$ be any function and $a\in\mathbb{R}$ any real number inside the domain of $f$. We say the (one-sided) limit of $f$ at $a$ is $+\infty$, if for any real number $M>0$, there exists $\delta >0$ so that for any $x$ satisfying $0<\vert x-a\vert <\delta$, we have $\vert f(x)\vert\geq M$.</p>
+
+        <p>Again, $f$ need not make sense at $a$, and replacing $+\infty$ by $-\infty$ and with a slight correction we get the definition for negative infinity limits . Previously we regard such cases as having no limits, and now we shuold make such a type of limits into consideration. Let's look at some examples.</p>
+
+        <p><div class="s exp"></div>Consider the rational function $f(x)=\frac{x^2-9}{x^2+2x-3}$. We try to look at its limit as $x$ goes to $1$ on the right. We can simply the function as $$
+        f(x)=\frac{(x-3)(x+3)}{(x+3)(x-1)} =\frac{x-3}{x-1},
+    $$hence as $x$ goes to $1$ on the right, the limit would tend to $-\infty$. The graph of this function looks like
+<div>
+    <img src="0916-3.png">
+</div>
+You can see that there's a <b>vertical asymptote</b> here. Actually, a vertical asymptote just means that the limit of the function at this point is either positive or negative infinity. With the notion of these two asymptotes, we can then describe a graph of a function more precisely.</p>
+
+<p>Now we state some ways to compute limits involving infinity.</p>
+
+<p><div class="s thm">(Squeeze Theorem)</div>In this case the squeeze theorem is divided into two parts:
+<ol>
+    <li>If $f,g$ are two functions such that $f\leq g$ and $\lim_{x\to a} g(x)=-\infty$, then $\lim_{x\to a} f(x)=-\infty$. Similarly, if $f\geq g$ and $\lim g(x)=+\infty$, then $\lim f(x)=+\infty$.</li>
+    <li>If $h$ is a function such that $h\leq f\leq g$ in an interval $(a,+\infty)$, and we have $\lim_{x\to +\infty} h(x)=\lim_{x\to +\infty} g(x)=L$, then $\lim_{x\to +\infty} f(x)=L$.</li>
+</ol></p>
+
+<p>For limits at infinity, all the algebraic laws for computing limits apply. But with infiinity limits, only some of them are valid. Now I list all of them, using "infinity calculus", which gives operation rules for infinity:
+    <ol>
+        <li>$\infty +c=\infty$ for any real number $c$;</li>
+        <li>$\infty +\infty =\infty$;</li>
+        <li>$c\infty =\infty$ for positive $c$, and $c\infty =-\infty$ for negative $c$;</li>
+        <li>$\infty\cdot\infty =\infty$;</li>
+        <li>$\frac{c}{0} =\infty$ and $\frac{c}{\infty} =0$ for any real number $c$.</li>
+    </ol>
+    Be careful that some of the rules do not apply: operations of the form $\frac{\infty}{\infty},\ \frac{0}{0},\ 0\cdot\infty,\ \infty -\infty$ make no sense.
+</p>
+
+<p>We could then apply these rules to compute some of the examples:</p>
+
+<p><div class="s exp"></div>Try to find the limit $\lim_{x\to +\infty}\frac{x\sin x}{x^2+1}$.</p>
+
+<p><div class="r sol"></div>We just use the squeeze theorem. Since $-1\leq\sin x\leq 1$, we have $-\frac{x}{x^2-1}\leq f(x)\leq\frac{x}{x^2+1}$. Taking the limit at $+\infty$, we just get both sides tending to $0$, and hence $f(x)$ tends to $0$ as $x$ tends to $+\infty$.<span class="r csol"></span></p>
+
+<h2>Derivative of Functions</h2>
+    <p>Now we step into the new chapter and talk about derivatives of functions. Again at the very beginning, let's give a definition of derivatives:</p>
+
+    <p><div class="s dfn"></div>Let $f$ be a function and $a$ any real number in the domain of $f$. We say the <b>derivative</b> of $f$ at $a$, written $f'(a)$, exists, if the limit $$\lim_{x\to a}\frac{f(x)-f(a)}{x-a} =f'(a)$$exists.</p>
+
+    <p>Unlike the definition of limit, this is the definition we can manipulate. From Leibnitz' point of view, a derivative of a function is the slope of the tangent line of its graph at this point, which gives a geometric interpretation of derivative. In fact,</p>
+
+    <p><div class="s dfn"></div>Let $f$ be a function, then the <b>tangent line</b> of $f$ at a point $a$ is given by the equation$$y=f'(a)(x-a)+f(a).$$</p>
+
+    <p>We can use the definition of derivatives to calculate some examples.</p>
+
+    <p><div class="s exp"></div>For the function $f(x)=\cos x$, find $f'(0)$ and then $f'(x)$ for any $x$.</p>
+
+    <p><div class="s sol"></div>Note by definition that$$f'(0)=\lim_{x\to 0}\frac{\cos x-1}{x} =0,$$which we have met before. For an arbitrary $x$, recall that $\cos (x+y)=\cos x\cos y-\sin x\sin y$, hence by replacing $x+y$ with $x+h$ and let $h$ tends to $0$, we have$$f'(x)=\lim_{h\to 0}\frac{\cos (x+h)-\cos x}{h} =\lim_{h\to 0}\frac{\cos x(\cos h-1)-\sin x\sin h}{h}=-\sin x.$$<span class="r csol"></span></p>
+
+    <p><div class="s exp"></div>Find $f'(0)$ and then $f'(x)$ for any $x$, for the function $f(x)=x^3$.</p>
+
+    <p><div class="r sol"></div>Recall the difference formula for cubic functions:$$x^3-y^3 =(x-y)(x^2 +xy+y^2).$$By definition of derivative, we have$$f'(x)=\lim_{h\to 0}\frac{(x+h)^3-x^3}{h} =\lim_{h\to 0}\frac{h(x^2 +x(x+h)+(x+h)^2)}{h} =\lim_{h\to 0}(x^2 +x(x+h)+(x+h)^2)=3x^2.$$Therefore $f'(x)=3x^2$ and $f'(0)=0$.<span class="r csol"></span></p>
+        </article>
+    </body>
