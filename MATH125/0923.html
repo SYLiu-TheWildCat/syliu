@@ -1,0 +1,185 @@
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Siyang Liu">
+    <meta name="title" content="09/09">
+    <style>
+        body {
+            background-color: black;
+        }
+
+        article {
+            color: blanchedalmond;
+            font-size: 12pt;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+
+        h1 {
+            font-size: 24pt;
+        }
+
+        table.sel {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 18pt;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        a {
+            color: lightpink;
+        }
+
+        div.s {
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+            counter-increment: statement;
+            counter-reset: problem;
+        }
+
+        div.r {
+            float: left;
+            margin-left: 2em;
+            margin-right: 2ex;
+        }
+
+        div.s.dfn {
+            font-weight: bold;
+            color: lightblue;
+        }
+
+        div.s.fact {
+            font-weight: bold;
+            color: lightsalmon;
+        }
+
+        div.s.exp {
+            font-weight: bold;
+            color: lightcyan;
+        }
+
+        div.s.thm {
+            font-weight: bold;
+            color: chocolate;
+        }
+
+        div.r.rmk {
+            font-weight: bold;
+            color: wheat;
+        }
+
+        div.r.sol {
+            font-weight: bold;
+            color: crimson;
+        }
+
+        div.s.dfn::before {
+            content: "7."counter(statement)". Definition.";
+        }
+
+        div.s.fact::before {
+            content: "7."counter(statement)".Fact.";
+        }
+
+        div.s.exp::before {
+            content: "7."counter(statement)".Example.";
+        }
+
+        div.s.thm::before {
+            content: "7."counter(statement)".Theorem.";
+        }
+
+        div.r.rmk::before {
+            content: "Remark.";
+        }
+
+        div.r.sol::before {
+            content: "Solution.";
+        }
+
+        b {
+            color: lightsalmon;
+        }
+
+        span.p {
+            counter-increment: problem;
+            font-weight: bold;
+            margin-right: 1em;
+            margin-left: 2em;
+        }
+
+        span.r.csol {
+            font-weight: bold;
+            float: right;
+            color: crimson;
+        }
+
+        span.p::before {
+            content: "7."counter(statement)"."counter(problem)"."
+        }
+
+        span.r.csol::after {
+            content: "////";
+        }
+
+        img {
+            max-width: 75%;
+            margin-left: auto;
+            margin-right: auto;
+            display: block;
+        }
+
+        figcaption {
+  background-color: black;
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  padding: 2px;
+  text-align: center;
+}
+    </style>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+    </script>
+</head>
+<body>
+    <article>
+        <h1>09/23/2021</h1>
+
+        Today we're going to talk about the remaining three types of trigonometric functions, review the differentiation laws and the squeeze theorem for limits at infinity.
+
+        <h2>Three Trigonometric Functions.</h2>
+
+        <p>Besides $\sin ,\cos$ and $\tan$, there're still three special trigonometric functions: $\sec ,\csc$ and $\cot$. In this part of the section we're going to talk about some of their properties.</p>
+
+        <p><div class="s dfn"></div>These three functions are defined to be $\sec x=\frac{1}{\cos x}$, $\csc x=\frac{1}{\sin x}$ and $\cot x=\frac{1}{\tan x}$.</p>
+
+        <p>Since they're just the reciprocal of $\sin ,\cos$ and $\tan$, we can draw the graph of them easily from the graph of these three functions:</p>
+
+        <figure>
+        <img src="cot-function.png">
+            <figcaption>Graph of Cotangent Function</figcaption>
+            <img src="secant-function.png">
+            <figcaption>Graph of Secant Function</figcaption>
+            <img src="cosecant-function.png">
+            <figcaption>Graph of Cosecant Function</figcaption>
+        </figure>
+
+        <p><div class="s exp"></div>Find derivatives of the three trigonometric functions: $f(x)=\cot x$, $g(x)=\sec x$ and $h(x)=\csc x$.</p>
+
+        <p>These derivatives can be computed using product and quotient rules. Although you can use as a fact, I don't recommend doing this 'cause it's hard to remember them all and you can actually turn everything into $\sin $ and $\cos$ and apply product and quotient rules to these functions to calculate the derivative.</p>
+    </article>
+</body>
