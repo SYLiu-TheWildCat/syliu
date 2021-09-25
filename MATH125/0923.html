@@ -181,5 +181,30 @@
         <p><div class="s exp"></div>Find derivatives of the three trigonometric functions: $f(x)=\cot x$, $g(x)=\sec x$ and $h(x)=\csc x$.</p>
 
         <p>These derivatives can be computed using product and quotient rules. Although you can use as a fact, I don't recommend doing this 'cause it's hard to remember them all and you can actually turn everything into $\sin $ and $\cos$ and apply product and quotient rules to these functions to calculate the derivative.</p>
+
+        <h2>Review Basic Differential Formulas</h2>
+
+        <p>Our usual way of calculating derivatives is completely similar to computing limits. We start with standard models, regard functions as algebraic combinations of standard models, and finally apply derivation rules to these functions to get our derivative. You can see sections 2.3~2.4 of the textbook for these derivation rules. Let's see some examples.
+        </p>
+
+        <p><div class="s exp"></div>Differentiate $y=\frac{t\sin t}{1+t}$.</p>
+
+        <p><div class="r sol"></div>$$\begin{aligned}y'&=\left(\frac{t\sin t}{1+t}\right)'=\frac{(t\sin t)'(1+t)-(1+t)'t\sin t}{(1+t)^2}=\frac{(\sin t+t\cos t)(1+t)-t\sin t}{(1+t)^2}\\
+        &=\frac{\sin t+(1+t)t\cos t}{(1+t)^2}.\end{aligned}$$<span class="r csol"></span></p>
+
+        <h2>Squeeze Theorem Involving Inifnity</h2>
+
+        <p>Statements and Remarks of this has been included in <a href="0916.html">Discussion Section in Sep. 16th</a>, and here because we would have a quiz next week on this, I should emphasize this again.</p>
+
+        <p><div class="s exp"></div>Find the limit $\lim_{x\to +\infty}\frac{\sin x}{\sqrt{x}}$ using squeeze theorem.</p>
+
+        <p>You can take this as an exercise. Hint of this problem is the inequality $-1\leq\sin x\leq 1$. We'll always assume these inequalities, and when there's a problem requiring you to use the squeeze theorem without mentioning any inequality, then it should be the bound of $\sin x$ or $\cos x$.</p>
+
+        <p>Finally, I'll give two pratice problems for next week's quiz:</p>
+
+        <ol>
+            <li>Problem 19 of Section 2.4</li>
+            <li>Find the limit $\lim_{x\to +\infty} (\sin x)(\sin\frac{1}{x} )$ using the squeeze theorem.</li>
+        </ol>
     </article>
 </body>
