@@ -1,0 +1,4 @@
+{
+    "diffEditor.wordWrap": "on",
+    "files.autoSave": "onFocusChange"
+}
