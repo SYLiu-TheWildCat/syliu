@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Siyang Liu">
+    <meta name="description" content="Nadler-Zaslow Correspondence at a Point">
+    <title>Spring 2024: Nadler-Zaslow Correspondence at a Point</title>
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <style>
+        article {
+            font-size: 12pt;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24pt;
+        }
+
+        table {
+            text-align: center;
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14pt;
+        }
+
+        td {
+            border: 1px solid;
+        }
+
+        th{
+            border: 1px solid;
+        }
+
+        h2 {
+            font-variant: small-caps;
+        }
+
+        li {
+            list-style-type: none;
+        }
+
+        .topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+    </style>
+    <script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <article>
+        <div class="topright"><a href="/index.html">back to home</a></div>
+        <h1>Spring 2024:<br>Nadler-Zaslow Correspondence at a Point</h1>
+        <p><b>Introduction:</b> This seminar is devoted to understand (wrapped) Floer theory and microlocal theory of sheaves on Weinstein sectors and their identification. It's a "localized" version(although not rigorously defined) of the Nadler-Zaslow correspondence in [<a href="https://www.ams.org/journals/jams/2009-22-01/S0894-0347-08-00612-7/">NZ09</a>]. The main references of this seminar will be the series of papers [<a href="https://link.springer.com/article/10.1007/s10240-019-00112-x">GPS1</a>, <a href="https://arxiv.org/abs/1809.03427">GPS2</a>, <a href="https://arxiv.org/abs/1809.08807">GPS3</a>], as well as some subsequent developments, for example [<a href="https://www.sciencedirect.com/science/article/abs/pii/S0001870823000257">Kuo23</a>].</p>
+    </article>
+</body>
