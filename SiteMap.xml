@@ -1,6 +1,282 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
+
+
 <url>
-<loc>https://syliu-thewildcat.github.io/syliu/index.html</loc>
-<lastmod>2023-05-01</lastmod>
+  <loc>https://syliu-thewildcat.github.io/syliu/</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>1.00</priority>
 </url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/index.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/research.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/files/Siyang%20Liu,%20Floer%20theory%20for%20Lagrangian%20Intersections.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/From_Groups_to_Algebras.pdf</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/Combinatorics_and_Topology_of_Hyperplane_Arrangements.pdf</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/StableHomotopyTheory/main.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/microseminars/MilnorFibration.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/microseminars/PseudoHolomorphicCurves.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/USCStuSeminar.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/microseminars/LinearAlgebraicGroups.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/microseminars/SymplecticCohomology.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/home.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/StableHomotopyTheory/NotesStableHomotopy.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/microseminars/PapersOfRecommendation.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/resources.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0831.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0907.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0909.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0916.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0923.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/0930.html</loc>
+  <lastmod>2023-10-11T23:05:35+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_19_2021-1.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_19_2021-2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_21_2021-1.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_21_2021-2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_26_2021-1.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/10_26_2021-2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/11_02_2021%20(1).pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/11_02_2021%20(2).pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/11_09_2021_10am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/11_09_2021_11am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211111-10am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211111-11am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Midterm%20Part%20II%20Problem%201.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211123-10am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211123-11am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211130-1.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/20211130-2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Final_Review_MATH_125.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Final%20Review.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz1.html</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Quiz2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Quiz2Answers.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Quiz2cAnswers.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz3.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Quiz3Answers.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz4.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz4Answers.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz5v2.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/quiz6.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Midterm1PartI_10am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/Midterm1PartI_11am.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://syliu-thewildcat.github.io/syliu/MATH125/midterm2AnswerKey.pdf</loc>
+  <lastmod>2023-10-11T23:05:36+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+
+
+</urlset>
