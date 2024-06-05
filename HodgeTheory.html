@@ -1,0 +1,136 @@
+
+<head>
+    <meta charset="utf-8">
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    article{
+        color: darkcyan;
+    }
+    h1 {
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-align: center;
+    }
+
+    h4{
+        display: inline;
+    }
+
+    h4::after{
+        content: ' ';
+    }
+
+    p {
+        font-family: 'Comic Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        text-indent: 2em;
+    }
+
+    a.chapter {
+        font-size: medium;
+        color: yellowgreen;
+    }
+
+    body {
+        counter-reset: footnotes;
+        counter-reset: statement;
+        counter-reset: sec;
+        font-size: 12pt;
+        padding: 0px 10px;
+    }
+
+    .sidenav {
+        width: 130px;
+        position: fixed;
+        z-index: 1;
+        top: 20px;
+        left: 10px;
+        background: white;
+        overflow-x: hidden;
+        padding: 8px 0;
+    }
+
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 9pt;
+        color: slateblue;
+        display: block;
+        position: relative;
+    }
+    
+    .fig{
+        float: right;
+    }
+
+    .hov{
+        display: none;
+        width: 400px;
+        position: absolute;
+        background-color: white;
+        color: slateblue;
+        border-style: dotted;
+        padding: 6px 8px 6px 16px;
+    }
+    
+    a{
+        color: slateblue;
+    }
+
+    table {
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14pt;
+        }
+
+    td {
+            border: 1px solid;
+            text-align:center;
+        }
+        td:last-child {
+            text-align: left;
+        }
+
+        th{
+            border: 1px solid;
+            text-align: center;
+        }
+
+    .topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="button.css">
+<script>
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+</script>
+</head>
+<body>
+    <article>
+        <div class="topright"><a href="index.html">back to home</a></div>
+        <h1>Hodge Reading Group</h1>
+        <p>This reading group aims to understand basics of Hodge theory following the book by Peters and Steenbrink [<a href="#PS08">1</a>]. It happens every Wednesday morning @ Caltech. Here's the detailed schedule and possibly notes.</p>
+        <table>
+            <tr></tr>
+            <th>Date</th><th>Speaker</th><th>Topics</th>
+            <tr></tr>
+            <td>05/27/2024</td><td>Si-Yang Liu</td><td>Hodge decomposition on projective varieties. [<a href="#PS08">1</a>, Section 1.1]</td>
+            <tr></tr>
+            <td>06/05/2024</td><td>Si-Yang Liu</td><td>Lefschetz theorems and applications. [<a href="#PS08">1</a>, Section 1.2~3]</td>
+            <tr></tr>
+        </table>
+        <h2>References</h2>
+        <ol>
+            <li id="PS08">Peters, C. A., & Steenbrink, J. H. (2008). Mixed hodge structures (Vol. 52). Springer Science & Business Media.</li>
+        </ol>
+    </article>
+</body>
