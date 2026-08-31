@@ -1,15 +1,16 @@
 <html lang="en-US">
     <head>
         <meta charset="utf-8">
-        <meta name="author" content="Siyang Liu">
-        <meta name="description" content="Siyang Liu's Homepage">
-        <meta name="keywords" content="Siyang Liu, math, USC">
+        <meta name="author" content="Si-Yang Liu">
+        <meta name="description" content="Si-Yang Liu's Homepage">
+        <meta name="keywords" content="Si-Yang Liu, math, USC, Bonn, Imperial College London, symplectic geometry, algebraic geometry, geometric representation theory">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification"
             content="MFTs1oNIgbT76dbcfpsjdS_-_rSpTCVsNASMIgrICUY" />
-        <title>Siyang Liu's Homepage</title>
+        <title>The Wild-Cats Little Home</title>
         <script id="MathJax-script" async
             src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+            <link rel="icon" type="image/jpg" sizes="32x32" href="/IMG_5107.JPG">
         <style>
     article{
         color: darkcyan;
@@ -64,6 +65,20 @@
         display: block;
         position: relative;
     }
+
+    .lang-toggle {
+        position: fixed;
+        top: 12px;
+        right: 20px;
+        z-index: 2;
+        padding: 6px 12px;
+        border: 1px solid slateblue;
+        border-radius: 999px;
+        background: white;
+        color: slateblue;
+        cursor: pointer;
+        font-size: 10pt;
+    }
     
     .fig{
         float: right;
@@ -110,7 +125,6 @@
             ye.onmouseout = function(){xe.style.display = 'none';}
          }
 
-         window.onload = init;  
          function scrollToBottom(id) {
                 var div = document.getElementById(id);
                 div.scrollTop = div.scrollHeight - div.clientHeight;
@@ -124,10 +138,43 @@
                 else { xe.style.display = 'block' }
             }
 
-                window.onload = clit;
+            function setLanguage(lang) {
+                var enItems = document.querySelectorAll('.lang-en');
+                var zhItems = document.querySelectorAll('.lang-zh');
+                var showEnglish = (lang === 'en');
+
+                enItems.forEach(function(item) {
+                    item.style.display = showEnglish ? '' : 'none';
+                });
+                zhItems.forEach(function(item) {
+                    item.style.display = showEnglish ? 'none' : '';
+                });
+
+                var toggle = document.getElementById('langToggle');
+                if (toggle) {
+                    toggle.textContent = showEnglish ? '中文' : 'English';
+                }
+            }
+
+            function toggleLanguage() {
+                var current = document.documentElement.lang === 'zh' ? 'zh' : 'en';
+                var next = current === 'en' ? 'zh' : 'en';
+                document.documentElement.lang = next;
+                setLanguage(next);
+            }
+
+            window.onload = function() {
+                document.documentElement.lang = 'en';
+                setLanguage('en');
+                var toggle = document.getElementById('langToggle');
+                if (toggle) {
+                    toggle.addEventListener('click', toggleLanguage);
+                }
+            };
 </script>
     </head>
     <body>
+        <button id="langToggle" class="lang-toggle" type="button">中文</button>
         <article>
             <div class="sidenav">
                 <!-- <select id="langSelector">
@@ -170,9 +217,10 @@
                     <a href="https://www.uni-bonn.de/en/home">Rhenish
                         Friedrich-Wilhelms-Universität Bonn</a>.</p>
                 <p class="lang lang-zh" style="display: none;">欢迎来到我的个人主页！我已经逃离南加州大学了，在南加州大学时博士导师是<a
-                        href="https://sheelganatra.com/">Sheel Ganatra</a>。我现在在<a
+                        href="https://sheelganatra.com/">Sheel Ganatra</a>。我曾经在<a
                         href="https://www.uni-bonn.de/en/home">德国波恩大学</a>避难。</p>
-                <p>I'll be a Chapman Fellow at Imperial College of London starting September.</p>
+                <p class="lang lang-en">I'll be a Chapman Fellow at Imperial College London starting September.</p>
+                <p class="lang lang-zh" style="display: none;">我将从九月份开始在伦敦帝国学院担任Chapman研究员。</p>
                 <p class="lang lang-en">My research interest is symplectic geometry, algebraic geometry
                     and geometric representation theory. For more information, see
                     the "research" page.</p>
@@ -182,8 +230,8 @@
                     "Wildcat" in social accounts.</p>
                 <p style="color:brown;display: none;" class="lang lang-zh">在互联网上想要找到我可以寻找名为“野猫"的账号，欢迎加关注一键三连喵！</p>
 
-                <a href="mailto: syliu@math.uni-bonn.de" class="lang lang-en">Contact me by email.</a>
-                <a href="mailto: syliu@math.uni-bonn.de" class="lang lang-zh" style="display: none;">点击发送邮件。</a>
+                <a href="mailto: s.liu1@imperial.ac.uk" class="lang lang-en">Contact me by email.</a>
+                <a href="mailto: s.liu1@imperial.ac.uk" class="lang lang-zh" style="display: none;">按这里投喂。</a>
 
                 <h2 id="Education" class="lang lang-en">Education & Career</h2>
                 <h2 id="Education" class="lang lang-zh" style="display: none;">教育经历</h2>
@@ -191,6 +239,9 @@
             <table>
                 <tr>
                     <td class="lang lang-en">Year</td><td class="lang lang-en">School</td><td class="lang lang-en">Degree/Position</td><td class="lang lang-en">Description</td>
+                </tr>
+                <tr>
+                    <td class="lang lang-en">9.2026-9.2029</td><td class="lang lang-en">Imperial College London</td><td class="lang lang-en">Chapman Fellow of Pure Mathematics</td><td></td>
                 </tr>
                 <tr>
                     <td class="lang lang-en">9.2025-9.2026</td><td class="lang lang-en">Hausdorff Center for Mathematics, University of Bonn</td><td class="lang lang-en">Postdoctoral Researcher</td><td class="lang lang-en">Belonging to the research group <a href="https://www.math.uni-bonn.de/ag/sngw"><i>Symplectic and Non-commutative Geometry</i></a>. Group leader: Prof. Dr. Laurent Côté.</td>
@@ -209,7 +260,13 @@
                     <td class="lang lang-zh" style="display: none;">年份</td><td class="lang lang-zh" style="display: none;">学校</td><td class="lang lang-zh" style="display: none;">学位</td><td class="lang lang-zh" style="display: none;">描述</td>
                 </tr>
                 <tr>
-                    <td class="lang lang-zh" style="display: none;">8.2020-5.2025</td><td class="lang lang-zh" style="display: none;">南加州大学</td><td class="lang lang-zh" style="display: none;">数学博士</td><td class="lang lang-zh" style="display: none;">Advisor: Prof. Sheel Ganatra; Thesis: On Symplectic Geometry of Atypical Fibrations (still in revision).</td>
+                    <td class="lang lang-zh" style="display: none;">9.2026-9.2029</td><td class="lang lang-zh" style="display: none;">伦敦帝国学院</td><td class="lang lang-zh" style="display: none;">Chapman纯粹数学研究员</td><td style="display: none;"></td><td></td>
+                </tr>
+                <tr>
+                    <td class="lang lang-zh" style="display: none;">9.2025-9.2026</td><td class="lang lang-zh" style="display: none;">波恩大学豪斯多夫数学中心</td><td class="lang lang-zh" style="display: none;">博士后研究员</td><td class="lang lang-zh" style="display: none;">属于<a href="https://www.math.uni-bonn.de/ag/sngw"><i>辛几何与非交换几何</i></a>研究小组。小组领袖：Laurent Côté教授。</td>
+                </tr>
+                <tr>
+                    <td class="lang lang-zh" style="display: none;">8.2020-5.2025</td><td class="lang lang-zh" style="display: none;">南加州大学</td><td class="lang lang-zh" style="display: none;">数学博士</td><td class="lang lang-zh" style="display: none;">导师: Prof. Sheel Ganatra; 毕业论文: 非典型纤维化的辛几何(仍在绝赞修改中!).</td>
                 </tr>
                 <tr>
                     <td class="lang lang-zh" style="display: none;">2016-2020</td><td class="lang lang-zh" style="display: none;">中山大学</td><td class="lang lang-zh" style="display: none;">理学学士</td><td class="lang lang-zh" style="display: none;">数学专业；导师：胡建勋教授；毕业论文：拉格朗日相交的Arnold猜想。</td>
@@ -327,7 +384,8 @@
                     Malgrange in 1982.</li>
                     <li class="lang lang-zh" style="display: none;"><a href="Classifications_of_Irregular_Connections_of_One_Variable.pdf">单变量非正规联络的分类</a>，B. Malgrange，1982年。</li>
             </ul>
-            <h3>Seminars:</h3>
+            <h3 class="lang lang-en">Seminars:</h3>
+            <h3 class="lang lang-zh" style="display: none;">讨论班：</h3>
             <ul>
                 <!-- <li><div id="SD21" onmouseover="init('sub21','SD21')"><a href="https://syliu-thewildcat.github.io/Seminar-Webpage.github.io/seminar-Riemann-Roch.html">Online Seminars on Riemann-Roch Theorem</a></div><div id="sub21" class="hov"><h4>Description:</h4>This is an online seminar held in the summer of 2020, where I explain the statement, usage and proof of the Riemann-Roch Theorem in Mcduff and Salamon's book <i>J-holomorphic Curves and Symplectic Topology</i>.</div></li> -->
                 <!-- <li><div id="SD22" onmouseover="init('sub22','SD22')"><a href="Galois-theory.html">Galois Theory</a></div><div id="sub22" class="hov"><h4>Description:</h4>This is a volunteering lecture for freshmen and sophomore in Sun Yat-Sen University. I'm going to introduce the Galoi theory in some details to them, in order to help them find their interests in study.
@@ -335,10 +393,13 @@
             <h4>Warning:</h4>This would be talked in Chinese.</div></li>
             <li><div id="SD23" onmouseout="init('sub23','SD23')"><a href="https://chaoli.club/index.php/6307">Seminar on Symplectic Cohomology</a></div><div id="sub23" class="hov"><h4>Description:</h4> This is a seminar I organized in Peking University starting from May, 2021, where we discuss papers on symplectic cohomology and its applications. This would be held online after July.</div></li>
             <li><a href="characteristic-class.html">Characteristic Classes</a></li> -->
-                <li>Spring 2022
+                <li class="lang lang-en">Spring 2022
                     <ul><li><a href="StableHomotopyTheory/main.html">MATH 740:
                                 Stable Homotopy Theory</a></li></ul></li>
-                <li> Summer 2022<ul>
+                <li class="lang lang-zh" style="display: none;">2022年春季
+                    <ul><li><a href="StableHomotopyTheory/main.html">MATH 740:
+                                稳定同伦论</a></li></ul></li>
+                <li class="lang lang-en"> Summer 2022<ul>
                         <li><a
                                 href="microseminars/MilnorFibration.html">Microseminar
                                 1: Topology of Milnor Fibrations</a></li>
@@ -346,35 +407,61 @@
                                 href="microseminars/PseudoHolomorphicCurves.html">Microseminar
                                 2: Holomorphic Curves</a></li></ul>
                 </li>
-                <li>Fall 2022</li>
+                <li class="lang lang-zh" style="display: none;">2022年夏季<ul>
+                        <li><a
+                                href="microseminars/MilnorFibration.html">微型讨论班
+                                1: Milnor纤维化的拓扑</a></li>
+                        <li><a
+                                href="microseminars/PseudoHolomorphicCurves.html">微型讨论班
+                                2: 全纯曲线</a></li></ul>
+                </li>
+                <li class="lang lang-en">Fall 2022</li>
+                <li class="lang lang-zh" style="display: none;">2022年秋季</li>
                 <ul>
                     <!-- <li><a href="seminarFall2022/SymplecticAlgebraicGeometry.html">Symplectic Geometry of Algebraic Varieties</a></li> -->
-                    <li><a
+                    <li class="lang lang-en"><a
                             href="https://sites.google.com/usc.edu/math710liegroup/home">MATH
                             710: Compact Lie Groups</a></li>
+                    <li class="lang lang-zh" style="display: none;"><a
+                            href="https://sites.google.com/usc.edu/math710liegroup/home">MATH
+                            710: 紧李群</a></li>
                 </ul>
-                <li>Spring 2023</li>
+                <li class="lang lang-en">Spring 2023</li>
+                <li class="lang lang-zh" style="display: none;">2023年春季</li>
                 <ul>
-                    <li><a href="USCStuSeminar.html">USC Student Topology
+                    <li class="lang lang-en"><a href="USCStuSeminar.html">USC Student Topology
                             Seminar(complementary to USC topology
                             seminar)</a></li>
+                    <li class="lang lang-zh" style="display: none;"><a href="USCStuSeminar.html">USC学生拓扑讨论班
+                            （作为USC拓扑讨论班之插值）</a></li>
                 </ul>
-                <li>Summer 2023</li>
+                <li class="lang lang-en">Summer 2023</li>
+                <li class="lang lang-zh" style="display: none;">2023年夏季</li>
                 <ul>
-                    <li><a
+                    <li class="lang lang-en"><a
                             href="microseminars/LinearAlgebraicGroups.html">Linear
                             Algebraic Groups</a></li>
-                    <li><a
+                    <li class="lang lang-zh" style="display: none;"><a
+                            href="microseminars/LinearAlgebraicGroups.html">线性代数群</a></li>
+                    <li class="lang lang-en"><a
                             href="microseminars/SymplecticCohomology.html">Symplectic
                             Cohomology</a></li>
+                    <li class="lang lang-zh" style="display: none;"><a
+                            href="microseminars/SymplecticCohomology.html">辛上同调</a></li>
                 </ul>
-                <li>Fall 2023
+                <li class="lang lang-en">Fall 2023
                     <ul>
                         <li><a href="USCStuSeminar.html">USC Student Topology
                                 Seminar(independent)</a></li>
                     </ul>
                 </li>
-                <li>Spring 2024
+                <li class="lang lang-zh" style="display: none;">2023年秋季
+                    <ul>
+                        <li><a href="USCStuSeminar.html">USC学生拓扑讨论班
+                                （非插值）</a></li>
+                    </ul>
+                </li>
+                <li class="lang lang-en">Spring 2024
                     <ul>
                         <li><a href="USCStuSeminar.html">USC Student Topology
                                 Seminar</a>
@@ -384,12 +471,25 @@
                             </ul></li>
                     </ul>
                 </li>
-                <li>Summer 2024
+                <li class="lang lang-zh" style="display: none;">2024年春季
+                    <ul>
+                        <li><a href="USCStuSeminar.html">USC学生拓扑讨论班</a>
+                            <ul>
+                                <li>主题：切触拓扑与凸曲面论</li>
+                            </ul></li>
+                    </ul>
+                </li>
+                <li class="lang lang-en">Summer 2024
                     <ul>
                         <li><a href="HodgeTheory.html">Hodge Reading Group</a>:
                             in person at Caltech</li>
                     </ul></li>
-                <li>Fall 2024
+                <li class="lang lang-zh" style="display: none;">2024年夏季
+                    <ul>
+                        <li><a href="HodgeTheory.html">Hodge阅读小组</a>：
+                            在加州理工学院现场进行</li>
+                    </ul></li>
+                <li class="lang lang-en">Fall 2024
                     <ul>
                         <li>GHHPS seminar: online. In order to understand the
                             recent paper by <a
@@ -401,7 +501,15 @@
                                 Category</a>.</li>
                     </ul>
                 </li>
-                <li>Winter 2025
+                <li class="lang lang-zh" style="display: none;">2024年秋季
+                    <ul>
+                        <li>GHHPS研讨会：在线。为了理解最近<a
+                                href="https://arxiv.org/abs/2406.05272">Ganatra-Hanlon-Hicks-Pomerleano-Sheridan</a>所写论文。</li>
+                        <li>卷深谷范畴上的卡拉比丘结构：关于<a
+                                href="https://arxiv.org/abs/1304.7312">辛上同调与卷深谷范畴的对偶性</a>的在线研讨会。</li>
+                    </ul>
+                </li>
+                <li class="lang lang-en">Winter 2025
                     <ul>
                         <li><a href="SYZ.html">Seminar on SYZ mirror
                                 symmetry</a>.</li>
@@ -409,42 +517,51 @@
                             University of Bonn.</li>
                     </ul>
                 </li>
+                <li class="lang lang-zh" style="display: none;">2025年冬季
+                    <ul>
+                        <li><a href="SYZ.html">SYZ镜对称讨论班</a>。</li>
+                        <li>于波恩大学参与组织<a href="https://sites.google.com/view/bonnsymplecticgeometryseminar">辛几何讨论班</a>。</li>
+                    </ul>
+                </li>
             </ul>
             <br>
-            <h2 id="Teaching">Teaching</h2>
-            <p>I was TA for:</p>
+            <h2 id="Teaching"><span class="lang lang-en">Teaching</span><span class="lang lang-zh" style="display: none;">教学</span></h2>
+            <p class="lang lang-en">I was TA for:</p>
+            <p class="lang lang-zh" style="display: none;">我担任过以下课程的助教：</p>
             <table>
                 <ul>
                     <li><a href="MATH125/home.html"><span
-                                title="Calculus &#x2160;">MATH 125</span></a> in
-                        Fall 2021</li>
-                    <li><span title="Calculus &#x2161;">MATH 126</span> in
-                        Spring 2022</li>
+                                title="Calculus &#x2160;">MATH 125</span></a> <span class="lang lang-en">in
+                        Fall 2021</span><span class="lang lang-zh" style="display: none;">于2021年秋季</span></li>
+                    <li><span title="Calculus &#x2161;">MATH 126</span> <span class="lang lang-en">in
+                        Spring 2022</span><span class="lang lang-zh" style="display: none;">于2022年春季</span></li>
                     <li><span
                             title="Linear Algebra and Linear Differential Equations">MATH
-                            255</span> in Spring 2023</li>
+                            255</span> <span class="lang lang-en">in Spring 2023</span><span class="lang lang-zh" style="display: none;">于2023年春季</span></li>
                     <li><span
                             title="Calculus &#x2162 for Engineers and Scientists (Honor)">MATH
-                            229</span> in Fall 2023</li>
+                            229</span> <span class="lang lang-en">in Fall 2023</span><span class="lang lang-zh" style="display: none;">于2023年秋季</span></li>
                     <li><span
                             title="Mathematics for Physics and Engineering II">MATH
-                            445</span> in Spring 2024</li>
+                            445</span> <span class="lang lang-en">in Spring 2024</span><span class="lang lang-zh" style="display: none;">于2024年春季</span></li>
                     <li><span
                             title="Mathematics for Physics and Engineering I">MATH
-                            245</span> in Summer 2024</li>
+                            245</span> <span class="lang lang-en">in Summer 2024</span><span class="lang lang-zh" style="display: none;">于2024年夏季</span></li>
                 </ul>
             </table>
-            <p>I was a grader for:</p>
+            <p class="lang lang-en">I was a grader for:</p>
+            <p class="lang lang-zh" style="display: none;">我担任过以下课程的批卷员：</p>
             <table>
                 <ul>
                     <li><span title="Fundamental Concepts of Analysis">MATH
-                            425b</span> in Spring 2024</li>
+                            425b</span> <span class="lang lang-en">in Spring 2024</span><span class="lang lang-zh" style="display: none;">于2024年春季</span></li>
                 </ul>
             </table>
-            <p>I'll be Instructor for:</p>
+            <p class="lang lang-en">I was an Instructor for:</p>
+            <p class="lang lang-zh" style="display: none;">我担任过以下课程的讲师：</p>
             <table>
                 <ul>
-                    <li><a href="IntroSymp.html">Introduction to Symplectic Topology</a> in Summer 2026</li>
+                    <li><a href="IntroSymp.html"><span class="lang lang-en">Introduction to Symplectic Topology</span><span class="lang lang-zh" style="display: none;">辛拓扑导引</span></a> <span class="lang lang-en">in Summer 2026</span><span class="lang lang-zh" style="display: none;">于2026年夏季</span></li>
                 </ul>
             </table>
             <h2 id="Talks">Travels & Talks</h2>
