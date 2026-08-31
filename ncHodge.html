@@ -1,0 +1,357 @@
+<body>
+    <head>
+    <meta charset="utf-8">
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    article{
+        color: darkcyan;
+    }
+    h1 {
+        font-family: 'STIX Two', 'STIX Two Math', serif;
+        text-align: center;
+    counter-reset: sec;
+        }
+    
+    h2 {
+        counter-increment: sec;
+        counter-reset: subsec;
+    }
+    h2::before {
+        content: 'Chapter ' counter(sec) '. ';
+    }
+    h3 {
+        counter-increment: subsec;
+        counter-reset: dfn;
+    }
+    h3::before {
+        content: counter(sec) '.' counter(subsec) '. ';
+    }
+
+    h4{
+        display: inline;
+        font-family: 'STIX Two', 'STIX Two Math', serif;
+    }
+
+    h4::after{
+        content: ' ';
+    }
+
+    p {
+        font-family: 'STIX Two', 'STIX Two Math', serif;
+        text-indent: 2em;
+    }
+
+    a.section {
+        font-size: medium;
+        color: yellowgreen;
+        counter-increment: sidesec;
+    }
+    a.side{
+        font-size: medium;
+        color: yellowgreen;
+    }
+    a.section::before {
+        content: 'Chapter ' counter(sidesec) '. ';
+    }
+    
+
+    body {
+        counter-reset: footnotes;
+        counter-reset: statement;
+        counter-reset: sec;
+        margin-left: 140px;
+        margin-right: 10px;
+        font-size: 12pt;
+        padding: 0px 10px;
+        width: 9in;
+    }
+
+    .sidenav {
+        width: 130px;
+        position: fixed;
+        z-index: 1;
+        top: 20px;
+        left: 10px;
+        background: white;
+        overflow-x: hidden;
+        padding: 8px 0;
+        counter-reset: sidesec;
+    }
+
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 9pt;
+        color: slateblue;
+        display: block;
+        position: relative;
+    }
+    
+    .fig{
+        float: right;
+    }
+
+    .hov{
+        display: none;
+        width: 400px;
+        position: absolute;
+        background-color: white;
+        color: slateblue;
+        border-style: dotted;
+        padding: 6px 8px 6px 16px;
+    }
+    
+    a{
+        color: slateblue;
+    }
+
+    a.citedfn::after{
+        content: target-counter(attr(href), dfn)
+    }
+    table {
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14pt;
+        }
+
+    td {
+            border: 1px solid;
+            text-align:center;
+        }
+        td:last-child {
+            text-align: left;
+        }
+
+        th{
+            border: 1px solid;
+            text-align: center;
+        }
+
+    .topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+div.env{
+    counter-increment: dfn;
+}
+strong::before{
+    content: counter(sec) '.' counter(subsec) '.' counter(dfn) '. ';
+    font-weight: bold;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="button.css">
+<script> 
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+</script>
+</head>
+    <h2 id="ncHodge">ncHodge Structures</h2>
+    <p>
+        We start the discussion with a definition of ncHodge structures and its relation to pure Hodge structures. In <a href="#KKP08" class="cite">[KKP08]</a>, they proposed the notion of "non-commutative Hodge structures" and constructed a candidate for non-commutative Hodge structures associated to any smooth proper dg category $\mathcal{C}$. The non-commutative Hodge structure is defined similar to Simpson <a href="#Simpson91" class="cite">[Simpson91]</a>, as a canonical holomorphic vector bundle over $\mathbb{P}^1$ with prescribed connection. Let's start with some brief review of connections of vector bundles over twistor spheres.
+    </p>
+    <h3>Meromorphic connections and holomorphic bundles.</h3>
+<p>
+Let $\mathbb{C}\{u\}$ be the ring of convergent holomorphic functions on $\mathbb{C}$ <span>&#40;</span>in other words, the Stein algebra of $\mathbb{C}$<span>&#41;</span>. Let $\mathcal{M}$ be a finite dimensional $\mathbb{C}\{u\}[u^{-1}]$-vector space.
+</p>
+<div class="env">
+    <strong>Definition.</strong>
+    A <em>meromorphic connection</em> $\nabla$ on $\mathcal{M}$ is a $\mathbb{C}$-linear map $\nabla : \mathcal{M} \to \mathcal{M}$ satisfying Leibnitz law: $\nabla((fg)m) = (\nabla f)g m + f (\nabla g)m$. A <em>holomorphic extension</em> of $\mathcal{M}$ is a free finitely generated $\mathbb{C}\{u\}$-module $\mathcal{H}$ satisfying $\mathcal{H} \otimes_{\mathbb{C}\{u\}} \mathbb{C}\{u\}[u^{-1}] \cong \mathcal{M}$.
+</div>
+<p>
+Note that $\mathcal{M}$ is actually a meromorphic bundle over $\mathbb{C}$ with poles at $0$, while $\mathcal{H}$ is a holomorphic vector bundle over $\mathbb{C}$.
+</p>
+<div class="env">
+    <strong>Definition.</strong>
+    We say $\mathcal{H}$ is <em>logarithmic</em> with respect to $\nabla$ if $\nabla(\mathcal{H}) \subseteq \mathcal{H} \frac{du}{u}$. We say $(\mathcal{M}, \nabla)$ has at most a <em>regular singularity</em> at $0$ if we can find a holomorphic extension $\mathcal{H} \subseteq \mathcal{M}$ logarithmic with respect to $\nabla$.
+</div>
+<p>
+In fact, whenever $(\mathcal{M},\nabla)$ has at most a regular singularity at $0$, we can always find a (non-canonical) holomorphic extension $\mathcal{H}$ of $\mathcal{M}$ which is a holomorphic vector bundle over $\mathbb{C}$ <a href="#PS08" class="cite">[PS08, Proposition 11.2]</a>.
+</p>
+<div class="env">
+<strong>Remark.</strong>
+In fact, there is a bijective correspondence between the set of algebraic vector bundles over $\mathbb{A}^1 \setminus \{0\}$ with a regular singularity at $\infty$ and the set of finite-dimensional $\mathbb{C}\{u\}[u^{-1}]$-vector spaces equipped with meromorphic connections. Therefore we can algebraically regard such data $(\mathcal{M},\nabla)$ as a vector bundle over $\mathbb{P}^1$ with log pole at $\infty$ and a possible pole at $0$.
+</div>
+<h3>Stokes structure.</h3>
+<p>
+The usual Riemann-Hilbert correspondence <a href="#PS08" class="cite">[PS08, Section 11.1.2]</a> relates holomorphic/algebraic vector bundles over $\mathbb{C}$ with at most regular poles along $0$ and $\infty$ to $\mathbb{C}$-local systems on $\mathbb{G}_m = \mathbb{C} \setminus \{0\}$, extendable to $\mathbb{P}^1$, by taking flat sections. When the meromorphic connection $\nabla$ has higher poles at $0$, Riemann-Hilbert correspondence fails. Instead, we should be able to see the <em>Stokes structure</em>, as observed and studied by Malgrange <a href="#Malgrange83" class="cite">[Malgrange83]</a>. Roughly speaking, we should regard it as a "local system under étale topology". More explicitly,
+</p>
+<div class="env">
+    <strong>Definition.</strong>
+    Given a meromorphic vector bundle with meromorphic connection $(\mathcal{M},\nabla)$, the sheaf of local $\nabla$-flat sections forms a locally constant sheaf $\mathbf{S}$ on $\mathbb{G}_m$ and hence $\mathbb{S}^1$, with the following filtration, called <em>Deligne-Malgrange-Stokes filtration</em> $\{\mathbf{S}_{\leq \omega}\}_{\omega \in \mathrm{Del}}$, defined as follows:
+    <ul>
+        <li>
+            $\mathbf{Del}$ is the complex local system on $\mathbb{S}^1$ for which for every open subset $U \subseteq \mathbb{S}^1$ the space of sections $\mathbf{Del}(U)$ is defined to be the space of all holomorphic one-forms $\omega$ on the sector $Sec(U) := \{ r e^{i\phi} \mid r > 0, \phi \in U \}$ which are of the form$$\omega = \left( \sum_{a \in \mathbb{Q},\, a < -1} c_a u^a \right) du,$$
+            where at most finitely many $c_a \neq 0$ and the branches $u^a$ are chosen arbitrarily.
+            Germs of sections of $\mathbf{Del}$ are naturally equipped with a total order as follows: if $\omega', \omega'' \in \mathbf{Del}(U)$ and $\phi \in U$, and if
+            $$\omega' - \omega'' = c_a u^a + \text{(higher order terms)},$$then we say $\omega'\le_{\phi}\omega''$ iff $\mathrm{Re}\left( \frac{c_a e^{i\phi(a+1)}}{a+1} \right) < 0$.
+        </li>
+        <li>
+            For every $\phi \in \mathbb{S}^1$ and every $\omega \in \mathbf{Del}_\phi$ the stalk $(\mathbf{S}_{\leq \omega})_\phi \subset \mathbf{S}_\phi$ is defined to be the subspace
+            $$(\mathbf{S}_{\leq \omega})_\phi := \left\{ s \in \mathbf{S}_\phi = \Gamma(\mathbb{R}_+^{\times} e^{i\phi}, M^{\mathrm{an}})^{\nabla} \;\middle|\; e^{-\int \omega} s \text{ has moderate growth in the direction } \phi,\ \text{i.e.}\ \| e^{-\int \omega} s \|_{|\mathbb{R}_+^{\times} e^{i\phi}} = O(r^{-N})\ \text{when}\ r \to 0,\ N \gg 0 \right\}$$
+            Here $\| \bullet \|$ is the Hermitian norm of a section of $M$ computed in some (any) meromorphic trivialization of $M^{\mathrm{an}}$ near $u=0$.
+        </li>
+    </ul>
+</div>
+<div class="env">
+    <strong>Remark.</strong> The subset $\mathbb{S}_{\leq\omega}$ for a given section $\omega$ does not form a locally constant subsheaf over $\mathbb{S}^1$, as the total order might change when we move the point $\phi$ in $\mathbb{S}^1$.
+</div>
+<p>Before we move on, let's illustrate the definition a little bit. Let $K=\mathbb{C}\{u\}[u^{-1}]$ be the localization and $\hat{K}$ be its completion with respect to the $u$-filtration, so that $(\mathcal{M},\nabla)$ is a free $K$-module of finite rank equipped with a connection. The assignment $t\mapsto t^p$ gives an étale cover of $\mathbb{A}^1$, and we write $L$ for the field extension of $K$ by the equation $t^p=u$. The extension $\mathcal{F}=\mathcal{E}\otimes_K L$ is a vector space over $L$ together with an induced connection given by $(t\nabla_{d/dt}) (e\otimes t^k)=k(e\otimes t^k)+\frac{1}{p}((u\nabla_{d/du})e\otimes t^k)$. Let $\alpha\in\Omega^1 (L)=L\otimes dt$ be a meromorphic $1$-form on the étale cover, then we have a canonical rank $1$ $L$-vector space $\mathcal{F}^{\alpha}$ where $\nabla_{d/dt} f=\frac{\partial f}{\partial t} +\frac{\alpha}{dt}f$. Two such vector spaces with connections $\mathcal{F}^{\alpha}$ and $\mathcal{F}^{\beta}$ are isomorphic if and only if $\alpha-\beta$ has a simple pole at $0$ with the coefficient of $t^{-1}$ being an integer.</p> 
+<p>We then have the following formal decomposition theorem:</p>
+<div class="env">
+    <strong id="thm:formal-decomposition">Theorem.</strong> Let $(\mathcal{M},\nabla)$ be a vector space with connection over $E$, then after possibly a ramification $t^p=u$, one can find a formal isomorphism $$\mathcal{M}\otimes_{\hat{K}}\hat{L}\cong\bigoplus_{\alpha}(\mathcal{F}^{\alpha}\otimes_{\hat{L}}\mathcal{G}^{\alpha}),$$where the $\mathcal{F}^{\alpha}$ have the meaning given above <span>&#40;</span>with $L$ replaced by $\hat{L}$<span>&#41;</span>, and where the $\mathcal{G}^{\alpha}$ are regular.
+</div>
+<p>This provides a complete formal classification of all vector spaces over $\hat{K}$ with meromorphic connections, and the idea of classifying vector spaces over $K$ with meromorphic connections is to find lifts of the given formal decomposition. Note that for given $\theta\in\mathbb{S}^1$, the stalk $\mathbf{Del}_{\theta}\otimes_K E$ consists of meromorphic sections of $E$ in an open cone neighbourhood of $\theta$, and their formalization clearly extends to the whole of $\mathbb{A}^1\setminus\{0\}$. Denote this map by $T$, a theorem of Hukuhara-Turrittin states that</p>
+<div>
+    <strong id="thm:Hukuhara-Turrittin">Theorem<span>&#40;</span>Hukuhara-Turrittin<span>&#41;</span>.</strong> Let $(E,\nabla)$ be a vector bundle with connection over $K$, then for all $\theta\in\mathbb{S}^1$, the map $T\colon\ker (\nabla,\mathbf{Del}_{\theta}\otimes_K E)\to\ker (\nabla,\hat{E})$ is surjective.
+</div>
+<p>The main application of the theorem of Hukuhara-Turrittin in [<a href="#Malgrange83">Malgrange83</a>] is that</p>
+<div class="env">
+    <strong>Theorem.</strong> There is an equivalence of categories $$\left\{\text{Vector bundles over }K\text{ with connections}\right\}\xrightarrow{\Phi}\left\{\text{Stokes structures}\right\}.$$
+</div>
+<p>This can be regarded as a (local) generalization of the Riemann-Hilbert correspondence for vector bundles with meromorphic connections.</p>
+<h3>ncHodge structure</h3>
+<p>
+With the previous preparations, we are now ready to abstractly define non-commutative Hodge structures.
+</p>
+<div class="env">
+    <strong id="dfn:ncHodge">Definition.</strong>
+        A <em>rational pure nc-Hodge structure</em> consists of the data $(H, \mathcal{E}_sB, \mathbf{iso})$, where:
+    <ul>
+        <li>$H$ is a $\mathbb{Z}/2$-graded algebraic vector bundle on $\mathbb{A}^1$.</li>
+        <li>$\mathcal{E}_B$ is a local system of finite dimensional $\mathbb{Z}/2$-graded $\mathbb{Q}$-vector spaces on $\mathbb{A}^1 \setminus \{0\}$.</li>
+        <li>
+            $\mathbf{iso}$ is an analytic isomorphism of holomorphic vector bundles on $\mathbb{A}^1 \setminus \{0\}$:
+            <br>
+            $\mathbf{iso}: \mathcal{E}_B \otimes \mathcal{O}_{\mathbb{A}^1 \setminus \{0\}} \xrightarrow{\sim} H|_{\mathbb{A}^1 \setminus \{0\}}$.
+        </li>
+    </ul>
+    <p>
+        The isomorphism $\mathbf{iso}$ also induces a natural flat holomorphic connection $\nabla$ on $H|_{\mathbb{A}^1 \setminus \{0\}}$.
+        <br>
+        These data have to satisfy the following axioms:
+    </p>
+    <ul>
+        <li>
+            <b><span>&#40;</span>nc-filtration axiom<span>&#41;</span></b>
+            $\nabla$ is a holomorphic connection on $H$ with a pole of order $\leq 2$ at $u=0$ and a regular singularity at $\infty$. More precisely, there exist:
+            <ul>
+                <li>
+                    a holomorphic frame of $H$ near $u=0$ in which$$\nabla = d + \left( \sum_{k \geq -2} A_k u^k \right) du$$with $A_k \in \mathrm{Mat}_{r \times r}(\mathbb{C})$, $r = \mathrm{rank}\, H$.
+                </li>
+                <li>
+                    a meromorphic frame of $H$ near $u = \infty$ in which$$\nabla = d + \left( \sum_{k \geq -1} B_k u^{-k} \right) d(u^{-1})$$and $B_k \in \mathrm{Mat}_{r \times r}(\mathbb{C})$.
+                </li>
+            </ul>
+        </li>
+        <li>
+            <b><span>&#40;</span>$\mathbb{Q}$-structure axiom<span>&#41;</span></b>
+            The $\mathbb{Q}$-structure $\mathcal{E}_B$ on $(H, \nabla)$ is compatible with the Stokes data. More precisely, let $(\mathbf{S}, \{\mathbf{S}_{\leq \omega}\}_{\omega \in \mathrm{Del}})$ be the Stokes structure corresponding to the germ $(\mathcal{H}, \nabla)$, and let $\mathbf{S}_B \subset \mathbf{S}$ be the $\mathbb{Q}$-structure on $\mathbf{S}$ induced from $\mathcal{E}_B$ via the isomorphism $\mathbf{iso}$. We require that the Deligne-Malgrange-Stokes filtration on $\mathbf{S}$ is defined over $\mathbb{Q}$, i.e.
+            <br>
+            $(\mathbf{S}_{\leq \omega}, \mathbf{S}_B) \otimes_{\mathbb{Q}} \mathbb{C} = \mathbf{S}_{\leq \omega}$
+            <br>
+            for all local sections $\omega \in \mathrm{Del}$.
+        </li>
+        <li>
+            <b><span>&#40;</span>opposedness axiom<span>&#41;</span></b>
+            The $\mathbb{Q}$-structure $\mathbf{S}_B$ induces a real structure on $\mathbf{S}$ and hence a complex conjugation $\tau: \mathbf{S} \to \mathbf{S}$. Let $\hat{H}$ be the holomorphic bundle on $\mathbb{P}^1$ obtained by the gluing of $H^{\mathrm{alg}}_{|\, |u| \leq 1}$ and $(\gamma^* \overline{H^{\mathrm{alg}}})_{|\, |u| \geq 1}$ via $\tau$, where $\gamma: \mathbb{P}^1 \to \mathbb{P}^1$ is the real structure on $\mathbb{P}^1$ fixing the unit circle, i.e. $\gamma(u) = 1/\overline{u}$, then the bundle $\hat{H}$ must be holomorphically trivial.
+        </li>
+    </ul>
+    <p>A morphism $\mathbf{f}\colon (H_1,\mathcal{E}_{B,1},\mathbf{iso}_1) \to (H_2,\mathcal{E}_{B,2},\mathbf{iso}_2)$ of nc-Hodge structures is a pair $\mathbf{f} =(f,f_B)$ where $f\colon H_1\to H_2$ is an algebraic map of vector bundles intertwining the connections, and $f_B\colon\mathcal{E}_{B,1}\to\mathcal{E}_{B,2}$ is a map of $\mathbb{Q}$-local systems, such that $f\circ\mathbf{iso}_1 =\mathbf{iso}_2\circ (f_B\otimes\operatorname{id}_{\mathcal{O}})$. We write $(\mathbb{Q}\text{-ncHS})$ for the category of pure nc-Hodge structures.</p>
+</div>
+<p>In order for classifying space <span>&#40;</span>moduli stack<span>&#41;</span> of $\mathbb{Q}$-ncHodge structures, we also make sense of variations of ncHodge structures:</p>
+<div class="env">
+    <strong>Definition.</strong>
+    Let $S$ be a complex manifold. A <em>variation of pure nc-Hodge structures</em> over $S$ is a triple $(H, \mathcal{E}_B, \mathbf{iso})$ where
+    <ul>
+        <li>$H$ is a holomorphic $\mathbb{Z}/2$-graded vector bundle on $\mathbb{A}^1 \times S$ which is algebraic in the $\mathbb{A}^1$-direction.</li>
+        <li>$\mathcal{E}_B$ is a local system of $\mathbb{Z}/2$-graded $\mathbb{Q}$-vector spaces on $(\mathbb{A}^1\setminus\{0\})\times S$.</li>
+        <li>$\mathbf{iso}$ is an analytic isomorphism of holomorphic vector bundles $$\mathbf{iso}\colon\mathcal{E}_B\otimes\mathcal{O}_{(\mathbb{A}^1\setminus\{0\})\times S}\xrightarrow{\simeq} H_{\vert (\mathbb{A}^1\setminus\{0\})\times S}.$$</li>
+    </ul>
+    Let $\nabla$ be the induced meromorphic connection on $H$. The data $(H,\mathcal{E}_B,\mathbf{iso})$ should satisfy:
+    <ul>
+        <li>
+            <b><span>&#40;</span>nc-filtration axiom<span>&#41;</span></b>
+            The connection $\nabla$ has a regular singularity along $\{\infty\}\times S$ and Poincaré rank $\leq 1$ along $\{0\}\times S$, i.e. $$u^2\cdot\nabla_{\partial/\partial u}\colon H\to H$$is a holomorphic differential operator on $H$ of order $\leq 1$.</li>
+        <li>
+            <b><span>&#40;</span>Griffiths transversality axiom<span>&#41;</span></b> For every locally defined vector field $\xi\in T_S$ we have $$u\cdot\nabla_{\xi}\colon H\to H$$is a holomorphic differential operator on $H$ of order $\leq 1$.</li>
+        <li><b><span>&#40;</span>$\mathbb{Q}$-structure axiom<span>&#41;</span></b> The Stokes structure on the local system $\mathbf{S}$ on $\mathbb{S}^1\times S$ is well defined, i.e. the steps in the Deligne-Malgrange-Stokes filtration on $\mathbf{S}$ are sheaves on $\mathbb{S}^1\times S$. Furthermore, the $\mathbb{Q}$-structure $\mathcal{E}_B$ is compatible with the Stokes structure as in <a class="citedfn" href="#dfn:ncHodge">Definition 1.3.1</a>.
+            </li>
+        <li>
+            <b><span>&#40;</span>opposedness axiom<span>&#41;</span></b> The relative version of the gluing construction for nc-Hodge structures gives a globally defined complex vector bundle $\hat{H}$ on $\mathbb{P}^1\times S$, which is holomorphically trivial in the $\mathbb{P}^1$ direction. Moreover, with respect to the extension $\hat{H}$ the connection $\nabla$ is meromorphic with Poincaré rank one along $(\{0\}\times S)\cup(\{\infty\}\times S)$.
+        </li>
+    </ul>
+</div>
+<h3>Relation to usual Hodge theory.</h3>
+<p>Now we compare nc-Hodge structures with the usual <span>&#40;</span>pure<span>&#41;</span> Hodge structures. Following [<a href="#PS08">PS08</a>], we recall that </p>
+<div class="env">
+    <strong>Definition.</strong> Let $V$ be a $\mathbb{Q}$-vector space. A <em>pure $\mathbb{Q}$-Hodge structure of weight $w\in\mathbb{Z}$</em> on $V$ is the data of a decreasing filtration $F^{\bullet} V$ on $V_{\mathbb{C}}:=V\otimes_{\mathbb{Q}}\mathbb{C}$ such that $$V_{\mathbb{C}}=\bigoplus_{p+q=w} V^{p,q},$$where $V^{p,q}:=F^p V \cap \overline{F^q V}$ and $\overline{F^{\bullet} V}$ is the complex conjugation of $F^{\bullet} V$ with respect to the real structure $V_{\mathbb{R}}:=V\otimes_{\mathbb{Q}}\mathbb{R}\subseteq V_{\mathbb{C}}$. We will write $(V_{\mathbb{C}},F^{\bullet} V,V_{\mathbb{Q}})$ for a pure $\mathbb{Q}$-Hodge structure.
+</div>
+<p>We will write $(\mathbb{Q}\text{-HS})$ for the abelian $\mathbb{Q}$-linear tensor category of pure rational Hodge structures. For each $w\in\mathbb{Z}$ we have the <em>Hodge structure of Tate</em>, $\mathbb{Q}(w):=(\mathbb{C},F^{\bullet},\mathbb{Q})$ where $F^i =\mathbb{C}$ for $i\leq w$ and $F^i =0$ for $i>w$. The Hodge structure of Tate has weight $2w$.</p>
+<p>Via a Rees module construction similar to [<a href="#Simpson91">Simpson91</a>], given a pure Hodge structure $(V,F^{\bullet} V,V_{\mathbb{Q}})$ of weight $w$ we can consider the rank one meromorphic bundle with connection $$\mathbf{\mathcal{T}}_{\frac{w}{2}}:=\left(\mathbb{C}\{u\}[u^{-1}],d-\frac{w}{2}\cdot\frac{du}{u}\right)$$and we set</p>
+<ul>
+    <li>$\mathcal{H}:=\mathcal{H}^{w \mod 2} :=\sum_i u^{-i} F^i V\{u\}$ viewed as a $\mathbb{C}\{u\}$-submodule in $\mathbb{C}\{u\}[u^{-1}]\otimes_{\mathbb{C}} V$. This submodule is clearly preserved by the operator $\nabla_{u\frac{d}{du}}$ for the connection $\nabla :=(d-\frac{w}{2}\cdot\frac{du}{u})\otimes\mathrm{id}_V$, i.e. $(\mathcal{H},\nabla)$ is a logarithmic holomorphic extension of  the meromorphic bundle with connection $\mathbf{\mathcal{T}}_{\frac{w}{2}}\otimes_{\mathbb{C}} V$.</li>
+    <li>$\mathcal{E}_B:=\mathcal{E}_B^{w\mod 2}$ - the $\mathbb{Q}$-local system on $\mathbb{A}^1\setminus\{0\}$ defined as the subsheaf $\mathcal{E}_B\subseteq H$ consisting of sections whose value at $1$ is in $V_{\mathbb{Q}}\subseteq V=H/(u-1)H$. In other words $\mathcal{E}_B$ is the locally constant sheaf on $\mathbb{A}^1\setminus\{0\}$ with fiber $V_{\mathbb{Q}}$ and monodromy $(-1)^w\mathrm{id}_{V_{\mathbb{Q}}}$.</li>
+    <li>$\mathbf{iso}$ is the isomorphism of complex local systems, corresponding to the embedding $\mathcal{E}_B\subseteq H$.</li>
+</ul>
+<p>We can easily check that the triple constructed this way defines a nc-Hodge structure, and if $V=\mathbb{Q}(w)$, the corresponding nc-Hodge structures are all trivial.</p>
+<div class="env">
+    <strong>Remark.</strong> In this case we can compute horizontal sections of $\mathbf{\mathcal{T}}_{\frac{w}{2}}$. It corresponds to solving the equation $$df-\frac{w}{2}\frac{du}{u}=0,$$so that in any simply connected open subsetes $U\subseteq\mathbb{A}^1\setminus\{0\}$ we get $f=u^{w/2}$.
+</div>
+<p>The assignment $(V,F^{\bullet}V,V_{\mathbb{Q}})\to (H,\mathcal{E}_B,\mathbf{iso})$ gives a functor $$\mathfrak{n}\colon (\mathbb{Q}\text{-HS})\to(\mathbb{Q}\text{-ncHS})$$which factors through the quotient $$\pi\colon (\mathbb{Q}\text{-HS})\to(\mathbb{Q}\text{-HS})/(\bullet\otimes\mathbb{Q}(1)).$$Write $\mathfrak{N}\colon (\mathbb{Q}\text{-HS})/(\bullet\otimes\mathbb{Q}(1))\to (\mathbb{Q}\text{-ncHS})$ for the resulting functor.</p>
+<div class="env">
+    <strong>Lemma.</strong> The functor $\mathfrak{N}$ is fully faithful and its essential image consists of all nc-Hodge structures with regular singularities and monodromy $=\mathrm{id}$ on $H^0$ and $-\mathrm{id}$ on $H^1$.
+</div>
+<h3>ncHodge structures of exponential type.</h3>
+<p>Away from ncHodge structures coming from pure Hodge structures, there're ncHodge structures where the connection $\nabla$ has a pole at $0$ of order $2$. In this case, Theorem <a href="#thm:formal-decomposition">1.2.3</a> applies and we know that for some ramification $\pi_p (t):=t^p=u$, the pull-back bundle $\pi_p^{\ast} (\mathcal{H},\nabla)[t^{-1}]$ has a formal decomposition into a direct sum of regular singular connections on meromorphic bundles multiplied by exponents of Laurent polynomials. Note that the bundle $\mathcal{F}^{\alpha}$ has non-vanishing horizontal section, if $\alpha =f\otimes dt$, given analytically by $e^f$.</p>
+<p>As ncHodge structures only have singularities at $0$ of order at most $2$, it's possible that we don't need a quadratic ramification to get the decomposition. For instance, let $g_i (u)=c_i/u$, $c_i\in\mathbb{C}$, be distinct eigenvalues of the matrix $A_{-2}$, we define</p>
+<div class="env">
+    <strong>Definition.</strong> An nc-Hodge structure $(H,\mathcal{E}_B,\mathbf{iso})$ is of <em>exponential type</em> if there exists a formal isomorphism $$\Psi\colon (\mathcal{H}\otimes_{\mathbb{C}\{u\}}\mathbb{C}[[u]],\nabla)\xrightarrow{\simeq}\bigoplus_{i=1}^m\left(\mathcal{E}^{c_i/u}\otimes (\mathcal{R}_i,\nabla_i)\right)\otimes_{\mathbb{C}\{u\}}\mathbb{C}[[u]],$$where $(\mathcal{R}_i,\nabla_i)$ are meromorphic bundles with connections with regular singularities and $c_1,\dotsb, c_m\in\mathbb{C}$ denote the distinct eigenvalues of $A_{-2}$.
+</div>
+<div class="env">
+    <strong>Remark.</strong><ul>
+        <li>There are various sufficient conditions guaranteeing a given nc-Hodge structure is decomposable without base change. For example, it's true if $A_{-2}$ has distinct eigenvalues or $A_{-1}=0$. More generally, it suffices to require that we can find holomorphic functions $\ell_i (u)\in\mathbb{C}\{u\}$ so that $\ell_i (0)=c_i$ for $i=1,\dotsb, m$ and the characteristic polynomial of $u^2A(u)$ is $\det (c\cdot\mathrm{id} -u^2 A(u))=\prod_{i=1}^m (c-\ell_i)^{\nu_i}$.</li>
+        <li>Not every irregular connection with a pole of order two is of exponential type. Indeed, the rank two connection $$\nabla=d-\begin{pmatrix}
+            0&u^{-2}\\
+            u^{-1}&\frac{u^{-1}}{2} 
+            \end{pmatrix}$$has a holomorphic section $$\begin{pmatrix}e^{-2u^{-1/2}}\\u^{1/2}e^{-2u^{-1/2}}\end{pmatrix}$$and so we need a quadratic base change for the formal decomposition to work for this connection.
+        </li>
+        <li>If an nc-Hodge structure $(H,\mathcal{E}_B,\mathbf{iso})$ is of exponential type, then one can check that for each $i=1,2,\dotsb, m$ we can find a unique holomorphic extension $\mathcal{H}_{c_i}\subseteq\mathcal{R}_i$ in which the connection has a second order pole and so that $\Psi$ induces a formal isomorphism of holomorphic bundles with meromorphic connections $$\Psi\colon (\mathcal{H},\nabla)\otimes\mathbb{C}[[u]]\xrightarrow{\simeq}\left(\bigoplus_{i=1}^m\mathcal{E}^{c_i/u}\bigotimes_{\mathbb{C}\{u\}} (\mathcal{H}_{c_i},\nabla_i)\right)\otimes\mathbb{C}[[u]]$$over $\mathbb{C}[[u]]$.</li>
+    </ul>
+</div>
+<p>We expect that for nc-Hodge structures arising in mirror symmetry, they should always be of exponential type. We will go back to this point later. Let's end this section with the following Lemma.</p>
+<div class="env">
+    <strong>Lemma.</strong> The categories $(\mathbb{Q}\text{-ncHS})^{\mathrm{reg}}\subseteq (\mathbb{Q}\text{-ncHS})^{\mathrm{exp}}\subseteq (\mathbb{Q}\text{-ncHS})$ are $\mathbb{Q}$-linear abelian categories. The respective categories of polarizable nc-Hodge structures are semi-simple.
+</div>
+<div class="references" id="References"></div>
+    <div style="font-size: 14pt;text-align: center;font-weight: bolder;">References</div>
+    <ul style="list-style-type: none; padding-left: 0px; font-size: 12pt; text-indent: 2ex;">
+        <li id="KKP08">
+            [KKP08] Katzarkov, L., Kontsevich, M., &amp; Pantev, T. (2008). Hodge theoretic aspects of mirror symmetry. In <em>From Hodge theory to integrability and TQFT tt*-geometry</em> (Proc. Sympos. Pure Math., Vol. 78, pp. 87–174). Amer. Math. Soc., Providence, RI. <a href="https://doi.org/10.1090/pspum/078/2483750" target="_blank">doi:10.1090/pspum/078/2483750</a>
+        </li>
+        <li id="Simpson91">
+            [Simpson91] Simpson, C. T. (1991). Nonabelian Hodge theory. In <em>Proceedings of the International Congress of Mathematicians, Vol. I, II (Kyoto, 1990)</em> (pp. 747–756). Math. Soc. Japan, Tokyo.
+        </li>
+        <li id="PS08">
+            [PS08] Peters, C. A. M., &amp; Steenbrink, J. H. M. (2008). <em>Mixed Hodge structures</em>. Ergebnisse der Mathematik und ihrer Grenzgebiete. 3. Folge. A Series of Modern Surveys in Mathematics, Vol. 52. Springer-Verlag, Berlin.
+        </li>
+        <li id="Malgrange83">
+            [Malgrange83] Malgrange, B. (1983). La classification des connexions irrégulières à une variable. In <em>Mathematics and physics (Paris, 1979/1982)</em> (Progr. Math., Vol. 37, pp. 381–399). Birkhäuser Boston, Boston, MA.
+        </li>
+    </ul>
+</div>
+<div class="sidenav">
+            <a class="side" href="index.html">Home</a>
+            <a class="section" href="#ncHodge">ncHodge Structures</a>
+            <a class="side" href="#References">References</a>
+        </div>
+    </article>
+    </body>

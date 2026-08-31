@@ -57,6 +57,7 @@
         counter-reset: sec;
         font-size: 12pt;
         padding: 0px 10px;
+        max-width: fit-content;
     }
 
     .sidenav {
@@ -152,7 +153,17 @@
     <article>
         <div class="topright"><a href="index.html">back to home</a></div>
         <h1>Research</h1>
-        <p>My research interest is symplectic geometry, in particular computations of symplectic invariants, e.g. symplectic cohomology, (partially) wrapped Fukaya category, in good cases, with the hope of getting some new symplectic topological results. Here're descriptions of my research projects.</p>
+        <p>For a given smooth manifold $M$, geometers are interested in understanding all possible geometric structures on $M$. The space of certain geometric structures on a given manifold is called the <strong>moduli space</strong> of this geometric structure. The geometry of moduli spaces help us understand relations between different geometric structures on $M$, and one interesting question is to understand geometrically meaningful compactification of moduli spaces.</p>
+        <p>For the moduli space of complex structures $\mathcal{M}_{cpx} (M)$ on a complex manifold $M$, one source of geometric compactification comes from <strong>degeneration</strong>, where deforming complex structures in the limit results in changing the topology of the manifold $M$, and we obtain a singular variety $M_0$. For moduli space of <strong>symplectic structures</strong> $\mathcal{M}_{symp} (M)$ on a symplectic manifold $(M,\omega)$, where $\omega\in\Omega^2 (M)$ is a smooth non-degenerate differential $2$-form, compactifications come from degenerating or partially blowing-up the symplectic structure $\omega$, the latter resulting in removing closed submanifolds of $M$.</p>
+        <p>These two moduli spaces describe different geometric structures, and behave completely differently, but they are related to each other via the <strong>Mirror Symmetry</strong> phenomena, originally discovered by physicists [<a href="#GP90">GP90</a>]. Roughly speaking, for given Kähler manifold $(M,\omega, J)$, i.e. complex manifold $(M,J)$ with a symplectic structure $\omega$ on $M$ compatible with $J$, Mirror Symmetry predicts a mirror Kähler manifold $(\check{M},\check{\omega},\check{J})$ where symplectic invariants of $M$ coincide with complex invariants of $\check{M}$, and complex invariants of $M$ coincide with symplectic invariants of $\check{M}$, and there are identifications between corresponding moduli spaces $\mathcal{M}_{cpx} (M)\cong\mathcal{M}_{symp} (\check{M})$, $\mathcal{M}_{symp} (M)\cong\mathcal{M}_{cpx} (\check{M})$, as well as their geometric compactifications.</p>
+        <p>The invariants that coincide under mirror symmetry finally fitted into the framework of <strong>Homological Mirror Symmetry</strong>, originally proposed by Kontsevich [<a href="#Kontsevich95">Kontsevich95</a>]. The invariant associated to a complex manifold $(M,J)$ is the differential graded category of complexes of coherent sheaves $\operatorname{Coh} (M,J)$, and the invariant associated to a symplectic manifold $(\check{M},\check{\omega})$ is the so-called <strong>Fukaya category</strong> $\operatorname{Fuk} (\check{M},\check{\omega})$. Kontsevich proposed that whenever the mirror pairs $(M,\check{M})$ are constructed, we should expect an equivalence between the corresponding derived categories $$
+    D^b\operatorname{Coh} (M,J)\simeq D^{\pi}\operatorname{Fuk} (\check{M},\check{\omega}),
+$$
+which are also expected to intertwine Hodge structures, leading to more classical "Mirror Symmetry" that relates Dolbeault cohomologies to symplectic cohomologies, periods to Gromov-Witten invariants and Hodge numbers $\dim h^{p,q}$ to $\dim h^{n-p,n-q}$ [<a href="#KKP08">KKP08</a>, <a href="#GPS15">GPS15</a>, <a href="#Tu24">Tu24</a>, <a href="#Ganatra13">Ganatra13</a>].</p>
+        <p>
+Symplectic geometers worked for dozens of years trying to make sense of the Homological Mirror Symmetry proposal, and in the case when $M$ is projective or quasi-projective, the Fukaya category of the expected mirror $(\check{M},\check{\omega})$ has been addressed to be the <strong>Fukaya-Seidel category</strong>, or in the current language <strong>partially wrapped Fukaya category</strong> [<a href="#Seidel01">Seidel01</a>, <a href="#AS10">AS10</a>, <a href="#GPS20">GPS20</a>, <a href="#GPS24">GPS24</a>], and the Homological Mirror Symmetry proposal has been verified for $M$ a toric variety [<a href="#FLTZ11">FLTZ11</a>, <a href="#Kuwagaki20">Kuwagaki20</a>], toric boundary divisor [<a href="#GS22">GS22</a>] and smoothings of toric boundary divisors [<a href="#GHHPS24">GHHPS24</a>].</p>
+<p>On the other hand, studying degenerations of varieties has been proven effective for studying the geometry of singular varieties, the geometry of their smoothing, and the geometry of the whole degeneration family. The idea of studying singular varieties from its smoothing have been used by Brieskorn [<a href="#Brieskorn66">Brieskorn66</a>] and Milnor [<a href="#Milnor68">Milnor68</a>] to define invariants associated to singularities, leading to Arnold's classification of simple hypersurface singularities [<a href="#Arnold72">Arnold72</a>]. Existence of certain degenerations provides strong restrictions on smooth varieties [<a href="#Kawamoto24">Kawamoto24</a>, <a href="#Kulikov80">Kulikov80</a>], and the existence of Lefschetz pencils on any projective varieties provide strong restrictions on cohomologies of algebraic varieties [<a href="#Lefschetz50">Lefschetz50</a>].</p>
+<p>My research continues the line of studying symplectic and algebraic phenomena on degenerations of varieties from several different perspectives. With my collaborators, we study symplectic behavior of atypical degenerations of affine varieties which lead to formulae on Fukaya categories that allow us to compute a large class of new examples, which are also potentially connected to geometric representation theory. Starting from simple normal crossings varieties of toric varieties, we study their smoothings and proceed to prove Homological Mirror Symmetry and Gamma conjecture for these spaces. With the help of new constructions in Hodge theory, we study isotopy problems of Lagrangian spheres in algebraic surfaces and aim at enlarging our understandings of such problems from Fano surfaces to Calabi-Yau and even general type surfaces.</p>
         <table>
             <!-- <thead> -->
             <th>No.</th><th>Title</th>
@@ -161,40 +172,72 @@
         <!-- </thead> -->
         <!-- <tbody> -->
             <tr></tr>
-            <td><auto-number></td><td>(with Sukjoo Lee, Yin Li and Cheuk Yu Mak) Fukaya categories of hyperplane arrangements. <a href="https://arxiv.org/abs/2405.05856">arXiv: 2405.05856</a>. Accepted for publication in <i>Geometry & Topology</i>.</td>
+            <td><auto-number></td><td>(with <a href="https://sites.google.com/view/sukjoolee/home?authuser=0">Sukjoo Lee</a>, <a href="https://sites.google.com/view/yin-li/home">Yin Li</a> and <a href="https://sites.google.com/view/cheuk-yu-mak/home">Cheuk Yu Mak</a>) Fukaya categories of hyperplane arrangements. <a href="https://arxiv.org/abs/2405.05856">arXiv: 2405.05856</a>. Accepted for publication in <i>Geometry & Topology</i>.</td>
             <tr></tr>
-            <td></td><td>To a simple polarized hyperplane arrangement (not necessarily cyclic) $\mathbb{V}$, one can associate a stopped Liouville manifold (or equivalently, a Liouville sector) $M(\mathbb{V})$, whose underlying manifold is the complement of the union of the complexified hyperplanes in the arrangement, endowed with a Liouville structure induced by a very affine embedding, and the stop is determined by the polarization. In this article, we study the symplectic topology of these stopped Liouville manifolds. In particular, we prove that their partially wrapped Fukaya categories are generated by Lagrangian submanifolds associated to the bounded and feasible chambers in the hyperplane arrangement. A computation of the Fukaya $A_\infty$-algebra of the generating objects then enables us to identity these wrapped Fukaya categories with $\mathbb{G}_m^d$-equivariant convolution algebras $\widetilde{B}(\mathbb{V})$ associated to $\mathbb{V}$. This confirms a conjecture of Lauda-Licata-Manion [LLM] and Lekili-Segal [LS].</td>
+            <td></td><td>To a simple polarized hyperplane arrangement (not necessarily cyclic) $\mathbb{V}$, one can associate a stopped Liouville manifold (or equivalently, a Liouville sector) $M(\mathbb{V})$, whose underlying manifold is the complement of the union of the complexified hyperplanes in the arrangement, endowed with a Liouville structure induced by a very affine embedding, and the stop is determined by the polarization. In this article, we study the symplectic topology of these stopped Liouville manifolds. In particular, we prove that their partially wrapped Fukaya categories are generated by Lagrangian submanifolds associated to the bounded and feasible chambers in the hyperplane arrangement. A computation of the Fukaya $A_\infty$-algebra of the generating objects then enables us to identity these wrapped Fukaya categories with $\mathbb{G}_m^d$-equivariant convolution algebras $\widetilde{B}(\mathbb{V})$ associated to $\mathbb{V}$. This confirms a conjecture of Lauda-Licata-Manion [<a id="LLM">LLM</a>] and Lekili-Segal [<a id="LS">LS</a>].</td>
             <tr></tr>
-            <td><auto-number></auto-number></td><td>(with Sheel Ganatra, Wenyuan Li and Peng Zhou) Degeneration as Localization for Wrapped Fukaya Categories. In Preparation.</td>
+            <td><auto-number></auto-number></td><td>(with <a href="https://sheelganatra.com/">Sheel Ganatra</a>, <a href="https://wenyuanli1995-math.github.io/">Wenyuan Li</a> and <a href="https://sites.google.com/view/pzhou/">Peng Zhou</a>) Degeneration as Localization for Wrapped Fukaya Categories. In Preparation.</td>
             <tr></tr>
             <td></td><td>When a variety is obtained from a family of "smoother" varieties, we can subtract out information of this variety from its nearby "general fibers", together with the action of the topology of the underlying parameter spaces. In this paper, we explore this philosophy in the symplectic category. More precisely, we showed that when a Weinstein sector is a degeneration of better Weinstein sectors, then its (wrapped) Fukaya category is obtained from the Fukaya category of the nearby sector localizing the  induced monodromy action.</td>
             <tr></tr>
-            <td><auto-number></auto-number></td><td>(with Junxiao Wang) Gamma Conjecture II for Smoothings of Toric Degenerations. In Progress.</td>
+            <!-- <td><auto-number></auto-number></td><td>(with <a href="https://sites.google.com/view/junxiaowang/home">Junxiao Wang</a>) Mirror Symmetric Gamma Conjecture for Nearby Fibers of Toric Degenerations. In Progress.</td>
             <tr></tr>
             <td></td><td></td>
             <tr></tr>
-            <td><auto-number></auto-number></td><td>(with Yilong Zhang) Isotopy Problems for Vanishing Spheres in Hypersurfaces of $\mathbb{P}^3$. In preparation.</td>
+            <td><auto-number></auto-number></td><td>(with <a href="https://www.math.purdue.edu/~zhan4740/">Yilong Zhang</a>) Isotopy Problems for Vanishing Spheres in Hypersurfaces of $\mathbb{P}^3$. In preparation.</td>
             <tr></tr>
             <td></td><td></td>
             <tr></tr>
             <td><auto-number></auto-number></td><td>Homological Mirror Symmetry for Smoothings of Toric Degenerations. In Progress.</td>
             <tr></tr>
             <td></td><td></td> 
+            <tr></tr> -->
+            <td><auto-number></auto-number></td><td>(with <a href="https://www.math.purdue.edu/~zhan4740/">Yilong Zhang</a>) On the discriminant locus of a generic projection. <a href="https://arxiv.org/abs/2603.21518">arXiv:2603.21518</a>.</td>
             <tr></tr>
-            <td><auto-number></auto-number></td><td>(with Yilong Zhang) Projective Duality for Sublinear Systems. In Progress.</td>
+            <td></td><td>For a smooth projective variety $X\subseteq \mathbb P^N$ over an algebraically closed field of char $0$, we show that the discriminant locus of a generic projection of $X$ is projectively dual to a general linear section of the dual variety, and deduce a purity statement for the discriminant. Over $\mathbb{C}$, we also show that the fundamental group of the complement of the branch divisor arising from generic projection of a normal hypersurface surjects onto a braid group via braid monodromy.</td>
+            <!-- <tr></tr>
+            <td><auto-number></auto-number></td><td>(with <a href="https://www.math.uni-bonn.de/~lcote/">Laurent Côté</a> and <a href="https://sites.google.com/view/jaehee-lee">Jae Hee Lee</a>) Mirror Symmetry for additive Coulomb branches. In Progress.</td>
             <tr></tr>
-            <td><td></td>
+            <td></td><td></td>
+            <tr></tr>
+            <td><auto-number></auto-number></td><td>(with <a href="https://www.math.uni-bonn.de/~lcote/">Laurent Côté</a> and <a href="https://sites.google.com/view/jaehee-lee">Jae Hee Lee</a>) Coherent Khovanov Homology via Mirror Symmetry. In Progress.</td>
+            <tr></tr>
+            <td></td><td></td>
+            <tr></tr>
+            <td><auto-number></auto-number></td><td>Local Homological Mirror Symmetry. In Progress.</td>
+            <tr></tr>
+            <td></td><td></td> -->
+            <tr></tr>
         <!-- </tbody> -->
         </table>
         <h2>References</h2>
         <ul>
-            <li>[A] Auroux, D. (2010). Fukaya categories of symmetric products and bordered Heegaard-Floer homology. arXiv preprint arXiv:1001.4323.</li>
-            <li>[BLPW] Braden, T., Licata, A., Proudfoot, N., & Webster, B. (2010). Gale duality and Koszul duality. Advances in Mathematics, 225(4), 2002-2049.</li>
-            <li>[GPS2] Ganatra, S., Pardon, J., & Shende, V. (2018). Sectorial descent for wrapped Fukaya categories. arXiv preprint arXiv:1809.03427.</li>
-            <li>[LLM] Lauda, A. D., Licata, A. M., & Manion, A. (2024). From hypertoric geometry to bordered Floer homology via the m= 1 amplituhedron. Selecta Mathematica, 30(3), 43.</li>
-            <li>[LS] Lekili, Y., & Segal, E. (2023). Equivariant Fukaya categories at singular values. arXiv preprint arXiv:2304.10969.</li>
-            <li>[McL] McLean, M. (2012). The growth rate of symplectic homology and affine varieties. Geometric And Functional Analysis, 22, 369-442.</li>
-            <li>[Sei06] Seidel, P. (2006). A biased view of symplectic cohomology. In Current developments in mathematics, 2006 (Vol. 2006, pp. 211-254). International Press of Boston.</li>
+            <li id="A">[A] Auroux, D. (2010). Fukaya categories of symmetric products and bordered Heegaard-Floer homology. arXiv preprint arXiv:1001.4323.</li>
+            <li id="Arnold72">[Arnold72] Arnol'd, V. I. (1972). Normal forms of functions near degenerate critical points, the Weyl groups A_k, D_k, E_k and Lagrangian singularities. Funktsional. Anal. i Prilozhen., 6(4), 3–25. ISSN 0374-1990.</li>
+            <li id="AS10">[AS10] Abouzaid, M., & Seidel, P. (2010). An open string analogue of Viterbo functoriality. Geom. Topol., 14(2), 627–718. doi:10.2140/gt.2010.14.627. <a href="https://doi.org/10.2140/gt.2010.14.627">https://doi.org/10.2140/gt.2010.14.627</a></li>
+            <li id="Brieskorn66">[Brieskorn66] Brieskorn, E. (1966). Beispiele zur Differentialtopologie von Singularitäten. Invent. Math., 2, 1–14. doi:10.1007/BF01403388. <a href="https://doi.org/10.1007/BF01403388">https://doi.org/10.1007/BF01403388</a></li>
+            <li id="BLPW">[BLPW] Braden, T., Licata, A., Proudfoot, N., & Webster, B. (2010). Gale duality and Koszul duality. Advances in Mathematics, 225(4), 2002-2049.</li>
+            <li id="FLTZ11">[FLTZ11] Fang, B., Liu, C.-C. M., Treumann, D., & Zaslow, E. (2011). The coherent-constructible correspondence and homological mirror symmetry for toric varieties. In Geometry and analysis. No. 2, Adv. Lect. Math. (ALM), 18, 3–37. Int. Press, Somerville, MA. ISBN 978-1-57146-225-1.</li>
+            <li id="GP90">[GP90] Greene, B. R., & Plesser, M. R. (1990). Duality in Calabi-Yau moduli space. Nuclear Phys. B, 338(1), 15–37. doi:10.1016/0550-3213(90)90622-K.</li>
+            <li id="Ganatra13">[Ganatra13] Ganatra, S. (2013). Symplectic cohomology and duality for the wrapped Fukaya category. arXiv preprint arXiv:1304.7312. <a href="https://arxiv.org/abs/1304.7312">https://arxiv.org/abs/1304.7312</a></li>
+            <li id="GHHPS24">[GHHPS24] Ganatra, S., Hanlon, A., Hicks, J., Pomerleano, D., & Sheridan, N. (2024). Homological mirror symmetry for Batyrev mirror pairs. arXiv preprint arXiv:2406.05272. <a href="https://arxiv.org/abs/2406.05272">https://arxiv.org/abs/2406.05272</a></li>
+            <li id="GPS15">[GPS15] Ganatra, S., Perutz, T., & Sheridan, N. (2015). Mirror symmetry: from categories to curve counts. arXiv preprint arXiv:1510.03839. <a href="https://arxiv.org/abs/1510.03839">https://arxiv.org/abs/1510.03839</a></li>
+            <li id="GPS20">[GPS20] Ganatra, S., Pardon, J., & Shende, V. (2020). Covariantly functorial wrapped Floer theory on Liouville sectors. Publ. Math. Inst. Hautes Études Sci., 131, 73–200. doi:10.1007/s10240-019-00112-x. <a href="https://doi.org/10.1007/s10240-019-00112-x">https://doi.org/10.1007/s10240-019-00112-x</a></li>
+            <li id="GPS24">[GPS24] Ganatra, S., Pardon, J., & Shende, V. (2024). Sectorial descent for wrapped Fukaya categories. J. Amer. Math. Soc., 37(2), 499–635. doi:10.1090/jams/1035. <a href="https://doi.org/10.1090/jams/1035">https://doi.org/10.1090/jams/1035</a></li>
+            <li id="GS22">[GS22] Gammage, B., & Shende, V. (2022). Mirror symmetry for very affine hypersurfaces. Acta Math., 229(2), 287–346.</li>
+            <li id="Kawamoto24">[Kawamoto24] Kawamoto, Y. (2024). Isolated hypersurface singularities, spectral invariants, and quantum cohomology. J. Reine Angew. Math., 811, 183–217. doi:10.1515/crelle-2024-0013. <a href="https://doi.org/10.1515/crelle-2024-0013">https://doi.org/10.1515/crelle-2024-0013</a></li>
+            <li id="Kontsevich95">[Kontsevich95] Kontsevich, M. (1995). Homological algebra of mirror symmetry. In Proceedings of the International Congress of Mathematicians, Vol. 1, 2 (Zürich, 1994), pp. 120–139. Birkhäuser, Basel. ISBN 3-7643-5153-5.</li>
+            <li id="Kulikov80">[Kulikov80] Kulikov, V. S. (1980). Surgery of degenerations of surfaces with κ = 0. Izv. Akad. Nauk SSSR Ser. Mat., 44(5), 1115–1119, 1214. ISSN 0373-2436. MR595259.</li>
+            <li id="Kuwagaki20">[Kuwagaki20] Kuwagaki, T. (2020). The nonequivariant coherent-constructible correspondence for toric stacks. Duke Math. J., 169(11), 2125–2197. doi:10.1215/00127094-2020-0011. <a href="https://doi.org/10.1215/00127094-2020-0011">https://doi.org/10.1215/00127094-2020-0011</a></li>
+            <li id="KKP08">[KKP08] Katzarkov, L., Kontsevich, M., & Pantev, T. (2008). Hodge theoretic aspects of mirror symmetry. In From Hodge theory to integrability and TQFT tt*-geometry (Proc. Sympos. Pure Math., vol. 78, pp. 87–174). Amer. Math. Soc., Providence, RI. doi:10.1090/pspum/078/2483750.</li>
+            <li id="Lefschetz50">[Lefschetz50] Lefschetz, S. (1950). L'analysis situs et la géométrie algébrique. Gauthier-Villars, Paris. vi+154. MR33557.</li>
+            <li id="LLM">[LLM] Lauda, A. D., Licata, A. M., & Manion, A. (2024). From hypertoric geometry to bordered Floer homology via the m= 1 amplituhedron. Selecta Mathematica, 30(3), 43.</li>
+            <li id="LS">[LS] Lekili, Y., & Segal, E. (2023). Equivariant Fukaya categories at singular values. arXiv preprint arXiv:2304.10969.</li>
+            <li id="McL">[McL] McLean, M. (2012). The growth rate of symplectic homology and affine varieties. Geometric And Functional Analysis, 22, 369-442.</li>
+            <li id="Milnor68">[Milnor68] Milnor, J. (1968). Singular points of complex hypersurfaces. Annals of Mathematics Studies, No. 61. Princeton University Press, Princeton, NJ; University of Tokyo Press, Tokyo. iii+122.</li>
+            <li id="Seidel01">[Seidel01] Seidel, P. (2001). More about vanishing cycles and mutation. In Symplectic geometry and mirror symmetry (Seoul, 2000), pp. 429–465. World Sci. Publ., River Edge, NJ. doi:10.1142/9789812799821_0012. <a href="https://doi.org/10.1142/9789812799821_0012">https://doi.org/10.1142/9789812799821_0012</a></li>
+            <li id="Sei06">[Sei06] Seidel, P. (2006). A biased view of symplectic cohomology. In Current developments in mathematics, 2006 (Vol. 2006, pp. 211-254). International Press of Boston.</li>
+            <li id="Tu24">[Tu24] Tu, J. (2024). A remark on the B-model Comparison of Hodge structures. arXiv preprint arXiv:2404.13805. <a href="https://arxiv.org/abs/2404.13805">https://arxiv.org/abs/2404.13805</a></li>
         </ul>
     </article>
 </body>

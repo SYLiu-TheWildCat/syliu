@@ -1,14 +1,45 @@
 <head>
     <meta charset="utf-8">
-    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-<style>
+    <script id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://tikzjax.com/v1/fonts.css">
+<script src="https://tikzjax.com/v1/tikzjax.js"></script>
+    <style>
     article{
-        color: darkcyan;
+        color: black;
+    }
+    body {
+        font-family: cursive;
+        counter-reset: chapter;
+        margin-left: 140px;
+        margin-right: 10px;
+        font-size: 12pt;
+        padding: 0px 10px;
+        max-width: 250mm;
+        counter-reset: figure;
     }
     h1 {
-        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
         text-align: center;
     }
+    h2.chapter {
+        counter-increment: chapter;
+        counter-reset: sec dfn;
+        text-align: center;
+        font-size: 16pt;
+        font-variant: small-caps;
+    }
+    h2.chapter::before {
+        content: 'Chapter ' counter(chapter) '. ';
+    }
+    h3.chapter {
+        counter-increment: sec;
+    }
+    h3.chapter::before {
+        content: counter(chapter) '.' counter(sec) '. ';
+    }
+    /* p.chapter{
+        counter-increment: sec;
+    } */
 
     h4{
         display: inline;
@@ -19,23 +50,25 @@
     }
 
     p {
-        font-family: 'Comic Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        /* font-family: 'Comic Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
         text-indent: 2em;
     }
 
-    a.chapter {
+    a.none{
         font-size: medium;
         color: yellowgreen;
     }
-
-    body {
-        counter-reset: footnotes;
-        counter-reset: statement;
-        counter-reset: sec;
-        margin-left: 140px;
-        margin-right: 10px;
-        font-size: 12pt;
-        padding: 0px 10px;
+    a.chapter {
+        font-size: medium;
+        color: yellowgreen;
+        counter-increment: sidesec;
+    }
+    a.side{
+        font-size: medium;
+        color: yellowgreen;
+    }
+    a.chapter::before {
+        content: 'Chapter ' counter(sidesec) '. ';
     }
 
     .sidenav {
@@ -82,32 +115,108 @@
             border-collapse: collapse;
             font-size: 14pt;
         }
-
     td {
             border: 1px solid;
             text-align:center;
         }
-        td:last-child {
+        /* td:last-child {
             text-align: left;
-        }
+        } */
 
         th{
             border: 1px solid;
             text-align: center;
         }
-
     .topright {
   position: absolute;
   top: 8px;
   right: 16px;
   font-size: 18px;
 }
+h3{
+    text-decoration: underline;
+    display: inline;
+    font-size: 12pt;
+}
+em{
+    font-style:normal;
+    font-weight: bold;
+    color: darkblue;
+}
+div.env{
+    counter-increment: dfn;
+    font-size: 12pt;
+}
+strong{
+    color: darkred;
+}
+strong::before{
+    content: counter(chapter) '.' counter(dfn) '. ';
+    font-weight: bold;
+    font-size: 12pt;
+}
+div.prf{
+    font-size: 12pt;
+}
+div.prf::after{
+    content: "  □";
+    text-align: right;
+    float: right;
+}
+figure{
+    float: inline-end;
+    text-align: center;
+    margin: 1em 0;
+    counter-increment: figure;
+}
+figurecaption{
+    font-size: 10pt;
+}
+figcaption::before{
+    content: "Figure" " " counter(figure) ": ";
+}
+.circled-list {
+  list-style: none; /* Remove default list numbers */
+  counter-reset: steps; /* Initialize a counter */
+}
+
+.circled-list li::before {
+  content: counter(steps); /* Display the counter value */
+  counter-increment: steps; /* Increment the counter for each item */
+  display: inline-flex; /* Use flexbox for perfect centering */
+  justify-content: center;
+  align-items: center;
+  width: 1em; /* Set a fixed size (use 'em' for scalability) */
+  height: 1em;
+  margin-right: 0.5em; /* Space between number and text */
+  border: 1px solid black; /* Circle border color */
+  background: white;  /* Circle background color */
+  color: black;  /* Number color */
+  border-radius: 50%; /* Makes the element a perfect circle */
+  font-weight: bold;
+}
+ol.bracketed-list {
+    counter-reset: list;
+}
+ol.bracketed-list > li {
+    list-style: none;
+}
+ol.bracketed-list > li:before {
+    content: counter(list) ") ";
+    counter-increment: list;
+}
 </style>
-<link rel="stylesheet" type="text/css" href="button.css">
-<script>
+    <link rel="stylesheet" type="text/css" href="button.css">
+    <script>
         MathJax = {
             tex: {
-                inlineMath: [['$', '$'], ['\(', '\)']]
+                inlineMath: [['$', '$'], ['\(', '\)']],
+                macros: {
+                    Hom:"{\\operatorname{Hom}}",
+                    espan:"{\\operatorname{span}}",
+                    ev:"{\\operatorname{ev}}",
+                    hol:"{\\operatorname{hol}}",
+                }
             },
             svg: {
                 fontCache: 'global'
@@ -118,24 +227,1170 @@
 <body>
     <article>
         <div class="sidenav">
-            <a class="chapter" href="index.html">Home</a>
+            <a class="none" href="index.html">Home</a>
+            <a class="none" href="#Overview">Overview</a>
             <a class="chapter" href="#Introduction">Introduction</a>
-            <a class="chapter" href="#References">References</a>
+            <a class="chapter" href="#Lagrangian-torus-fibrations">Lagrangian
+                Torus Fibrations</a>
+                <a class="chapter" href="#Toric-variety">SYZ Mirror Symmetry for Toric Fano Varieties</a>
+            <a class="chapter" href="#Focus-focus-Singularities-and-Almost-Toric-Fibrations">Focus-focus Singularities and Almost Toric Fibrations</a>
+            <a class="chapter" href="#SYZToric2">SYZ Mirror Symmetry for Toric Varieties, Continued</a>
+            <a class="none" href="#References">References</a>
         </div>
         <h1>Learning Seminar: SYZ Mirror Symmetry</h1>
-        <h2 id="Introduction">Introduction</h2>
-        <p>After Kontsevich's famous proposal on Homological Mirror Symmetry [<a href="#Kontsevich94">Kon94</a>], the question of geometric construction of mirrors to a given variety has been an important question for mathematicians. One important proposal was made by Strominger-Yau-Zaslow [<a href="#SYZ96">SYZ96</a>], which stated that mirrors to a given Kähler manifold $X$ equipped with a Lagrangian torus fibration $X\to B$ should be a Kähler manifold $\check{X}\to B$ with a Lagrangian torus fibration over the same base $B$, and with "dual torus fiber".</p>
-        <p>This proposal has been successful firstly for elliptic curves whose corresponding Homological Mirror Symmetry was (partly) verified by Polishchuk-Zaslow [<a href="#PZ98">PZ98</a>]. People quickly found finding a smooth Lagrangian torus fibration for any Kähler manifold $X$ is almost impossible: there can be <b>toric singularities</b> where the fibration has lower dimensional toric fibers, and there can be singular fibers. Cho and Oh [<a href="#CO06">CO06</a>] studied the effects of toric singularities for toric Fano varieties and showed that existence of toric singularities gives Landau-Ginzburg superpotentials $W$ of the mirror, via counting intersection numbers of holomorphic disks with the toric singularities. For toric varieties which admits canonical Lagrangian torus fibrations with only toric singularities, the corresponding Homological Mirror Symmetry statement was then proved by Fang-Liu-Treumann-Zaslow [<a href="#FLTZ11">FLTZ11</a>] for smooth projective toric varieties and further generalized by Kuwagaki [<a href="#Kuw20">Kuw20</a>] to all toric stacks.</p>
-        <p>The simplest and the most generic case of singular fibers are non-degenerate singularities, similar to singular fibers of Lefschetz fibration, obtained by contracting a codimension $1$ subtorus to a point. This situation was studied by Auroux [<a href="#Aur07">Aur07</a>] in the case when $X=\mathbb{C}^2\setminus\{xy=1\}$ and the Lagrangian torus fibration was constructed out of the Lefschetz fibration $\pi (x,y)=xy$.</p>
-        <p>In this case one can clearly see a <b>wall-crossing phenomenon</b>, where there's a single singular value for the torus fibration $X\to\mathbb{R}^2$ coming from singularities of the Lefschetz fibration, $\{xy=0\}\subseteq\mathbb{C}^2$, which corresponds to the wall $\{x=0\}\times\mathbb{R}\subseteq\mathbb{R}^2$. Auroux showed that for any $b=(b_1,b_2)$ with $b_1>1$ or $b_1<1$, disk countings computing mirror superpotential to $X\subseteq\mathbb{P}^2$ are different, so that the two moduli spaces of Lagrangian tori are glued together with non-trivial transition functions.</p>
-        <h2 id="References">References</h2>
-        <p id="Aur07">[Aur07] Auroux, D. (2007). Mirror symmetry and T-duality in the complement of an anticanonical divisor. Journal of Gökova Geometry Topology. GGT, 1, 51–91. Retrieved from <a href="http://www.ams.org/mathscinet-getitem?mr=2386535">http://www.ams.org/mathscinet-getitem?mr=2386535</a></p>
-        <p id="CO06">[CO06] Cho, C.-H., & Oh, Y.-G. (2006). Floer cohomology and disc instantons of Lagrangian torus fibers in Fano toric manifolds. Asian J. Math., 10(4), 773–814. doi: 10.4310/AJM.2006.v10.n4.a10</p>
-        <p id="FLTZ11">[FLTZ11] Fang, B., Liu, C.-C. M., Treumann, D., & Zaslow, E. (2011). A categorification of Morelli’s theorem. Invent. Math., 186(1), 79–114. doi: 10.1007/s00222-011-0315-x</p>
-        <p id="Kontsevich94">[Kon94] Kontsevich, M. (1994). Homological Algebra of Mirror Symmetry. arXiv, alg-geom/9411018. Retrieved from <a href="https://arxiv.org/abs/alg-geom/9411018v1">https://arxiv.org/abs/alg-geom/9411018v1</a>.</p>
-        <p id="Kuw20">[Kuw20] Kuwagaki, T. (2020). The nonequivariant coherent-constructible correspondence for toric stacks. Duke Math. J., 169(11), 2125–2197. doi: 10.1215/00127094-2020-0011</p>
-        <p id="PZ98">[PZ98] Polishchuk, A., & Zaslow, E. (1998). Categorical mirror symmetry: The elliptic curve. Adv. Theor. Math. Phys., 2(2), 443–470. doi: 10.4310/ATMP.1998.v2.n2.a9</p>
-        <p id="SYZ96">[SYZ96] Strominger, A., Yau, S. T., & Zaslow, E. (1996). Mirror symmetry is T-duality. Nuclear Physics B, 479(1-2), 243-259.</p>
-
-    </article>
-</body>
+        <h2 id="Overview">Overview</h2>
+        <p>After Kontsevich's famous proposal on Homological Mirror Symmetry [<a
+                href="#Kontsevich94">Kon94</a>], the question of geometric
+            construction of mirrors to a given variety has been an important
+            question for mathematicians. One important proposal was made by
+            Strominger-Yau-Zaslow [<a href="#SYZ96">SYZ96</a>], which stated
+            that mirrors to a given Kähler manifold $X$ equipped with a
+            Lagrangian torus fibration $X\to B$ should be a Kähler manifold
+            $\check{X}\to B$ with a Lagrangian torus fibration over the same
+            base $B$, and with "dual torus fiber".</p>
+        <p>This proposal has been successful firstly for elliptic curves whose
+            corresponding Homological Mirror Symmetry was (partly) verified by
+            Polishchuk-Zaslow [<a href="#PZ98">PZ98</a>]. People quickly found
+            finding a smooth Lagrangian torus fibration for any Kähler manifold
+            $X$ is almost impossible: there can be <b>toric singularities</b>
+            where the fibration has lower dimensional toric fibers, and there
+            can be singular fibers. Cho and Oh [<a href="#CO06">CO06</a>]
+            studied the effects of toric singularities for toric Fano varieties
+            and showed that existence of toric singularities gives
+            Landau-Ginzburg superpotentials $W$ of the mirror, via counting
+            intersection numbers of holomorphic disks with the toric
+            singularities. For toric varieties which admits canonical Lagrangian
+            torus fibrations with only toric singularities, the corresponding
+            Homological Mirror Symmetry statement was then proved by
+            Fang-Liu-Treumann-Zaslow [<a href="#FLTZ11">FLTZ11</a>] for smooth
+            projective toric varieties and further generalized by Kuwagaki [<a
+                href="#Kuw20">Kuw20</a>] to all toric stacks.</p>
+        <p>The simplest and the most generic case of singular fibers are
+            non-degenerate singularities, similar to singular fibers of
+            Lefschetz fibration, obtained by contracting a codimension $1$
+            subtorus to a point. This situation was studied by Auroux [<a
+                href="#Aur07">Aur07</a>] in the case when
+            $X=\mathbb{C}^2\setminus\{xy=1\}$ and the Lagrangian torus fibration
+            was constructed out of the Lefschetz fibration $\pi (x,y)=xy$.</p>
+        <p>In this case one can clearly see a <b>wall-crossing phenomenon</b>,
+            where there's a single singular value for the torus fibration
+            $X\to\mathbb{R}^2$ coming from singularities of the Lefschetz
+            fibration, $\{xy=0\}\subseteq\mathbb{C}^2$, which corresponds to the
+            wall $\{x=0\}\times\mathbb{R}\subseteq\mathbb{R}^2$. Auroux [<a
+                href="#Aur07">Aur07</a>] showed that for any $b=(b_1,b_2)$ with
+            $b_1>1$ or $b_1 < 1$, disk countings computing mirror superpotential
+            to $X\subseteq\mathbb{P}^2$ are different, so that the two moduli
+            spaces of Lagrangian tori are glued together with non-trivial
+            transition functions. </p>
+        <p>Although the phenomena seems mysterious, Fukaya proposed a possible
+            explanation in [<a href="#Fuk09">Fuk09</a>] where we refine the
+            previous picture by considering the Floer-theoretic deformation
+            space of singular Lagrangian tori $L$ where the local systems play
+            the role of deforming the Floer $A_{\infty}$-structure on $CF^{\ast}
+            (L,L)$. For singular Lagrangian submanifolds $L\subseteq X$ the
+            $A_{\infty}$-structure on $CF^{\ast} (L,L)$ is usually
+            <b>curved</b>, meaning there exists a curvature term $\mu^0$ that
+            prevents the identity $(\mu^1)^2=0$. However, there might exist an
+            element $b\in H^1 (L,\lambda_0)$ where $\Lambda_0$ is the <b>Novikov
+                ring</b>, such that the deformation $\mu_b$ satisfies
+            $(\mu_b^1)^2=0$. The element $b$ must satisfy the <b>Maurer-Cartan
+                equation</b>$$\sum_k\mathfrak{m}^k (b,b,\dotsb, b)=0,$$so we
+            call elements satisfying this equation a <b>Maurer-Cartan
+                element</b>, and use $\mathcal{MC} (L)$ for the space of all
+            Maurer-Cartan elements <span>&#40;</span>equivalently, the
+            infinitesimal deformation space of $L$<span>&#41;</span>.</p>
+        <p>As for any choice of Maurer-Cartan element $b\in\mathcal{MC} (L)$,
+            the pair $(L,b)$ defines an object in the Fukaya category of $X$,
+            Fukaya proposed that the mirror to $X$ should be the quotient of a
+            union $$\mathcal{MC} (\mathfrak{L}):=\bigcup_{u\in B}\mathcal{MC}
+            (L_u)\big/H^1 (L_u;2\pi\sqrt{-1}\mathbb{Z})$$for a given family of
+            Lagrangian submanifolds $\mathfrak{L}:=\{L_u\}_{u\in B}$ where $B$
+            is some smooth manifold with the same dimension as $H^1
+            (L;\mathbb{R})$. Moreover, for any given object
+            $(L',b')\in\mathcal{F} (X)$, the Yoneda functor $$(u,b)\mapsto
+            CF^{\ast}((L',b'),(L_u,b);\Lambda)$$should define a complex of
+            coherent sheaves over $\mathcal{MC} (\mathfrak{L})$.</p>
+        <p>The main goal of this learning seminar is to understand the current
+            state of research concerning SYZ mirror constructions, in particular
+            the work of Abouzaid [<a href="#Abo21">Abo21</a>] on SYZ and
+            Homological Mirror Symmetry for smooth Lagrangian torus fibrations
+            <span>&#40;</span>and hence for all abelian
+            varieties<span>&#41;</span> and Abouzaid-Auroux-Katzarkov [<a
+                href="#AEK16">AEK16</a>] on blow-ups of toric varieties along
+            hypersurfaces near tropical limits.</p>
+        <p><h3>Plan of the Seminar.</h3> The seminar will be held on Mondays
+            16-17:30 at <b>N0.008</b>, with possible arrangements with the
+            Symplectic Geometry Research Seminar on Tuesdays 13-14. Here's the
+            table of plans:</p>
+        <table>
+            <tr><th>Date</th><th>Contents</th><th>Speaker</th><th>References</th><th>Note</th></tr>
+            <tr><td>20.10.25</td><td>Introduction.</td><td>Si-Yang
+                    Liu</td><td></td><td></td></tr>
+            <tr><td>27.10.25</td><td>Lagrangian torus
+                    fibrations.</td><td>Yunpeng Niu</td><td>[<a
+                        href="#Eva23">Eva23</a>, Chapters 1 and
+                    2]</td><td></td></tr>
+            <tr><td>03.11.25</td><td>Landau-Ginzburg superpotential from toric
+                    boundaries.</td><td>Si-Yang Liu</td><td>[<a
+                        href="#CO06">CO06</a>]</td><td></td></tr>
+            <tr><td>17.11.25</td><td>Focus-focus
+                    Singularities.</td><td>Yunpeng Niu</td><td>[<a href="#Eva23">Eva23</a>,
+                    Chapter 6], [<a href="#Sym03">Sym03</a>]</td><td></td></tr>
+            <tr><td>24.11.25</td><td>Landau-Ginburg superpotential from toric boundaries, continued.</td><td>Kyoungmo Kim</td><td>[<a href="#CO06">CO06</a>]</td><td></td></tr>
+            <tr><td>01.12.25</td><td>SYZ mirror symmetry for almost toric fibrations and Auroux system.</td><td>Si-Yang Liu</td><td>[<a
+                        href="#Aur07">Aur07</a>]</td><td></td></tr>
+            <tr><td>26.01.26</td><td>Family Floer cohomology.</td><td>Maximilian
+                    Schimpf</td><td>[<a
+                        href="#Abo14">Abo14</a>]</td><td></td></tr>
+            <tr><td>02.02.26</td><td>Mirror Symmetry for smooth Lagrangian torus
+                    fibrations.</td><td>Maximilian Schimpf</td><td>[<a
+                        href="#Abo21">Abo21</a>]</td><td></td></tr>
+            <!-- <tr><td>26.01.26</td><td>Mirror Symmetry for local SYZ
+                    singularities.</td><td></td><td>[<a
+                        href="#AS21">AS21</a>]</td><td></td></tr>
+            <tr><td>02.02.26</td><td>Extended deformation and negative Maslov
+                    index discs.</td><td></td><td>[<a
+                        href="#Aur25">Aur25</a>],[<a
+                        href="#Jin25">Jin25</a>]</td><td></td></tr> -->
+        </table>
+        <h2 class="chapter" id="Introduction">Introduction</h2>
+        <p>In this talk I aim to provide a brief overview of SYZ mirror symmetry
+            proposal from a more mathematical point of view. Recall that the
+            <em>Homological Mirror Symmetry</em> proposal of Kontsevich [<a
+                href="#Kon94">Kon94</a>] states that there are pairs of
+            <span>&#40;</span>not necessarily smooth<span>&#41;</span> varieties
+            $(X,\omega ,J)$ and $(\check{X},\check{\omega},\check{J})$ such that
+            $$
+            D^{\pi}\mathcal{Fuk} (X,\omega)\simeq D^b\operatorname{Coh}
+            (\check{X},\check{J})\quad\text{and}\quad D^b\operatorname{Coh}
+            (X,J)\simeq D^{\pi}\mathcal{Fuk} (\check{X},\check{\omega}),
+            $$where $\mathcal{Fuk} (X,\omega)$ is a version of the
+            "Fukaya category" for the symplectic variety $(X,\omega)$ and
+            $D^b\operatorname{Coh} (X,J)$ is the bounded derived category of
+            coherent sheaves on the complex variety $(X,J)$, whenever they're
+            well-defined. On the algebraic <span>&#40;</span>which we call
+            <em>B-model</em><span>&#41;</span> side, there's a famous theorem of
+            Bondal and Orlov [<a href="#BO01">BO01</a>] stating that we can
+            re-construct a smooth projective variety $X$ from its derived
+            category of coherent sheaves $D^b\operatorname{Coh} (X)$.</p>
+        <div
+            class="env"
+            id="Bondal-Orlov"><strong>Theorem<span>&#40;</span>Bondal-Orlov<span>&#41;</span>.</strong>
+            Let $X$ be a smooth projective variety and $Y$ an algebraic variety
+            such that either the canonical sheaf $K_X$ or the anti-canonical
+            sheaf $-K_X$ is ample, then for any equivalence of derived
+            categories$$D^b\operatorname{Coh} (X)\xrightarrow[\cong]{f}
+            D^b\operatorname{Coh} (Y),$$there exists an isomorphism of schemes
+            $\varphi\colon X\xrightarrow{\cong} Y$ such that
+            $D^b(\varphi_{\ast})=f$.</div>
+        <div class="prf"><b>Sketch of Proof.</b> As will be important for the
+            SYZ picture, let's briefly explain the idea of proof of this
+            theorem. Firstly, assume that $X$ and $Y$ are both projective with
+            coordinate algebras $B_X=\bigoplus_{i=0}^{\infty} H^i
+            (X,\mathcal{O}_X(i))$ and $B_Y=\bigoplus_{i=0}^{\infty} H^i
+            (Y,\mathcal{O}_Y (i))$, then any graded isomorphism $B_X\cong B_Y$
+            will induce an isomorphism of the corresponding varieties $X\cong
+            Y$.<br />
+            As we have known that $X$ is projective with ample canonical or
+            anti-canonical divisor $\pm K_X$, it suffices to find from the
+            isomorphism of derived categories $D^b\operatorname{Coh}
+            (X)\xrightarrow{f}\mathcal{D}$ the image of $\mathcal{O}_X(1)$, or
+            equivalently $\pm K_X$, and show that it's represented by an ample
+            divisor in $Y$. To achieve this, we need a non-commutative notion of
+            "ample divisor" in order to sort out the corresponding object in the
+            abstract derived category $\mathcal{D}$. <br />
+            In an abstract triangulated category $\mathcal{D}$ together with a
+            <em>Serre functor</em>, i.e. an automorphism
+            $S_{\mathcal{D}}\colon\mathcal{D}\to\mathcal{D}$ such that
+            $\operatorname{Hom}_{\mathcal{D}}
+            (A,B)\cong\operatorname{Hom}_{\mathcal{D}} (B,SA)^{\ast}$ for any
+            $A,B\in\mathcal{D}$, we can define <em>point objects</em> as
+            follows: an object $P$ is a point object of codimension $s$, if <ol
+                type="i">
+                <li>$S_{\mathcal{D}} (P)\simeq P[s]$,</li>
+                <li>$\operatorname{Hom}^{\leq 0} (P,P)=0$,</li>
+                <li>$\operatorname{Hom}^0 (P,P)=k(P)$,</li>
+            </ol>where $k(P)$ is an extension field of $k$. It's clear that
+            skyscraper sheaves in $X$ are naturally point objects in
+            $D^b\operatorname{Coh} (X)\simeq\mathcal{D}$, and vice versa any
+            point objects in $D^b\operatorname{Coh} (X)$ are shifts of
+            skyscraper sheaves on $X$. As this is a purely categorical notion,
+            isomorphism classes of point objects in $\mathcal{D}$ are in
+            one-to-one correspondence with isomorphism classes of point objects
+            in $D^b\operatorname{Coh} (X)$.<br />
+            The above argument only provides identifications between the set of
+            closed points of varieties $X$ and $Y$, and we need to identify the
+            corresponding topologies as well as the scheme structure. The
+            essential ingredient for the topology <span>&#40;</span>and for the
+            ultimate isomorphism<span>&#41;</span> is a categorical notion of
+            <em>line bundles</em>, or in algebro-geometric language
+            <em>invertible sheaves</em>. An object of $\mathcal{D}$ is called
+            <em>invertible</em> if for any point object $P\in\mathcal{D}$, we
+            can find $s\in\mathbb{Z}$ such that <ol type="i">
+                <li>$\operatorname{Hom}^s (L,P)=k(P)$,</li>
+                <li>$\operatorname{Hom}^i (L,P)=0$, for $i\neq s$.</li>
+            </ol>
+            Such objects can also be shown to be isomorphic to a line bundle up
+            to shift, if $\mathcal{D}$ comes from the derived category of a
+            variety. Now fix a line bundle $L_0$ of $X$, and consider point
+            objects $P$ such that $\operatorname{Hom} (L_0, P)=k(P)$. These
+            would be the unshifted skyscraper sheaves of $Y$, and for any pairs
+            of invertible sheaves $L_1, L_2$ with a morphism $\alpha\colon
+            L_1\to L_2$, the induced morphism $$\Hom
+            (L_2,P)\xrightarrow{\alpha_P^{\ast}}\Hom (L_1, P)$$defines a set of
+            point objects $U_{\alpha} =\{P\vert\alpha_P^{\ast}\neq 0\}$. As $X$
+            is projective, such $U_{\alpha}$ forms a basis of the Zariski
+            topology of $X$ as $\alpha$ runs over all invertible objects $L_1,
+            L_2$ such that $\Hom^0 (L_i, P)=k(P)$. As for any algebraic variety,
+            such open sets always form a basis of the corresponding Zariski
+            topology [<a href="#ND20">ND20</a>], this actually shows that $X$
+            and $Y$ are homeomorphic as topological spaces.<br />
+            The remaining task is to determine the canonical/anticanonical sheaf
+            and show that the variety $Y$ is also Fano/general type. For the
+            fixed invertible sheaf $L_0$, we can consider the line bundle
+            $L_i=S^i L_0 [-ni]$, then $L_i$s are also line bundles in $X$
+            <span>&#40;</span>and also in $Y$<span>&#41;</span>, the algebra
+            $\bigoplus_{i=0}^{\infty}\Hom (L_0, L_i)$ is then the endomorphism
+            algebra of the canonical sheaf on $X$, and also on $Y$. Now as
+            $\omega_X$ is either ample or anti-ample, open sets $\{U_{\alpha}\}$
+            for $\alpha\in\Hom (L_i, L_j)$ for all $i,j$ suffices to form a
+            basis of the Zariski topology, and this is an if-and-only-if
+            condition, so that the corresponding canonical sheaf $\omega_Y$
+            should also be ample and anti-ample. Now the first paragraph makes
+            sense and we get an isomorphism $X\cong Y$.</div>
+        <p>Based on the resconstruction theorem, we can roughly "re-construct"
+            an algebraic variety from its derived category of coherent sheaves,
+            assuming it's Fano or general type. Let's ignore the condition and
+            use it as a heuristic. Now we have a source of category coming from
+            symplectic geometry: for each symplectic manifold $(X,\omega)$ we
+            can propose an $A_{\infty}$-category $\mathcal{Fuk} (X,\omega)$
+            which, if the mirror exists, is supposed to be an
+            $A_{\infty}$-enhancement of the derived category of coherent sheaves
+            of some algebraic variety $\check{X}$, and in particular we should
+            be able to re-construct $X$ from the category $\mathcal{Fuk}
+            (X,\omega)$. Assuming $\check{X}$ is separated, from [<a
+                href="#ND20">ND20</a>] it suffices for us to determine the point
+            objects and the invertible objects.</p>
+        <p>Let $p\in\check{X}$ be a smooth closed point of the algebraic variety
+            $(\check{X},\check{J})$, and let $\mathcal{O}_p$ be the structure
+            sheaf of the closed point $p$. Then we can directly compute that</p>
+        <div class="env">
+            <strong>Lemma.</strong> $\Hom^{\ast}
+            (\mathcal{O}_p,\mathcal{O}_p)\cong\Lambda^{\ast}\langle x_1,\dotsb,
+            x_n\rangle$ is the graded exterior algebra with $n=\dim_{\mathbb{C}}
+            \check{X}$ generators of degree $1$.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> This is a local question, so we can reduce to the case
+            when $\check{X}=\mathbb{C}^n$ and $p=0$, so that the task is to
+            resolve $\mathbb{C}$ by polynomial algebras in $n$ variables. This
+            can be done by simply taking the <em>Koszul complex</em>
+            $$0\to \mathbb{C}[x_1,\dotsb, x_n]\otimes\Lambda^n\langle
+            e_1,\dotsb,
+            e_n\rangle\xrightarrow{d_n}\dotsb\xrightarrow{d_2}\mathbb{C}[x_1,\dotsb,
+            x_n]\otimes\Lambda^1\langle e_1,\dotsb,
+            e_n\rangle\xrightarrow{d_1}\mathbb{C}[x_1,\dotsb, x_n]\to 0,$$
+            where the differential is defined by $d_k (f\otimes
+            e_{i_1}\wedge\dotsb\wedge e_{i_k})=\sum_{j=1}^k (-1)^{j-1} x_{i_j}
+            f\otimes
+            e_{i_1}\wedge\dotsb\wedge\widehat{e_{i_j}}\wedge\dotsb\wedge
+            e_{i_k}$.
+        </div>
+        <p>In particular, an object $L\in\mathcal{Fuk} (X,\omega)$ behaves like
+            a point object only when the endomorphism algebra of $L$ is
+            equivalent to the exterior algebra $\Lambda\langle x_1,\dotsb,
+            x_n\rangle$. Recall that for two Lagrangian submanifolds $L_1, L_2$
+            of $(X,\omega)$, the morphism $\Hom_{\mathcal{Fuk} (X,\omega)} (L_1,
+            L_2)$ between $L_1$ and $L_2$ in $\mathcal{Fuk} (X,\omega)$ is
+            provided by the <em>Lagrangian Floer complex</em> $CF^{\ast} (L_1,
+            L_2)$ which is graded and is generated by intersection points
+            between $L_1$ and $L_2$ once $L_1$ and $L_2$ are transversely
+            intersecting <span>&#40;</span>and the corresponding derived version
+            in general, see e.g. [<a
+                href="#FOOO09">FOOO09</a>]<span>&#41;</span>. When $L_1$ and
+            $L_2$ are nice closed Lagrangian submanifolds and $(X,\omega)$ a
+            nice symplectic manifold, the celebrated Floer's theorem holds:</p>
+        <div class="env">
+            <strong>Theorem. <span>&#40;</span>Floer'89 [<a
+                    href="#Flo89">Flo89</a>], Oh'96 [<a href="#Oh96">Oh96</a>],
+                ...<span>&#41;</span></strong> Assuming on of the following
+            condition is true: <ol type="i">
+                <li>$X$ is symplectically aspherical and $L\subseteq X$ closed
+                    spin Lagrangian submanifold such that $\pi_2 (X,L)=0$,</li>
+                <li>$X$ is a monotone symplectic manifold and $L\subseteq X$ is
+                    a closed monotone spin Lagrangian submanifold with minimal
+                    Maslov index $4$,</li>
+            </ol>
+            then we have an isomorphism of associative algebras
+            $$HF^{\ast} (L,L;\Bbbk)\cong H^{\ast} (L;\Bbbk),$$
+            for any coefficient field $\Bbbk$.
+        </div>
+        <p>In particular, when $L$ is a Lagrangian torus with
+            $\Bbbk=\mathbb{R}$, we will get $HF^{\ast} (L,L;\mathbb{R})\cong
+            H^{\ast} (L;\mathbb{R})\cong\Lambda_{\mathbb{R}}\langle x_1,\dotsb,
+            x_n\rangle$ and is hence close to a point object up to changing the
+            base coefficient field to $\mathbb{C}$. A geometrically natural way
+            to extend the coefficient field is to equip $L$ with
+            <em>$U(1)$-local systems</em>, equivalently trivial complex line
+            bundle over $L$ with flat $U(1)$-connections.</p>
+        <p>These discussions provide us a natural source of point objects in the
+            Fukaya category: Lagrangian tori that are mutually disjoint.
+            However, there're too many Lagrangian tori in a fixed symplectic
+            manifold, and not all of them should be counted as the "points". To
+            distinguish out the true "point objects", Strominger-Yau-Zaslow [<a
+                href="#SYZ96">SYZ96</a>] suggested we should look at Lagrangian
+            tori that are <em>special</em>, which are expected to be an
+            equivalent notion of <em>stable</em> in modern algebro-geometric
+            language [<a href="#TY02">TY02</a>].</p>
+        <p>One special case that we know this will work is when $(X,\omega)$
+            admits a smooth fibration over some smooth manifold $B$ of
+            Lagrangian tori [<a href="#Abo21">Abo21</a>], where we assume that
+            $\pi_2 (B)=0$. In general, we can only expect that an open dense
+            subset of $X$, $X^0$, admits a smooth Lagrangian fibration, and the
+            complement consists of various singularities. There're worse issues
+            arising: for a general symplectic manifold $(X,\omega)$, in order
+            for Fukaya $A_{\infty}$-structure to be defined, we need to
+            introduce the <em>Novikov field</em>
+            $$\Lambda_{\Bbbk} :=\left\{\sum_{n=0}^{\infty} a_n
+            T^{\alpha_n}\middle\vert a_n\in\Bbbk,\
+            \alpha_n\in\mathbb{R},\lim_{n\to\infty}\alpha_n =\infty\right\}$$
+            to bound energies of counted pseudo-holomorphic disks in order to
+            achieve Gromov compactness. Therefore the constructed mirror space
+            lives naturally over the coefficient field $\Lambda_{\Bbbk}$ instead
+            of $\Bbbk$. Kontsevich-Soibelman [<a href="#KS06">KS06</a>]
+            suggested that the mirror should be an analytic space over this
+            non-archimedean field $\Lambda_{\Bbbk}$, and evaluating the formal
+            variable $T$ at convergent complex values would reduce to usual
+            complex mirror space.</p>
+        <p>Singularities of Lagrangian torus fibration can be separated into
+            several different cases. Note that in order to make $CF^{\ast}
+            (L,L)$ a cochain complex, one need to prove that $(\mathfrak{m}^1
+            )^2=0$, and in the compactification of moduli space of
+            pseudo-holomorphic strips computing $(\mathfrak{m}^1)^2$ there're
+            disk bubblings with a single output. This stratum would arise only
+            when the Lagrangian submanifold $L$ bounds holomorphic disks of
+            Maslov index $\leq 2$, so if all such disks do not appear, we should
+            see a perfect mirror picture <span>&#40;</span>as in [<a
+                href="#Abo21">Abo21</a>] or [<a
+                href="#PZ98">PZ98</a>]<span>&#41;</span>. If there exists
+            holomorphic disks of Maslov index $2$, then we obtain an extra
+            obstruction term $\mathfrak{m}^0$ in the $A_{\infty}$-structure of
+            $CF^{\ast} (L,L)$, but if we assume that $L$ is monotone, then
+            $\mathfrak{m}^0 (L)=0$ and hence $HF^{\ast} (L,L)$ can still be
+            defined. $\mathfrak{m}^0 (L,\nabla)$ defines a smooth holomorphic
+            function on the moduli space of pairs $(L,\nabla)$ [<a
+                href="#Aur07">Aur07</a>] and acts as the <em>Landau-Ginzburg
+                superpotential</em> of the mirror. In other words, if we assume
+            that $(Y,J)$ is the mirror moduli space and $W\colon Y\to\mathbb{C}$
+            is the corresponding superpotential, then we expect equivalences of
+            categories
+            $$D^{\pi}\mathcal{Fuk} (X,\omega)\simeq HMF(Y,W),$$
+            where $HMF$ is the homotopy category of <em>matrix
+                factorizations</em> of $(Y,W)$, describing singularities of the
+            superpotential $W$.</p>
+        <p>The case when $L$ bounds holomorphic disks of Maslov index $0$ is
+            also slightly studied in [<a href="#Aur07">Aur07</a>]. In nice
+            geometric situations such disks come from singularities of the
+            Lagrangian torus fibration $X\to\bar{B}$ where the fibers are
+            singular Lagrangian tori, obtained by contracting some submanifolds
+            into a point. In this case, what we can see is the subspace of pairs
+            $(L,\nabla)$ where $L$ bounds no Maslov index $0$ disks is
+            disconnected, and the space of pairs $(L,\nabla)$ where $L$ bounds
+            Maslov index $0$ disks form real codimension $1$ submanifolds,
+            called <em>walls</em> of the Lagrangian torus fibration. In the most
+            generic case, when the singular fibers are one-pinched Lagrangian
+            tori, we can explicitly understand the monodromy transformation and
+            glue different connected components of $B$ together based on the
+            monodromy information.</p>
+        <p>However, non-generic cases do arise, when we want certain symmetry to
+            be preserved, and this requires us to have a better understanding of
+            this "gluing of moduli spaces". Recall that moduli spaces of paris
+            $(L,\nabla)$ locally comes from the spectrum
+            $\operatorname{Spec}\operatorname{Sym}^{\ast} H^1
+            (L,\nabla;\Lambda_{\mathbb{R}})$ for smooth unobstructed tori $L$,
+            and for singular $L$ its Lagrangian Floer cochain is naturally
+            obstructed, i.e. $\mathfrak{m}^0\neq 0$ and hence
+            $(\mathfrak{m}^1)^2\neq 0$. In this case we can deform it by
+            introducing cycles $b\in CF^1 (L,\nabla ;\Lambda)$ such that
+            $\mathfrak{m}^1 (b)=\mathfrak{m}^0$, called <em>bounding
+                cochain</em>, and the deformed $A_{\infty}$-structure
+            $\mathfrak{m}^i_b$ will satisfy the desired $A_{\infty}$-relations,
+            and hence we still have some well-defined Floer cohomology. This can
+            be geometrically imagined as deforming the singular Lagrangian
+            submanifold $L_0$ into a nearby smooth Lagrangian $L_{\eta}$, so
+            that its Floer cohomology is well-defined. Therefore we can consider
+            the moduli space of all such deformations, called <em>Maurer-Cartan
+                space</em> $\mathcal{MC} (L_0)$, which should serve as the
+            interpolation between different disconnected moduli spaces.</p>
+        <p>This finishes the rough theoretical framework of how SYZ mirror
+            symmetry construction should work and result in the mirror space we
+            want. However, as the audiences would see in this talk, there're
+            still a lot of mysteries to understand. In later talks, we will see
+            in greater details some of the computations and several rigorous
+            statements concerning SYZ and Homological Mirror Symmetry.</p>
+        <h2 class="chapter" id="Lagrangian-torus-fibrations">Lagrangian Torus
+            Fibrations</h2>
+        <p>In this talk we will review some basic geometric facts concerning
+            Lagrangian torus fibrations, particularly regular ones.</p>
+        <p><h3 class="chapter">Regular Lagrangian fibrations.</h3> Our goal of this
+        talk is to establish the following properties of regular Lagrangian
+        fibrations: <ul>
+            <li>They're locally modelled on completely integrable hamiltonian
+                systems;</li>
+            <li>Fibers of regular Lagrangian fibrations are Lagrangian
+                tori;</li>
+            <li>Basis of regular Lagrangian fibrations carry integral affine
+                structures.</li>
+        </ul></p>
+        <p>Let's start with the definition of Lagrangian fibrations.</p>
+        <div class="env">
+            <strong>Definition.</strong> A <em>stratification</em> of a
+            topological space $B$ is a filtration $$
+            \emptyset =B_{-1}\subseteq B_0\subseteq B_1\subseteq\dotsb\subseteq
+            B_{d+1}\subseteq\dotsb\subseteq B
+            $$where each $B_d$ is a closed subset s.t. $\forall d$, $S_d (B):=
+            B_d\setminus B_{d-1}$ is a smooth manifold of dimension $d$ and
+            $\displaystyle B=\bigcup_{d\geq 0} B_d$.<br />
+            $B$ is <em>finite dimensional</em> if $S_d(B)=\emptyset$ for $d\gg
+            0$;<br />
+            $B$ is <em>$n$-dimensional</em> if $B$ is finite dimensional and $n$
+            is the maximal number such that $S_n (B)\neq\emptyset$. <br />
+            In this case, $S_n(B)$ is called the <em>top stratum</em>.
+        </div>
+        <p>Now we are ready to give definitions on Lagrangian fibrations.</p>
+        <div class="env">
+            <strong>Definition.</strong> A <em>Lagrangian fibration</em> is a
+            map $(M^{2n},\omega)\xrightarrow{\pi} B^n$ so that <ul>
+                <li>$(M^{2n},\omega)$ is a symplectic manifold and $B$ is an
+                    $n$-dimensional stratified space;</li>
+                <li>$\pi$ is proper and continuous;</li>
+                <li>Over the top stratum, $\pi$ is a smooth submersion with
+                    connected Lagrangian fibers. Other fibers are connected,
+                    stratified with isotropic strata.</li>
+            </ul>
+            Write $B^{reg}:=S_n (B)$ be the top stratum, or <em>regular
+                locus</em> of $\pi$, and $B^{sing}=B\setminus B^{reg}$ the
+            <em>discriminant locus</em> of $\pi$, which has codimension $\geq
+            1$. By <em>regular/smooth</em> Lagrangian fibration we mean
+            $B=B^{reg}$, i.e. there're no lower-dimensional strata.
+        </div>
+        <p><h3 class="chapter">Integrable hamiltonian systems.</h3> Historically
+            Lagrangian fibrations arose from study of dynamical properties of
+            classical hamiltonian systems. Hamiltonians are smooth functions
+            defined on the phase space serving as an invariant for the system of
+            motions, and the existence of hamiltonian functions allow us to
+            "reduce the degrees of freedom" of the system, meaning that the
+            particle has to move along level hypersurfaces defined by the
+            hamiltonian function. In this section, we will describe systems of
+            hamiltonian functions that allow us to inductively perform degree
+            reduction, and show their connection to Lagrangian fibrations.</p>
+        <div class="env">
+            <strong>Definition.</strong> Let $(M^{2n},\omega)$ be a symplectic
+            manifold. A function $\vec{H}=(H_1,\dotsb, H_k)\colon
+            M\to\mathbb{R}^k$ is an <em>integrable hamiltonian system</em> if
+            <ul>
+                <li>$H_i$s are <em>Poisson-commute</em>, i.e. $\{H_i, H_j\}=0$
+                    for all $i,j$. <span>&#40;</span>$\{H_i,H_j\}=\omega
+                    (X_{H_i}, X_{H_j})$<span>&#41;</span></li>
+                <li>$\vec{H}(X)$ contains an open and dense set of regular
+                    values in its closure.<span>&#40;</span>i.e. $dH_1,\dotsb,
+                    dH_k$ are linearly independent<span>&#41;</span></li>
+            </ul>
+            We say $\vec{H}$ is <em>completely integrable</em> if $k=n$ and
+            furthermore <ul>
+                <li>$\vec{H}$ is proper with connected fiber.</li>
+            </ul>
+        </div>
+        <div class="env">
+            <strong>Proposition.</strong> Hamiltonian flows of hamiltonian
+            functions $H$ stay inside level sets $H^{-1} (c)$ of $H$.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> Let $\gamma(t)$ be the integral curve of $H$, then
+            $\displaystyle\frac{d}{dt} H(\gamma(t))=dH(\dot{\gamma}
+            (t))=dH(X_H(\gamma(t)))=0$.
+        </div>
+        <div class="env">
+            <strong>Proposition.</strong> If $H,G$ are two hamiltonian functions
+            that are Poisson-commute, then their hamiltonian flows commute.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> $\left[X_{H_i},X_{H_j}\right]=X_{\{H_i,H_j\}}=0$.
+        </div>
+        <p>Frobenius theorem immediately tells us that</p>
+        <div class="env">
+            <strong>Corollary.</strong> A completely integrable hamiltonian
+            system $\vec{H}\colon M\to\mathbb{R}^n$ generates an
+            $\mathbb{R}^n$-action on $M$.
+        </div>
+        <p>Let $c$ be a regular value of $\vec{H}$, then it's immediate from the
+            definition of completely integrable hamiltonian system that $TH^{-1}
+            (c)=\espan\left\{X_{H_1},\dotsb,X_{H_n}\right\}$ and $H^{-1} (c)$ is
+            a Lagrangian orbit of the $\mathbb{R}^n$-action. Now choose a local
+            section $\sigma\colon B\to M$ of $\pi$, where
+            $B\subseteq\vec{H}(M)\subseteq\mathbb{R}^n$ is an open subset of
+            regular values.</p>
+        <div class="env">
+            <strong>Definition.</strong> Given $\vec{H}\colon M\to\mathbb{R}^n$
+            completely integrable hamiltonian system and $\sigma\colon B\to M$ a
+            local section, a <em>period lattice</em> at $b\in B$ is the
+            subset$$\Lambda_b^H :=\{t\in\mathbb{R}^n\vert \phi_H^t (\sigma
+            (b))=\sigma (b)\}.$$We also define the <em>period lattice</em> to be
+            the $\mathbb{Z}$-local system $\Lambda^H =\{(b,t)\in
+            B\times\mathbb{R}^n\vert t\in\Lambda_b^H\}$. It's called
+            <em>standard</em> if $\Lambda =B\times (2\pi\mathbb{Z})^n$.
+        </div>
+        <div class="env">
+            <strong>Theorem<span>&#40;</span>Little Arnold-Liouville
+                Theorem<span>&#41;</span>.</strong> Let $\vec{H}\colon
+            M\to\mathbb{R}^n$ be an integrable hamiltonian system on $M$. Let
+            $\Omega (\sigma (b))$ be the orbit of $\sigma (b)$ under the
+            $\mathbb{R}^n$-action, then $\Omega (\sigma (b))$ is diffeomorphic
+            to
+            $\displaystyle\left(\mathbb{R}^k/\mathbb{Z}^k\right)\times\mathbb{R}^{n-k}$
+            for some $k$, and it's a torus if $\Omega (\sigma (b))$ is compact.
+        </div>
+        <div class="env">
+            <strong>Exercise.</strong> The Little Arnold-Liouville theorem
+            assumes the existence of a local section $\sigma\colon B\to M$ for
+            the integrable system $\vec{H}$, but we can actually show that such
+            sections always exist locally. For instance, if $x\in M$ is a
+            regular point of $\vec{H}$, then there always exists an open
+            neighbourhood $U$ of $x$ where $\vec{H}(U)=B$ is open in
+            $\mathbb{R}^n$ and a local Lagrangian section $\sigma\colon B\to U$
+            of $\vec{H}$ with $\sigma (\vec{H} (x))=x$.
+        </div>
+        <p>Locally near a Lagrangian section $\sigma\colon B\to M$, we can
+            construct a map $\psi\colon B\times\mathbb{R}^n\to M$ by $\psi
+            (b,t)=\phi_H^t (\sigma(b))$, which can be verified to be an
+            immersion and submersion with $\psi^{\ast}\omega
+            =\displaystyle\sum_{i=1}^n db_i\wedge dt_i$. This map is called the
+            <em>Liouville coordinate</em>.</p>
+        <div class="env">
+            <strong>Remark.</strong> If $\sigma$ is only a local section, then
+            such construction is still a local diffeomorphism but with
+            $\psi^{\ast}\omega =\sum db_i\wedge dt_i +\beta$ for some closed
+            $2$-form $\beta$. Only when $\sigma$ is Lagrangian we have
+            $\beta=0$.
+        </div>
+        <div class="env">
+            <strong>Theorem<span>&#40;</span>Action-Angle
+                Coordinates<span>&#41;</span>.</strong> Given $\vec{H}\colon
+            M\to B\subseteq\mathbb{R}^n$ where $B$ is a disk of dimension $n$
+            with only regular fibers and a Lagrangian section $\sigma\colon B\to
+            M$, there exists local change of coordinates $\alpha\colon B\to
+            C\subseteq\mathbb{R}^n$ so that the period lattice for
+            $a:=\alpha\circ\vec{H}\colon M\to C\subseteq\mathbb{R}^n$ is
+            standard.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> As $B$ is contractible, we can pick a basis for
+            $\Lambda^H$ over $B$ with period $2\pi\tau_1 (b),\dotsb, 2\pi\tau_n
+            (b)$ so that $\Lambda_b^H =2\pi A(b)^T\mathbb{Z}^n$ where $A(b)$ is
+            a diagonal matrix with $\tau_i (b)$ as entries. Now we look for a
+            map $\alpha$ satisfying the partial differential relations
+            $\displaystyle\frac{\partial\alpha_i}{\partial b_j}=A_{ij}$, which
+            is solvable iff $\displaystyle\frac{\partial A_{ij}}{\partial
+            b_k}=\frac{\partial A_{ik}}{\partial b_j}$. Now this can be verified
+            using Liouville coordinates.
+        </div>
+        <p>We call $a$ the <em>action coordinate</em>, and $t$ the <em>angle
+                coordinate</em>.</p>
+        <div class="env">
+            <strong>Corollary<span>&#40;</span>Big Arnold-Liouville
+                Theorem<span>&#41;</span>.</strong> Let $\vec{H}\colon
+            M\to\mathbb{R}^n$ be completely integrable, then all regular fibers
+            are Lagrangian tori and $M$ is locally symplectomorphic to
+            $B\times\mathbb{T}^n$.
+        </div>
+        <p>Now we can show the first important property for Lagrangian
+            fibrations:</p>
+        <div class="env">
+            <strong>Proposition.</strong> Regular Lagrangian fibrations are
+            locally modelled on completely integrable hamiltonian systems.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> Given an open subset $\phi\colon U_b\to\mathbb{R}^n$
+            of regular values, we can form the composition $\pi^{-1}
+            (U_b)\xrightarrow{\phi\circ\pi}\mathbb{R}^n$, which can be verified
+            to be a completely integrable hamiltonian system.
+        </div>
+        <div class="env">
+            <strong>Corollary.</strong> Fibers of regular Lagrangian fibrations
+            are tori.
+        </div>
+        <p>The action-angle coordinates are local, but we can patch them
+            together to glue regular Lagrangian fibrations over contractible
+            spaces into some smooth manifold $B$, which carries a specific rigid
+            structure and we call such manifolds <em>integral affine
+                manifolds</em>.</p>
+        <div class="env">
+            <strong>Definition.</strong> An <em>integral affine
+                transformation</em> is a map
+            $T\colon\mathbb{R}^n\to\mathbb{R}^n$ with $T(b)=Ab+c$ for some $A\in
+            GL(n,\mathbb{Z})$ and $c\in\mathbb{R}^n$. An <em>integral affine
+                structure</em> on $B$ consists of an atlas with transition
+            functions being integral affine transformations. We call manifolds
+            admitting an integral affine structure an <em>integral affine
+                manifold</em>.
+        </div>
+        <div class="env">
+            <strong>Lemma.</strong> Let $G,H\colon M\to\mathbb{R}^n$ be
+            completely integrable hamiltonian systems and
+            $\psi\colon\mathbb{R}^n$ a diffeomorphism fitting into the
+            commutative diagram<div
+                style="text-align: center;scale: 0.6;"><iframe
+                    class="quiver-embed"
+                    src="https://q.uiver.app/#q=WzAsMyxbMSwwLCJNIl0sWzAsMSwiXFxtYXRoYmJ7Un1ebiJdLFsyLDEsIlxcbWF0aGJie1J9Xm4iXSxbMCwxLCJHIiwyXSxbMCwyLCJIIl0sWzEsMiwiXFxwc2kiXV0=&embed"
+                    width="432" height="304"
+                    style="border-radius: 8px; border: none;"></iframe></div>then
+            $\psi$ is integral affine.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> As we must have $d_b\psi\colon\Lambda_{\psi
+            (b)}^G\to\Lambda_b^H$, for each $b$ $d_b\psi$ is of the form
+            $d_b\psi (\xi)=A(b)\xi +c(b)$ where the matrix $A(b)$ lies in
+            $GL(n,\mathbb{Z})$ and $c(b)\in\mathbb{R}^n$. Since period lattices
+            for $G$ and $H$ are all standard, $d_b\psi$ must be constant, and
+            hence $\psi (b)=Ab+c$.
+        </div>
+        <div class="env">
+            <strong>Corollary.</strong> If $\pi\colon M\to B$ is a regular
+            Lagrangian fibration, then $B$ inherits an integral affine
+            structure.
+        </div>
+        <p><h3 class="chapter">Equivalences.</h3> Lagrangian fibrations are extra
+        structures imposed on a given symplectic manifold $(M,\omega)$, and we
+        want to understand also when two such fibrations are equivalent.</p>
+    <div class="env">
+        <strong>Definition.</strong> Two regular Lagrangian fibrations
+        $\pi\colon M\to B$ and $\pi'\colon M'\to B'$ are <em>isomorphic</em> if
+        there exists a fibered symplectomorphism $\Phi\colon M\to M'$ lying over
+        a diffeomorphism $\phi\colon B\to B'$, i.e. $\Phi$ is a
+        symplectomorphism together with the commutative diagram
+        <div
+            style="text-align: center;scale: 0.6;"><!-- https://q.uiver.app/#q=WzAsNCxbMCwwLCJNIl0sWzEsMCwiTSciXSxbMCwxLCJCIl0sWzEsMSwiQiciXSxbMCwxLCJcXFBoaSJdLFswLDIsIlxccGkiLDJdLFsyLDMsIlxccGhpIiwyXSxbMSwzLCJcXHBpJyJdXQ== -->
+            <iframe class="quiver-embed"
+                src="https://q.uiver.app/#q=WzAsNCxbMCwwLCJNIl0sWzEsMCwiTSciXSxbMCwxLCJCIl0sWzEsMSwiQiciXSxbMCwxLCJcXFBoaSJdLFswLDIsIlxccGkiLDJdLFsyLDMsIlxccGhpIiwyXSxbMSwzLCJcXHBpJyJdXQ==&embed"
+                width="304" height="304"
+                style="border-radius: 8px; border: none;"></iframe></div>
+    </div>
+    <div class="env">
+        <strong>Exercise.</strong> It's not hard to show that $\phi$ has to be
+        an isomorphism of integral affine manifolds.
+    </div>
+    <p>We are ready to prove a "reconstruction theorem" for regular Lagrangian
+        fibrations similar to Theorem <a href="#Bondal-Orlov">1.1</a>.</p>
+    <div class="env" id="reconstruction-theorem-regular-Lag">
+        <strong>Theorem.</strong> Let $M\xrightarrow{\pi} B$,
+        $M'\xrightarrow{\pi'} B$ be two regular Lagrangian fibrations equipped
+        with global Lagrangian sections $\sigma$ and $\sigma'$ respectively.
+        Then there is a unique fibered symplectomorphism $\Phi\colon M\to M'$
+        such that the diagram
+        <div
+            style="text-align: center;scale: 0.6;"><!-- https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMSwiQiJdLFsyLDAsIk0nIl0sWzAsMiwiXFxQaGkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbMCwxLCJcXHBpIiwwLHsiY3VydmUiOi0xfV0sWzIsMSwiXFxwaSciLDIseyJjdXJ2ZSI6MX1dLFsxLDAsIlxcc2lnbWEiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXHNpZ21hJyIsMix7ImN1cnZlIjoxfV1d --><iframe
+                class="quiver-embed"
+                src="https://q.uiver.app/#q=WzAsMyxbMCwwLCJNIl0sWzEsMSwiQiJdLFsyLDAsIk0nIl0sWzAsMiwiXFxQaGkiLDAseyJzdHlsZSI6eyJib2R5Ijp7Im5hbWUiOiJkb3R0ZWQifX19XSxbMCwxLCJcXHBpIiwwLHsiY3VydmUiOi0xfV0sWzIsMSwiXFxwaSciLDIseyJjdXJ2ZSI6MX1dLFsxLDAsIlxcc2lnbWEiLDAseyJjdXJ2ZSI6LTF9XSxbMSwyLCJcXHNpZ21hJyIsMix7ImN1cnZlIjoxfV1d&embed"
+                width="432" height="304"
+                style="border-radius: 8px; border: none;"></iframe></div>commutes.
+    </div>
+    <div class="prf">
+        <b>Proof.</b> Construct $\Phi$ using Liouville coordinates.
+    </div>
+    <p>In fact, under these assumptions we can understand the space $M$
+        explicitly: the integral affine structure on $B$ induces a locally free
+        sheaf of lattices $\Lambda$ in the cotangent bundle $T^{\ast} B$, and we
+        can naturally form the symplectic manifold $T^{\ast} B/\Lambda$ where
+        fibers of the projection $T^{\ast} B/\Lambda\to B$ are Lagrangian tori.
+        Note that $T^{\ast} B/\Lambda\to B$ always has a global Lagrangian
+        section provided by the zero section, and therefore reconstruction
+        theorem <a href="#reconstruction-theorem-regular-Lag">2.20</a> applies
+        to yield that $M$ is fibered symplectomorphic to $T^{\ast}
+        B/\Lambda$.</p>
+    <div class="env">
+        <strong>Example.</strong> When $M\to B$ does not admit a global
+        Lagrangian section, the reconstruction theorem can fail, and here's an
+        example from [<a href="#Eva23">Eva23</a>]: consider the symplectic
+        vector space $\mathbb{R}^4$ with coordinates $(t,x,y,z)$ and symplectic
+        structure $dt\wedge dx+dy\wedge dz$. The $\mathbb{Z}^3$-action
+        $(a,b,c)\cdot (t,x,y,z)=(t,x+a,y+b,z+c)$ preserves the symplectic
+        structure, and hence we get a symplectic manifold
+        $\mathbb{R}\times\mathbb{T}^3$ by quotient out this
+        $\mathbb{Z}^3$-action. Now consider a further $\mathbb{Z}$-action on
+        $\mathbb{R}\times\mathbb{T}^3$ by $1\cdot (t,x,y,z)=(t+1,x,y,x+y+z)$,
+        which also preserves the symplectic structure, and we get a symplectic
+        manifold $(K,\omega)$ by quotienting out this $\mathbb{Z}$-action. This
+        is the famous <em>Kodaira-Thurston manifold</em> which is a compact
+        symplectic manifold that does not admit any compatible complex
+        structures <span>&#40;</span>so that it becomes a Kähler
+        manifold<span>&#41;</span>.<br />
+        Consider the projection $K\to\mathbb{T}^2$ by $(t,x,y,z)\mapsto (t,y)$.
+        This is a (principal) regular Lagrangian torus fibration, and principal
+        bundles admitting a global section are always trivial, meaning
+        $K\cong\mathbb{T}^4$. However, we can compute that $b_1 (K)=3$ whereas
+        $b_1 (\mathbb{T}^4)=4$, so $K\to\mathbb{T}^2$ does not admit any global
+        Lagrangian sections.<br />
+        On the other hand, we can consider the standard torus $\mathbb{T}^4$
+        with the symplectic structure $dt\wedge dx+dy\wedge dz$ and the
+        projection $\mathbb{T}^4\to\mathbb{T}^2$ by $(t,x,y,z)\mapsto (t,y)$,
+        which induces the same integral affine structure on $\mathbb{T}^2$ as
+        $K\to\mathbb{T}^2$. This shows that the reconstruction theorem can fail
+        without the existence of global Lagrangian sections.
+    </div>
+    <p><h3 class="chapter">Flux.</h3> Finally, there is a more geometric way of
+        writing down the action-angle coordinates via computing certain period
+        integrals. For given Lagrangian fibration $M\to B$, assume that $M$ is
+        exact, i.e. $\omega =d\lambda$ for some $1$-form $\lambda$, we obtain a
+        locally free sheaf $H_1 (F_b;\mathbb{Z})\to\mathcal{S}\to B$ which
+        becomes trivial after pullback along the universal cover
+        $p\colon\tilde{B}\to B$. Let $c_1,\dotsb, c_n$ be the trivializing
+        sections of the pull-back bundle $p^{\ast}\mathcal{S}$.</p>
+    <div class="env">
+        <strong>Definition.</strong> We define the <em>flux map</em>
+        $I\colon\tilde{B}\to\mathbb{R}^n$ by the formula $$I(\tilde{b})=(I_1
+        (\tilde{b}),\dotsb, I_n (\tilde{b}))=\left(\frac{1}{2\pi}\int_{c_1
+        (\tilde{b})}\lambda,\dotsb, \frac{1}{2\pi}\int_{c_n
+        (\tilde{b})}\lambda\right).$$
+    </div>
+    <p>This definition does not depend on the choice of the primitive $1$-form
+        $\lambda$, as different choices differ by shifting by a constant which
+        is the integral affine transformation, and also not on the choice of the
+        basis $\{c_i\}$ for any choice differs by an element in
+        $GL(n,\mathbb{Z})$, again absorbed into the integral affine
+        structure.</p>
+    <div class="env">
+        <strong>Lemma.</strong> Let $\tilde{U}\xrightarrow{\cong} U$ be open
+        subsets of $\tilde{B}$ and $B$ respectively, then the composition
+        $I\circ\left(p\vert_{\tilde{U}}\right)^{-1}\colon U\to\mathbb{R}^n$
+        gives action coordinates in $U$.
+    </div>
+    <div class="prf">
+        <b>Proof.</b> It suffices to check when $M=U\times\mathbb{T}^n$ with the
+        standard action-angle symplectic structure. Then we can write $\lambda
+        =\sum b_i dt_i$, and $I_i (b)=\displaystyle\frac{1}{2\pi}\int_{c_i}
+        b_idt_i =b_i$ where $c_i$ is the standard basis.
+    </div>
+    <p>With the flux map $I\colon\tilde{B}\to\mathbb{R}^n$, we naturally obtain
+        an integral affine structure on $\tilde{B}$ by pulling back the standard
+        one on $\mathbb{R}^n$ via $I$. This integral affine structure then
+        descends to $B$ and gives the same integral affine structure on $B$
+        coming from regular Lagrangian fibrations.</p>
+    <h2 class="chapter" id="Toric-variety">SYZ Mirror Symmetry for Toric Fano
+        Varieties</h2>
+    <p>In this talk we will discuss the first type of non-regular singularities
+        of Lagrangian fibrations, which we call <em>toric singularities</em>.
+        These are good singularities in that the torus action from the
+        Lagrangian torus fibration extends to the singular fibers, where the
+        stabilization groups are non-trivial. One of the simplest case is the
+        so-called <em>toric varieties</em>, where the regular stratum of the
+        base $B$ is $\mathbb{R}^n$, and we will quickly see that the singular
+        stratum form a polyhedral complex partially compactifying
+        $\mathbb{R}^n$.</p>
+    <p><h3 class="chapter">Symplectic toric varieties.</h3> In this section, we
+        will recall the definition of toric varieties, in a symplectic way, in
+        order to keep track of the
+        symplectic<span>&#40;</span>Kähler<span>&#41;</span> structures.</p>
+        <div class="env">
+            <strong>Definition.</strong> A <em>symplectic toric manifold</em> $(M,\omega)$ is a symplectic manifold together with a hamiltonian $\mathbb{T}^n$-action.
+        </div>
+        <p>A hamiltonian $G$-action on $M$ induces a map of Lie algebras $\rho\colon\mathfrak{g}\to C^{\infty} (M)/\mathbb{R}$, equivalently a map $\mu_G\colon M\to\mathfrak{g}^{\ast}$ up to translation in $\mathfrak{g}^{\ast}$ where $\mu_G(x)(X):=\rho (X)(x)$, called the <em>moment map</em> of $G$. When $G=\mathbb{T}^n$ is a torus, the theorem of Atiyah-Guillemin-Sternberg [<a href="#Ati82">Ati82</a>,<a href="#GS82">GS82</a>] states that</p>
+        <div class="env">
+            <strong>Theorem<span>&#40;</span>Atiyah-Guillemin-Sternberg<span>&#41;</span>.</strong> The image of $\mu_G\colon M\to\mathfrak{g}^{\ast}$ is a convex polytope.
+        </div>
+        <p>We call the image of the moment map <em>the moment polytope</em> of the toric symplectic manifold $M$. Let $\Sigma$ be the polytope in $\mathfrak{g}^{\ast}$, it naturally admits a stratification by facets. There is only one top-dimensional facet $\Sigma^{\circ}$ corresponding to values of $\mu_G$ where $T^n$ acts freely transitively on the fiber, which are Lagrangian tori in $M$. Lower dimensional facets correspond to values of $\mu_G$ where $T^n$ acts with stabilizer subgroups of rank equal to the codimension of the corresponding facet. They're naturally isotropic tori obstructing the fibration being regular.</p>
+        <div class="env">
+        <figure>
+            <canvas id="fig:P2" width="150" height="150"></canvas>
+            <figcaption>Moment polytope for $\mathbb{P}^2$.</figcaption>
+        </figure>
+        <script>
+            const canvas = document.getElementById('fig:P2');
+            const ctx = canvas.getContext('2d');
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(25,25);
+            ctx.lineTo(25,125);
+            ctx.lineTo(125,125);
+            ctx.lineTo(25,25);
+            ctx.strokeStyle="black";
+            ctx.stroke();
+        </script>
+            <strong>Examples.</strong> Let's illustrate how to read off the geometric information of toric varieties from moment polytope via a simple example. Consider the symplectic vector space $\mathbb{C}^3=\mathbb{R}^6$ with the standard symplectic structure, with the standard linear action $T^3\curvearrowright\mathbb{C}^3$ by $(t_1, t_2, t_3).(x,y,z):=(t_1 x,t_2y,t_3z)$. $\mathbb{P}^2$ can be constructed as a <em>symplectic reduction</em> of $\mathbb{R}^6$ by the diagonal torus action $(x,y,z)\mapsto (tx,ty,tz)$, with a choice of regular parameters $\lambda\in (0,\infty)\subseteq\mathfrak{t}=\operatorname{Lie} (\mathbb{T}^1)$. The moment map $\mu_{\mathbb{T}^3}$ can be written explicitly using standard basis as $$
+            \mu_{\mathbb{T}^3} (x,y,z)=\frac{1}{2} (|x|^2,|y|^2,|z|^2),
+            $$so that using the first two coordinates we can write the induced moment map $\mu_{T}$ on $\mathbb{P}^2$ as $$
+            \mu_{T} ([x:y:z])=\left(\frac{|x|^2}{2},\frac{|y|^2}{2}\right).
+            $$Clearly the image of $\mu_T$ is the triangle $\{t_1\leq\sqrt{\lambda},\ t_2\leq\sqrt{\lambda},\ t_1+t_2\leq\sqrt{\lambda}\}$ as depicted in figure <a href="#fig:P2">1</a>. The edge $\{t_1=0\}$ in the moment polytope corresponds to the divisor $\{x=0\}\subseteq\mathbb{P}^2$, where we can see that the action of the first circle is trivial. Similarly, the other two edges correspond to two other fixed divisors of $\mathbb{P}^2$. It's also easy to see that fibers over the vertices of the polytope are points, which are fixed points of the torus action.
+        </div>
+        <div class="env">
+            <strong>Remark.</strong> Algebraic geometers are probably more familiar with the <em>fan description</em>, where an algebraic $\mathbb{G}_m^n$-action on a variety $X$ gives rise to a union of cones in $\mathbb{R}^n$, where the origin corresponds to the dense torus orbit, rays correspond to divisors, and higher dimensional cones correspond to higher codimensional toric subvarieties. These two pictures are more or less equivalent via the following combinatorial relation: for a given fan $\Sigma$ in $\mathbb{R}^n$, we can consider the polytope $$P=\{x\in\mathbb{R}^n\vert \langle x,v_i\rangle\geq -\lambda_i,\ v_i\text{ are generators of rays in }\Sigma\}$$for chosen vector $(\lambda_i)\in\mathbb{R}^n$. The choice of $(\lambda_i)$ then provides a symplectic structure on the toric variety $X$ that is compatible with the algebraic structure.
+        </div>
+        <p>Now we proceed to the Fanoness on toric varieties. Recall that a symplectic manifold is <em>monotone</em> or <em>Fano</em> if there exists a positive constant $\tau$ such that $[\omega]=\tau c_1 (X)$, where $c_1 (X)$ is the first Chern class of $X$. As $c_1 (X)$ is integral and algebro-geometrically it's equal to the sum of the representatives of all the toric divisors appearing on the boundary strata, the Fano condition can be read-off combinatorially as the following:</p>
+        <div class="env">
+            <strong>Definition/Proposition<span>&#40;</span>Batyrev<span>&#41;</span>.</strong> A toric variety $X$ is Fano if and only if the standardized moment polytope $P$ associated to $X$ is <em>reflexive</em>. Let $\Sigma$ be the fan of $X$, and define $$P=\{x\in\mathbb{R}^n\vert \langle x,v_i\rangle\geq -1,\ v_i\text{ are generators of rays in }\Sigma\}$$to be the standardized moment polytope of $X$, then $P$ is <em>reflexive</em> if its <em>polar dual</em>$$P^{\circ}=\{y\in\mathbb{R}^n\vert \langle x,y\rangle\geq -1,\ \forall x\in P\}$$is the convex hull of integral vectors.
+        </div>
+        <p><h3 class="chapter">Homological Mirror Symmetry.</h3> Before we dive into the SYZ mirror construction, let's briefly explain known results of Homological Mirror Symmetry for toric varieties. The simplest example of toric varieties is the algebraic torus $(\mathbb{C}^{\ast})^n$ equipped with the linear $\mathbb{T}^n$-action. It's a regular Lagrangian fibration over the abelian Lie algebra $\mathbb{R}^n=\mathfrak{t}^n$.</p>
+        <div class="env">
+            <strong>Theorem.</strong> $\left(\mathbb{C}^{\ast}\right)^n$ is self-mirror. In other words, there is an equivalence of categories $$D^b\operatorname{Coh} \left(\left(\mathbb{C}^{\ast}\right)^n\right)\cong D^{\pi}\mathcal{W} \left(\left(\mathbb{C}^{\ast}\right)^n\right).$$
+        </div>
+        <div class="prf">
+            <b>Proof.</b> From [<a href="#Abo11">Abo11</a>] we know that the wrapped Fukaya category $\mathcal{W}\left(\mathbb{C}^{\ast}\right)^n$, regarded as the cotangent bundle of $\mathbb{T}^n$, is generated by a single cotangent fibre $T^{\ast}_q\mathbb{T}^n$, for some $q\in\mathbb{T}^n$. It then remains to show that there is an isomorphism of $A_{\infty}$-algebras $$\operatorname{End}_{D^{\pi}\mathcal{W} \left(\left(\mathbb{C}^{\ast}\right)^n\right)} \left(T^{\ast}_q\mathbb{T}^n\right)\cong \operatorname{End}_{D^b\operatorname{Coh} \left(\left(\mathbb{C}^{\ast}\right)^n\right)} \left(\mathcal{O}_{\left(\mathbb{C}^{\ast}\right)^n}\right).$$From [<a href="#Abo12">Abo12</a>] we know that the left-hand side is given by the homology of based loop spaces $\Omega_q\mathbb{T}^n$, which is isomorphic to the group algebra $\mathbb{C}[\pi_1 (\mathbb{T}^n)]\cong\mathbb{C}[x_1^{\pm 1},\dotsc, x_n^{\pm 1}]\cong\Gamma\left(\left(\mathbb{C}^{\ast}\right)^n,\mathcal{O}\right)$.
+        </div>
+        <p>This theorem also tells us that cotangent fiber of $T^{\ast}\mathbb{T}^n$ is mirror to the structure sheaf of $\left(\mathbb{C}^{\ast}\right)^n$, and hence we can try to recover all the point objects from this homological mirror equivalence, leading to the SYZ construction. Note that as $\mathbb{T}^n$ is a Lie group, $T^{\ast}\mathbb{T}^n\cong\mathbb{T}^n\times\mathbb{R}^n$ is trivial, and we obtain a family of Lagrangian tori $\{L_b\}_{b\in \mathbb{R}^n}$ coming from the product decompostion.
+        </p>
+        <p>We now investigate Lagrangian Floer theories of these Lagrangian tori. Firstly it's easy to see that $HF^{\ast} (L_b, L_{b'})=0$ if $b\neq b'$ as they have no geometric intersections, and $HF^{\ast} (L_b,T^{\ast}_q\mathbb{T}^n)\cong\mathbb{R}$ as they have a unique transversal intersection point. The only interesting complex is $CF^{\ast} (L_b,L_b)$, for $b\in\mathbb{R}^n$.</p>
+        <p>Recall that the standard symplectic structure on $T^{\ast}\mathbb{T}^n$ is given by $-d\lambda_{can}$ where $\lambda_{can}=\sum_{i=1}^n (\log r_i)d\theta_i$ where $(\log r_i)_{i=1}^n$ is the cotangent coordinate and $(\theta_i)$ is the torus coordinate. Recall that</p>
+        <div class="env">
+            <strong>Definition.</strong> A Lagrangian submanifold $L\subseteq (M,\lambda)$ of an exact symplectic manifold $(M,\omega=d\lambda)$ is <em>exact</em> if $\lambda\vert_L$ is an exact $1$-form on $L$.
+        </div>
+        <p>Exactness of Lagrangian submanifolds $L$ prevent the existence of any non-constant pseudo-holomorphic disks with boundaries on $L$, and hence the Floer cohomology is easy to compute: it's identical to the Morse cohomology and hence we have $$HF^{\ast} (L_b,L_b)\cong H^{\ast} (L_b;\mathbb{R})$$for exact Lagrangian tori $L_b$.</p>
+        <p>However, it's not hard to check that the only exact Lagrangian tori $L_b$ in $T^{\ast}\mathbb{T}^n$ is the zero section $L_0$. For all other Lagrangian tori $L_b$, $b\neq 0$, areas of holomorphic disks with boundaries on $L_b$ are determined by the integral of the boundary curve class in $L_b$ against the Liouville form $\lambda$, or more explicitly, against the $1$-form $\lambda\vert_{L_b}$ of $\lambda$ restricting to the torus $L_b$.</p>
+        <p>Let's write down the $A_{\infty}$-structure to see the effect of these non-trivial holomorphic curves: write $CF^{\ast} (L_b,L_b)=\Omega(L_b)$ be the de Rham algebra of $L_b$, then the $A_{\infty}$-structure $\mathfrak{m}^d\colon CF^{\ast} (L_b,L_b)\otimes\dotsb\otimes CF^{\ast} (L_b, L_b)\to CF^{\ast} (L_b,L_b)[2-d]$ is given by $$\mathfrak{m}^d (x_1,\dotsb, x_d)=\mu^d (x_1,\dotsb, x_d)+\sum_{\beta}\sum_{\deg (x_0)=\sum\deg (x_i)+2-k+\mu(\beta)}\left(\int_{[\mathcal{M}_{d+1} (\beta)]^{vir}}\ev_0^{\ast} x_0\cup\ev_1^{\ast} x_1\cup\dotsb\cup\ev_d^{\ast} x_d\right)T^{\lambda (\partial\beta)} x_0,$$where $\mu^d$ is the Morse $A_{\infty}$-structure on the de Rham algebra $\Omega^{\ast} (L_0)$ and $\beta\in\pi_2 (X,L_b)$ is a disk class and $\partial\beta\in\pi_1 (L_b)$ is the corresponding boundary class. Note that the value $\lambda(\partial\beta)$ only depends on the cohomology class of $\left[\lambda\vert_{L_b}\right]\in H^1 (L_b;\mathbb{R})\cong H^1 (L_0;\mathbb{R})\cong\mathbb{R}^2$ and $[\partial\beta]\in\pi_1 (L_b)\cong\pi_1 (L_0)\cong\mathbb{Z}^2$, we see that the $A_{\infty}$-algebra $CF^{\ast} (L_b,L_b)$ is a deformation of the $A_{\infty}$-algebra $CF^{\ast} (L_0,L_0)$ by an element $[\lambda_b]\in H^1_{dR} (L_0;\mathbb{R})$, where the generators of $CF^{\ast}$ are the same with deformed $A_{\infty}$-structure $\mathfrak{m}^d_b$.</p>
+        <p>In this case it's not hard to see topologically that the deformation is in fact trivial: as $T^{\ast}\mathbb{T}^n\to\mathbb{R}^n$ is a fibration, it follows that $\pi_2 (T^{\ast}\mathbb{T}^n,L_b)\cong\ker (\pi_1 (L_b)\to\pi_1 (T^{\ast}\mathbb{T}^n))=0$, and hence all pseudo-holomorphic disks with boundaries on $L_b$ must be trivial. Therefore all algebras $CF^{\ast} (L_b,L_b;\mathbb{R})$ can be canonically identified as their de Rham algebras, with the trivial Morse $A_{\infty}$-structure. In particular, they correspond all to smooth closed points in the mirror $\left(\mathbb{C}^{\ast}\right)^n$, and we see that the moduli space of all pairs $(L_b,\nabla_b)$ where $\nabla_b$ is a falt connection on the trivial complex line bundle on $L_b$ is isomorphic to $\left(\mathbb{C}^{\ast}\right)^n$.</p>
+        <p>Now let's proceed to general projective toric varieties. As all toric varieties contain a Zariski open dense algebraic torus, it follows that all toric varieties have to be compactifications of $\left(\mathbb{C}^{\ast}\right)^n$. In these cases, we still get a $\left(\mathbb{C}^{\ast}\right)^n$ family of Lagrangian tori equipped with local systems, but if we now look at the $A_{\infty}$-structure of $CF^{\ast} (L_b,L_b)$, there are possibly pseudo-holomorphic disks with boundaries on $L_b$ intersecting with the toric boundary divisor. As we see from the formula, existence of extra disks corresponds to deformation of the previous $A_{\infty}$-structures, and therefore we expect that Fukaya categories of toric varieties are deformations of Fukaya categories of $\left(\mathbb{C}^{\ast}\right)^n$. The mirror algebraic category should also behave the same way, and we will go back to this in the next section.</p>
+        <p>If we switch our symplectic and algebraic structures, then Homological Mirror Symmetry for general toric stacks has been proven by Fang-Liu-Treumann-Zaslow [<a href="#FLTZ11">FLTZ11</a>] and Kuwagaki [<a href="#Kuw20">Kuw20</a>], in terms of <em>constructible sheaves</em>. The mirror statement is usually referred to as <em>coherent-constructible correspondence</em>.</p>
+        <div class="env">
+            <strong>Theorem<span>&#40;</span>Fang-Liu-Treumann-Zaslow '11, Kuwagaki '20<span>&#41;</span>.</strong> Let $X_{\Sigma}$ be a toric variety associated to a fan $\Sigma\subseteq N_{\mathbb{R}}$, then there is an equivalence of categories $$D^b\operatorname{Coh} (X_{\Sigma})\cong D^b\operatorname{Sh}_c (\mathbb{T}^n,\Lambda_{\Sigma})$$where $\Lambda_{\Sigma}\subseteq T^{\ast} T^n$ is a conic Lagrangian determined by the fan $\Sigma$, and $\operatorname{Sh}_c (\mathbb{T}^n, \Lambda_{\Sigma})$ is the category of constructible sheaves with singular support on $\Lambda_{\Sigma}$.
+        </div>
+        <p>When $X_{\Sigma}$ is toric Fano, [<a href="#GPS24">GPS24</a>] showed that $\operatorname{Sh}_c (\mathbb{T}^n,\Lambda_{\Sigma})$ is equivalent to the partially wrapped Fukaya category $\mathcal{W}\left(\left(\mathbb{C}^{\ast}\right)^n,W_{\Sigma}\right)$ where $W_{\Sigma}$ is the so-called <em>Hori-Vafa superpotential</em> which is also determined by the combinatorial structure of $\Sigma$.</p>
+        <p><h3 class="chapter" id="toric-fano-syz">SYZ mirror construction for toric Fano varieties.</h3> With the confirmation of Homological Mirror Symmetry on the other side, we can move forward to the SYZ mirror construction for toric Fano varieties. As explained in the previous section, compactifying $\left(\mathbb{C}^{\ast}\right)^n$ would result in deformation of all the Floer $A_{\infty}$-algebras on Lagrangian tori, and the task in this section is to understand the effect of this $A_{\infty}$-deformation.</p>
+        <p>The first result is that for toric compactifications, Maslov indices of pseudo-holomorphic disks are well-understood:</p>
+        <div class="env">
+            <strong>Proposition<span>&#40;</span>Cho-Oh '06<span>&#41;</span>.</strong> Let $X_{\Sigma}$ be a toric Fano manifold with toric boundary divisor $D=\displaystyle\bigcup_i D_i$ where each $D_i$ are the irreducible components, then for any pseudo-holomorphic disk $u\colon (D^2,\partial D^2)\to (X_{\Sigma},L_b)$ with boundary on a Lagrangian torus $L_b\subseteq\left(\mathbb{C}^{\ast}\right)^n$, its Maslov index is given by $$\mu (u)=2\sum_i (u\cdot D_i),$$where $u\cdot D_i$ is the intersection number of $u$ with the divisor $D_i$.
+        </div>
+        <div class="prf">
+            <b>Proof.</b> Note that computation of Maslov indices is a purely topological problem, up to smooth isotopy only the intersection points of the image of $u$ with $D$ would contribute to the Maslov index, and therefore we can consider the simplest model where there is a disk $\mathbb{D}^2\subseteq\mathcal{N}_X\left(\bigcap_{i\in I} D_i\right)$ intersecting with $D_I\colon =\displaystyle\bigcap_{i\in I} D_i$ at the origin of multiplicity $\ell$ and with boundary on the torus bundle over $D_I$. For this local model we know that $D_I$ can be written as $\displaystyle\left\{\prod_{i\in I}z_i=0\right\}$, and we can compute directly <span>&#40;</span>see for example appendix D of [<a href="#MS04">MS04</a>]<span>&#41;</span> and verify that the Maslov index of such is $2\ell\vert I\vert$.
+        </div>
+        <p>In particular, there exists pseudo-holomorphic disks of Maslov index $2$ that contributes to the curvature term $\mathfrak{m}^0$ of the $A_{\infty}$-structure, potentially obstructing Floer cohomologies of Lagrangian tori to be well-defined. To compute this term, we need classifications of these pseudo-holomorphic disks. This is the following main theorem of [<a href="#CO06">CO06</a>]:</p>
+        <div class="env">
+            <strong>Theorem<span>&#40;</span>Cho-Oh '06<span>&#41;</span>.</strong> Let $\tilde{L}\subseteq\mathbb{C}^N\setminus Z(\Sigma)$ be a fixed orbit of the real $N$-torus $\mathbb{T}^N$. Any holomorphic map $u\colon (\mathbb{D}^2,\partial\mathbb{D}^2)\to (X_{\Sigma},L)$ can be lifted to a holomorphic map 
+            $$\tilde{u}\colon (\mathbb{D}^2,\partial\mathbb{D}^2)\to (\mathbb{C}^N\setminus Z(\Sigma),\tilde{L})$$
+            such that each homogeneous coordinate function $z_1 (\tilde{u}),\dotsb, z_N (\tilde{u})$ is given by a Blaschke product with constant factors, i.e.
+            $$z_i (\tilde{u})=c_i\cdot\prod_{j=1}^{\mu_i}\frac{z-\alpha_{i,j}}{1-\bar{\alpha}_{i,j} z}$$
+            for $c_i\in\mathbb{C}^{\ast}$, $\mu_i\in\mathbb{Z}_{>0}$ and $\alpha_{i,j}\in\operatorname{Int} (D^2)$. Any two such lifts are related by $\tilde{u}'=t\cdot\tilde{u}$ for some $t\in T(\Sigma)$ a constant element.
+            </div>
+            <p>In particular, the numbers $\mu_i$ are intersection multiplicities of the pseudo-holomorphic disk $u(\mathbb{D}^2)$ with the toric boundary component $D_i$. Using this classification, we can completely compute contributions of the pseudo-holomorphic disks with arbitrary Maslov indices to $\mathfrak{m}^0$.</p>
+            <div class="env">
+                <strong>Lemma.</strong> The summation
+                $$\sum_{\mu(\beta)=2k}\int_{\left[\mathcal{M}_1 (\beta)\right]^{vir}}\ev^{\ast}\alpha\cdot T^{\omega (\beta)}$$
+                for any $\alpha\in\Omega^{\ast} (X_{\Sigma})$ is $0$ for $k\geq 2$.
+                </div>
+                <p>So only disks of Maslov index $2$ contribute non-trivially to the curvature $\mathfrak{m}^0$. Note that they correspond to holomorphic disks with a single intersection with one of the toric boundary components, and we can in fact determine all such holomorphic disks.</p>
+                <div class="env">
+                    <strong>Lemma.</strong> Holomorphic disks with Maslov index $2$ are all projections of holomorphic disks $\tilde{u}\colon (\mathbb{D}^2,\partial\mathbb{D}^2)\to (\mathbb{C}^N\setminus Z(\Sigma),\tilde{L})$ of the form 
+                    $$\tilde{u} (z)=(c_1,\dotsc, c_{i-1}, c_i z, c_{i+1},\dotsc, c_N)$$
+                    for $c_j\in\mathbb{C}^{\ast}$ and some $1\leq i\leq N$. We write homotopy classes of such disks as $D(v_i)$.
+                </div>
+                <p>As all such counts are weighted by the area of the holomorphic disks, we also need to determine the symplectic area of these Maslov index $2$ holomorphic disks.</p>
+                <div class="env">
+                    <strong>Lemma.</strong> Let $b\in\mathbb{R}^n$ be a vector, then the symplectic area of the holomorphic disk $D(v_i)$ with boundary on $L_b$ is given by 
+                    $$\omega (D(v_i))=2\pi (\langle b,v_i\rangle -\lambda_i),$$
+                    where $\lambda_i$ is the constant appearing in the definition of the moment polytope.
+                </div>
+                <p>With all these preparations, we are able to write down $\mathfrak{m}^0$ explicitly as follows: note that $\mathfrak{m}^0$ counts only holomorphic disks with one output, and therefore representing an element in $CF^{\ast} (L_b,\nabla;L_b,\nabla)$ of the form
+                    $$\mathfrak{m}^0 (L_b,\nabla)=\sum_{i=1}^N T^{\omega (D(v_i))}PD\left(\ev_{\ast}\left[\mathcal{M}_1 (D(v_i))\right]^{vir}\right)\hol_{\nabla} (\partial D(v_i))=\sum_{i=1}^N T^{2\pi(\langle b,v_i\rangle -\lambda_i)}\hol_{\nabla} (\partial D(v_i)),$$
+                    and the function $z_i(L_b,\nabla)\colon =\exp\left(-\int_{D(v_i)}\omega\right)\hol_{\nabla} (\partial D(v_i))$ for $1\leq i\leq N$ can be shown to be holomorphic.
+                </p>
+                <p>Choose a basis $\{w_i\}_{i=1}^w$ of the torus $\left(\mathbb{C}^{\ast}\right)^n$, the curvature term then defines a Laurent polynomial on $\left(\mathbb{C}^{\ast}\right)^n$ which we call the <em>Hori-Vafa superpotential</em>. The other part of Homological Mirror Symmetry states that</p>
+                <div class="env">
+                    <strong>Statement.</strong> There is an equivalence of triangulated categories
+                    $$D^{\pi}\mathcal{F} (X_{\Sigma},\omega_{\Sigma})\simeq HMF(\left(\mathbb{C}^{\ast}\right)^n,W_{\Sigma})$$
+                    where $W_{\Sigma}\colon =\sum_{i=1}^N w_i^{v_i}$ is the Hori-Vafa superpotential.
+                </div>
+                <p>Going back to the computation of Fukaya $A_{\infty}$-algebra $CF^{\ast}(L_b,L_b)$, we want to firstly verify that the Floer cohomology is well-defined, i.e. $\left(\mathfrak{m}^1\right)^2=0$. This can be achieved by the following Proposition:</p>
+                <div class="env">
+                    <strong>Proposition.</strong> Assume that $L_b$ does not bound any holomorphic disk of Maslov index $\leq 0$, then we have the following:
+                    <ol>
+                        <li>$\mathfrak{m}^0$ is a multiple of the point class $[\mathrm{pt}]$;</li>
+                        <li>the Floer cohomology $HF^{\ast} (L,L)$ is well-defined with $[\mathrm{pt}]$ as a cocycle;</li>
+                        <li>the chain-level product $\mathfrak{m}^2$ determines a well-defined associate product on $HF(L,L)$, for which $[\mathrm{pt}]$ is a unit.</li>
+                    </ol>
+                </div>
+                <p>In particular, we have $\left(\mathfrak{m}^1\right)^2=\mathfrak{m}^2 (\mathfrak{m}^0,x)+(-1)^{\deg (x)+1}\mathfrak{m}^2 (x,\mathfrak{m}^0)=((-1)^{\deg (x)}+(-1)^{\deg (x)+1})C=0$.</p>
+                <p>Therefore $HF^{\ast} ((L_b,\nabla),(L_b,\nabla))$ for all Lagrangian brane $(L_b,\nabla)$ is well-defined.
+                </p>
+                <h2 class="chapter" id="Focus-focus-Singularities-and-Almost-Toric-Fibrations">Focus-focus Singularities and Almost Toric Fibrations</h2>
+                <p><u>Outline</u>: We will start with Lagrangian fibrations with singularities. Generically there'll be only non-degenerate singularities, which have good classification results. Focus-focus singularities form a special type of non-degenerate ones, which have semi-global invariants and monodromy, and have nodal integral affine structures. Similar to toric varieties, with possible toric singularities, we get almost toric fibrations, whose total space is reconstructible from the base.</p>
+                <div class="env">
+                    <strong>Definition.</strong> Let $\vec{H}\colon (M^{2n},\omega)$ be a completely integrable Hamiltonian system. A <em>singular point</em> $x\in M$ is <em>non-degenerate</em> if the quadratic parts of degenerate Hamiltonians at $x$ form a Cartan subalgebra under Poisson bracket.
+                    <ol class="circled-list">
+                        <li>When $x$ is a fixed point, $\mathrm{rk}\ \vec{H}=0$, the Cartan subalgebra is the total Lie algebra $$Q=\{\text{all quadratic }H\text{ on }(\mathbb{R}^{2n},\omega)\};$$</li>
+                        <li>When $0<\mathrm{rk}\ \vec{H}=m < n$, assume that $dH_1\wedge\dotsb\wedge dH_m (x)\neq 0$, then we can quotient the system by $\mathbb{R}^m$-action to get a reduced system where we go back to <span>&#9312;</span>.</li>
+                    </ol>
+                </div>
+                <p>The <em>Cartan subalgebra</em> is a maximal nilpotent and self-normalizing subalgebra of $C^{\infty} (M,\mathbb{R})$, and if we write $\{q_1,\dotsb, q_k\}$ to be the quadratic part of the Hamiltonian functions $\{H_1,\dotsb, H_k\}$, then they should be <ul>
+                    <li>Poisson-commute.</li>
+                    <li>Each $q_i$ is diagonalizable over $\mathbb{C}$.</li>
+                    <li>Maximal.</li>
+                </ul>The corresponding linear Hamiltonian matrices $A_1,\dotsb, A_k$, where $A_i=\begin{pmatrix}0&I\\-I&0\end{pmatrix}\mathrm{Hess}\ H_i$, and their generic linear combinations over $\mathbb{R}$, $c_1A_1+\dotsb+c_kA_k$, have $k_e$ pairs of purely imaginary eigenvalues, $k_h$ real eigenvalues and $k_f$ quadruples of others. We call this singularity has <em>Williamson type</em> $(k_e, k_f, k_h)$. <span>&#40;</span>$k_e+k_f+k_h=n-m=k$<span>&#41;</span></p>
+                <table frame="void">
+                    <tr>
+                    <th></th><th>Component type</td><th>Linear model</th>
+                    </tr>
+                    <tr>
+                        <td>$k_e$</td><td>elliptic</td><td>$H=x^2+y^2$</td>
+                    </tr>
+                    <tr>
+                        <td>$k_h$</td><td>hyperbolic</td><td>$H=xy$</td>
+                    </tr>
+                    <tr>
+                        <td>$k_f$</td><td>focus-focus</td><td>$\left\{\begin{array}{l}H_1=x_1y_2-x_2y_1\\H_2=x_1y_1+x_2y_2\end{array}\right.$</td>
+                    </tr>
+                </table>
+                <p>Toric singularities are all of elliptic type.</p>
+                <p><h3 class="chapter">Standard focus-focus singularity.</h3> We can rewrite the linear model for focus-focus singularities as follows: regard $(\mathbb{R}^4,\omega)$ as a complex vector space $\mathbb{C}^2$ where $\omega =dp\wedge d\bar{p}+dq\wedge d\bar{q}$, then we can write $H=-\bar{p}q$. The corresponding Hamiltonian flow can then be described as$$\left\{\begin{array}{l}\phi_{H_1}^t (p,q)=(e^tp,e^{-t}q)\\\pi_{H_2}^t (p,q)=(e^{it}p,e^{it}q)\end{array}\right.$$Orbits of $H_1$ is then the origin $\{0\}$, the $\vert p\vert$-plane, the $\vert q\vert$-plane, and all the preimages of the hyperbolic trajectories depicted in the following picture, under the map $(\vert p\vert, \vert q\vert)$.</p>
+                <figure style="float: initial;">
+                    <canvas id="image-H1" width="350" height="250"></canvas>
+                    <figcaption>Orbits of $H_1$.</figcaption>
+                </figure>
+                <script>
+                const canvas2 = document.getElementById('image-H1');
+                const ctx2 = canvas2.getContext('2d');
+                // --- Configuration ---
+    const originX = 50; // Center X for origin
+    const originY = 200; // Center Y for origin (Y increases UP in canvas)
+    const axisLength = 200;
+    const arrowHeadSize = 8;
+                function drawArrowhead(x, y, angle, size) {
+        ctx2.save();
+        ctx2.translate(x, y);
+        ctx2.rotate(angle);
+        ctx2.beginPath();
+        ctx2.moveTo(0, 0);
+        ctx2.lineTo(-size, -size / 2);
+        ctx2.stroke();
+        ctx2.beginPath();
+        ctx2.moveTo(0,0);
+        ctx2.lineTo(-size, size / 2);
+        ctx2.stroke();
+        ctx2.restore();
+    }
+    ctx2.lineWidth = 2;
+    ctx2.beginPath();
+    ctx2.moveTo(originX, originY); // Start left
+    ctx2.lineTo(originX + axisLength, originY); // End right
+    ctx2.stroke();
+    // Add X-axis arrow head (pointing right, 0 radians)
+    drawArrowhead(originX + axisLength / 2, originY, 0, arrowHeadSize);
+    // Add X-axis label
+    ctx2.fillText("|p|", originX + axisLength - 5, originY + 15);
+ctx2.lineWidth = 2;
+    ctx2.beginPath();
+    ctx2.moveTo(originX, originY); // Start up (Y is inverted)
+    ctx2.lineTo(originX, originY - axisLength); // End down
+    ctx2.stroke();
+    // Add Y-axis arrow head (pointing down, PI/2 radians)
+    drawArrowhead(originX, originY - axisLength / 2, Math.PI / 2, arrowHeadSize);
+    // Add Y-axis label
+    ctx2.fillText("|q|", originX - 15, originY - axisLength + 5);
+    ctx2.beginPath();
+    ctx2.arc(50,200,5,0,2*Math.PI);
+    ctx2.fillStyle = 'black';
+    ctx2.fill();
+    ctx2.stroke();
+    ctx2.beginPath();
+    ctx2.moveTo(55,0);
+    ctx2.quadraticCurveTo(60,180,250,190);
+    ctx2.stroke();
+    drawArrowhead(106.25,137.5,Math.PI / 4,arrowHeadSize);
+    </script>
+    <div class="env">
+        <strong>Definition.</strong> A map $\pi\colon (M^4,\omega)\to B^2$ has a <em>focus-focus singularity</em> at $x$ if there exists local Darboux chart at $x$ that resembles the FF system.
+    </div>
+    <div class="env">
+        <strong>Proposition.</strong> The singular fiber of a Lagrangian fibration with only one singularity of focus-focus type is homeomorphic to a once-pinched torus.
+    </div>
+    <div class="prf">
+        <b>Proof.</b> We have $\pi^{-1} (b)=\{x\}\cup\Omega_1\cup\dotsb\cup\Omega_k$ as Hamiltonian orbits, where $\Omega_i$ has dimension $2$, so the only possibilities for each $\Omega_i$ are $\mathbb{R}^2$, $\mathbb{R}\times\mathbb{S}^1$ or $\mathbb{T}^2$. As $\pi^{-1} (b)$ is compact and connected, $\mathbb{T}^2$ is not possible, so either $\Omega_i\cong\mathbb{R}^2$ or $\Omega_i\cong\mathbb{R}\times\mathbb{S}^1$. Let $\Omega_p$ be the orbit of the $\vert p\vert$-plane and $\Omega_q$ be the orbit of the $\vert q\vert$-plane, then from the local chart it's clear that $\Omega_p,\Omega_q\cong\mathbb{R}\times\mathbb{S}^1$. These are the only orbits entering the focus-focus chart, so we must have $\pi^{-1} (b)=\Omega_p\cup\{x\}\cup\Omega_q$. As $\overline{\Omega_p\cup\{x\}\cup\Omega_q}$ is compact, we must have $\Omega_p=\Omega_q$, and therefore $\pi^{-1} (b)$ is homeomorphic to a once-pinched torus.
+    </div>
+    <div class="env">
+        <strong>Theorem.</strong> The action map $\tilde{B}\to\mathbb{R}^2$ has the form$$\left(\frac{1}{2\pi}(S(b)+b_2\theta -b_1 (\ln r-1)),b_2\right)$$where $b=b_1+ib_2=re^{i\theta}$ is a local coordinate on $B$ and $S(b)$ is some smooth function.
+    </div>
+    <p>For fixed $b$, set $\sigma_1(b)=(-\bar{b},1)$ and $\sigma_2 (b)=(-1,b)$ be two smooth points in the singular fiber of the FF system, lying on the $\vert p\vert$- and $\vert q\vert$-planes, resp.. Let $\vec{T}$ be the time for the Hamiltonian flow from $\sigma_1$ to $\sigma_2$, then $T=(T_1,T_2)$ where $T_1(b)=\ln (b)$ and $T_2 (b)=\arg b$. We write them as $S_1 (b)$ and $S_2 (b)$. Now let $\sigma_1, \sigma_2$ be two given Lagrangian sections avoiding the singular point, then we can compute that $\displaystyle\frac{\partial S_1}{\partial b_2}=\frac{\partial S_2}{\partial b_1}$, and hence there exists a globally defined function $S\colon B\to\mathbb{R}$ such that $\partial_1 S=S_1$ and $\partial_2 S=S_2$. Therefore we can compute out the action map from periods.</p>
+    <p>In fact, germs of such function $(S)_{\infty}$ near the nodal singularity classifies the FF neighbourhood [<a href="#Ngoc03">Ngoc03</a>], and any such $S$ can be realized as a Hamiltonian system, so that we can obtain a manifold $X_S$ and a Hamiltonian system $X_S\xrightarrow{\vec{H}}\mathbb{R}^2$ from $\partial_1 S$ and $\partial_2 S$.</p>
+    <div class="env">
+        <strong>Theorem[<a href="#Sym03">Sym03</a>].</strong> Given two action functions $S_1$ and $S_2$ of the FF system, there exists a symplectomorphism $X_{S_0}\to X_{S_1}$ thta restricts to a fibered one outside of a neighbourhood of a singular fiber.
+    </div>
+    <p><h3 class="chapter">Monodromy.</h3> Now we work on the opposite direction: given a Lagrangian torus fibration $X^{\circ}\to B\setminus\{b\}$ which induces an integral affine structure on $B\setminus\{b\}$. Can we extend $X^{\circ}$ to a Lagrangian torus fibration on $B$, possibly with singularities, equivalently extending the integral affine structure from $B\setminus\{b\}$ to $B$?</p>
+    <div class="env">
+        <strong>Topological monodromy on torus bundle.</strong> Recall that if $\mathbb{T}^n\to M\xrightarrow{\pi} B$ is a topological torus bundle, then there is an induced fundamental group action $\Phi\colon\pi_1 (B,b)\to\mathcal{M} (\mathbb{T}^n)\to\mathrm{Aut} (H_1 (F_b;\mathbb{R}))\cong GL(n,\mathbb{Z})$, called the <em>topological monodromy</em>.
+    </div>
+    <div class="env">
+        <strong>Affine monodromy.</strong> Lagrangian torus fibration over $B$ is equivalent to lattice fibration $\Lambda\to B$, and hence the monodromy action of $\pi_1 (B,b)$ must preserve the lattice $\Lambda_b$. Therefore we have the monodromy action $\Psi_B\colon\pi_1 (B,b)\to\mathrm{Aut} (\Lambda_b)\cong\mathrm{Aff} (n,\mathbb{Z})$ where $\gamma\mapsto\gamma^{\ast} (TB,\Lambda)\cong I\times (\mathbb{R}^n,\mathbb{Z}^n)\big/\left((0,p)\sim (1,\psi_B [\gamma](p))\right)$.
+    </div>
+    <div class="env">
+        <strong>Theorem.</strong> Let $\pi\colon (M,\omega)\to B$ be a Lagrangian torus fibration with topological monodromy matrix $A$, then the corresponding affine monodromy matrix is given by $\left(A^{-1}\right)^T$.
+    </div>
+    <div class="env">
+        <strong>Theorem.</strong> The affine monodromy for symplectic $A_1$-singularity is $\begin{pmatrix}1&1\\0&1\end{pmatrix}$, and $\begin{pmatrix}1&k\\0&1\end{pmatrix}$ for $A_k$.
+    </div>
+    <div class="env">
+        <strong>Nodal integral affine structure.</strong> Consider local charts $U_1=\mathbb{R}^2\setminus\{(x,y)\vert y=0, x\geq 0\}$ and $U_2=(0,\infty)\times (-\varepsilon,\varepsilon)\subseteq\mathbb{R}^2$ with transition map given by $$\phi (x,y)=\left\{\begin{array}{ll} 
+        \begin{pmatrix}1&-1\\0&1\end{pmatrix}(x,y),&y>0;\\
+        (x,y),&y<0.
+        \end{array}\right.$$Then we obtain a topological manifold $B$ homeomorphic to $\mathbb{R}^2$ together with an integral affine structure on $B\setminus\{0\}$.
+    </div>
+    <p>For $\mathbb{T}^n$ acting hamiltonianly effectively on a symplectic manifold $(M,\omega)$, its moment map $\mu_{\mathbb{T}^n}$ has image a convex polytope. This can be generalized as follows: assume that $M$ is non-compact or with boundary, then we can decompose $\mu$ as $\mu=\Phi\circ\pi$, where $\pi\colon M\to B$ is the orbit space fibration and $\Phi\colon B\to\mathbb{R}^n$ an affine immersion. The work of Symington [<a href="#Sym03">Sym03</a>] showed that the torus fibration can be encoded in a triple $(B,\mathcal{A},\mathcal{S})$, where $\mathcal{S}$ is a stratification of $B$, called <em>toric base</em>, together with some compatibility conditions.</p>
+    <div class="env">
+        <strong>Theorem.</strong> For a toric base of dimension $n$, there exists a unique symplectic manifold $(M,\omega)$ equipped with a unique Lagrangian fibration on it.
+    </div>
+    <p>Roughly speaking, this can be proven by considering the trivial fibration $(B\times\mathbb{T}^n,\omega)\to B$, taking boundary reductions and finally ending up with a smooth manifold.</p>
+    <p><h3 class="chapter">Almost toric manifolds.</h3> Almost toric manifolds are symplectic manifolds equipped with Lagrangian torus fibrations with only elliptic and focus-focus type singularities. In dimension $4$, such manifolds readily give rise to an almost toric base $(B,\mathcal{A},\mathcal{S})$ together with a discrete set of points $\{b_i\in B^{top}\}$ where locally at each $b_i$ we get a nodal integral affine manifold and each $b\in B\setminus\{b_i\}$ is locally toric.</p>
+    <p>The inclusions $(B\setminus\{b_i\},\mathcal{A})\to (\mathbb{R}^4,\mathcal{A}_0)$ is NOT an affine immersion, but we can get an affineimmersion by cutting through aneigenvalue. When the base is non-compact or without boundary, the symplectic manifold is uniquely determined, but otherwise uniqueness is no longer true. In this sense, we get classifications of $4$-dimensional almost toric fibrations up to diffeomorphisms. For instance, as discussed in [<a href="#LS03">LS03</a>]:</p>
+    <table frame="void">
+        <tr>
+            <td>Base</td><td><span>&#35;</span> nodes</td><td>Total space</td>
+        </tr>
+        <tr>
+            <td>$\mathbb{D}^2$</td><td>$n$</td><td>$\mathbb{C}P^2\#(n+k-3)\overline{\mathbb{C}P^2}$ or $\mathbb{S}^1\times\mathbb{S}^3$, $k=\#\text{vertices}$</td>
+        </tr>
+        <tr>
+            <td>$\mathbb{S}^2$</td><td>$24$</td><td>K3 surfaces</td>
+        </tr>
+    </table>
+    <h2 class="chapter" id="SYZToric2">SYZ Mirror Symmetry for Toric Varieties, Continued</h2>
+    <p>In this talk we provide more details of [<a href="#CO06">CO06</a>]. Let's start with a recollment of toric manifolds.</p>
+    <p><h3 class="chapter">Toric manifolds: complex & symplectic.</h3> Let $N$ be a lattice and $M$ its dual lattice, and write $\langle -,-\rangle\colon M\times N\to\mathbb{Z}$ the evaluation pairing.</p>
+    <div class="env">
+        <strong>Definition.</strong> A $k$-dimensional <em>regular cone</em> is $\sigma\subseteq N_{\mathbb{R}}=N\otimes_{\mathbb{Z}}\mathbb{R}$ with generators $\langle v_1,\dotsb, v_k\rangle_{\geq\mathbb{R}}=\sigma$. A <em>face</em> of $\sigma$ is $\langle v_{i_1},\dotsb, v_{i_r}\rangle_{\geq\mathbb{R}}$. $1$-dimensional cones are called <em>rays</em>.
+    </div>
+    <div class="env">
+        <strong>Definition.</strong> A <em>fan</em> is $\Sigma=\{\text{regular cones}\}$ such that 
+        <ol class="bracketed-list">
+            <li>For all $\sigma\in\Sigma$, any faces of $\sigma$ lives in $\Sigma$;</li>
+            <li>For given $\sigma,\sigma'\in\Sigma$, the intersection $\sigma\cap\sigma'$ is a face of both $\sigma$ and $\sigma'$.</li>
+        </ol>
+        $\Sigma$ is <em>complete</em> if $N_{\mathbb{R}}=\displaystyle\bigcup_{\sigma\in\Sigma}\sigma$. Write $\Sigma^{(k)}=\{\text{all }k\text{-dimensional cones in }\Sigma\}$, and $G(\Sigma)=\{\text{generators of rays}\}$.
+    </div>
+    <div class="env">
+        <strong>Definition.</strong> A collection $P\subseteq G(\Sigma)$ is <em>primitive</em> if $P$ does not form a cone, yet any proper subset of $P$ does. Write $P(\Sigma)=\{\text{all primitive collections}\}$.
+    </div>
+    <div class="env">
+        <strong>Example.</strong> Let $G(\Sigma)=\{e_1,\dotsb,e_n,-e_1-\dotsb-e_n\}$. Any collection which is not $G(\Sigma)$ generates a cone, so $G(\Sigma)$ is primitive.
+    </div>
+    <p>Consider $\mathbb{C}^N$ with coordinates $z_1,\dotsb, z_N$ corresponding to vectors $v_1,\dotsb, v_N$ in $G(\Sigma)$.</p>
+    <div class="env">
+        <strong>Definition.</strong> For a primitive collection $P$, write $\mathbb{A}(P)=\{(z_1,\dotsb, z_N)\colon z_i=0\text{ if } v_i\in P\}$.
+    </div>
+    <p>In the previous example, $\mathbb{A} (G(\Sigma))=\{(0,0,\dotsb, 0)\}$ and the quotient $\left(\mathbb{C}^{n+1}\setminus\mathbb{A} (G(\Sigma))\right)\big/\mathbb{C}^{\times}\cong\mathbb{P}^n$. Write $Z(\Sigma)=\displaystyle\bigcup_{P\in P(\Sigma)}\mathbb{A}(P)$ and $U(\Sigma)=\mathbb{C}^N\setminus Z(\Sigma)$. The assignment $e_i\mapsto v_i$ gives a group homomorphism $\pi\colon\mathbb{Z}^N\to\mathbb{Z}^n$ with kernel $\mathbb{K}=\ker (\pi)$. Each vector $\vec{\lambda} =(\lambda_1,\dotsb,\lambda_N)\in\mathbb{K}$ acts on $\mathbb{C}^N$ by $a_{\vec{\lambda}}(t).(z_1,\dotsb, z_N)=(t^{\lambda_1}z_1,\dotsb, t^{\lambda_N}z_N)$. Let $D(\Sigma)=\langle a_{\vec{\lambda}}\colon\vec{\lambda}\in\mathbb{K}\rangle\subseteq\left(\mathbb{C}^{\times}\right)^N$ be the algebraic torus generated by $\mathbb{K}$.</p>
+    <div class="env">
+        <strong>Lemma.</strong> $D(\Sigma)$ acts freely on $U(\Sigma)$.
+    </div>
+    <p>The <em>toric variety</em> associated to the fan $\Sigma$ is defined to be $X_{\Sigma} =U(\Sigma)/D(\Sigma)$. In the previous example, the map $\pi$ is given by $\mathbb{Z}^{n+1}\to\mathbb{Z}^n\to 0$ where $e_i\mapsto e_i$ for $1\leq i\leq n$ and $e_{n+1}\mapsto -e_1-\dotsb -e_n$, so that $\mathbb{K} =\langle e_1+\dotsb +e_n\rangle$, and we get the action $a_{\lambda}(t).(z_1,\dotsb, z_n)=(t^{\lambda}z_1,\dotsb, t^{\lambda}z_n)$ is the usual diagonal action for $\mathbb{P}^n$.</p>
+    <div class="env">
+        <strong>Definition.</strong> For a regular cone $\sigma=\langle v_{i_1},\dotsb,v_{i_r}\rangle$, write $U_{\sigma}=\{(z_1,\dotsb,z_N)\in\mathbb{C}^N\vert z_j\neq 0\text{ for }j\not\in\{i_1,\dotsb, i_r\}\}$.
+    </div>
+    <p>For $\mathbb{P}^n$, we get $U_i=\{z_i\neq 0\}$.</p>
+    <div class="env">
+        <strong>Proposition.</strong> (1) $U(\Sigma)=\displaystyle\bigcup_{\sigma} U(\sigma)$, (2) $U(\sigma)\supseteq U(\sigma')$ if $\sigma$ is a face of $\sigma'$, (3) $U(\sigma_1\cap\sigma_2)=U(\sigma_1)\cap U(\sigma_2)$.
+    </div>
+    <div class="env">
+        <strong>Proposition.</strong> $\sigma=\langle v_1,\dotsb, v_n\rangle$ with dual basis $\{u_{i_1},\dotsb, u_{i_n}\}$, then $U(\sigma)\cong\mathbb{C}^n\times\left(\mathbb{C}^{\times}\right)^{N-n}$ where $U_{\sigma}=U(\sigma)/D(\Sigma)\cong\mathbb{C}^n$ with$$\begin{array}{c}
+        x_1^{\sigma}=z_1^{\langle v,u_{i_1}\rangle}\dotsb z_N^{\langle v_N,u_{i_1}\rangle}\\
+        \vdots\\
+        x_n^{\sigma}=z_1^{\langle v_1,u_{i_n}\rangle}\dotsb z_N^{\langle v_N,u_{i_n}\rangle}
+        \end{array}$$
+    </div>
+    <p><h3 class="chapter">Sympletic aspects.</h3> Consider the polytope $P=\{x\in M_{\mathbb{R}}\colon\langle x,v_i\rangle\geq\lambda_i\}$. For a face $\Gamma$, write $\sigma_{\Gamma}\colon =\displaystyle\bigcup_{r\geq 0} r\cdot (P -m)$ where $m\in\mathrm{int}\ \Gamma$. We then obtain the <em>dual cone</em> $\check{\sigma}_{\Gamma} =\{x\in N_{\mathbb{R}}\colon\langle y,x\rangle\geq 0\ \forall y\in\sigma_{\Gamma}\}$ and an induced complete fan $\Sigma (P)$. The algebraic torus action of $\left(\mathbb{C}^{\times}\right)^N$ gives a symplectic action of the real torus $T^N$ on $U(\Sigma (P))$, and hence we get the moment map $\mu\colon U(\Sigma (P))\to T_e^{\ast} T^N\ni r$, so that the <em>symplectic toric manifold</em> is the symplectic reduction $\mu^{-1} (r)/T^N=X_{\Sigma(P)}$ together with the quotient symplectic structure.</p>
+    <p><h3 class="chapter">Morse-Bott Floer cohomology.</h3>In this section we discuss a Morse-Bott version of Floer cohomology for Lagrangian submanifolds. Let $M$ be a smoothmanifold.</p>
+    <div class="env">
+        <strong>"Definition".</strong> A <em>geometric chain</em> of dimension $k$ is a simplicial complex $P$ of dimension $k$ with $P=P_{reg}\cup P_S$ where $P_{reg}$ is a $k$-dimensional oriented submanifold together with some conditions, and $f\colon P\to M$ continuous function such that $f\vert_{P_{reg}}$ is smooth.
+    </div>
+    <p>For a geometric chain $[P,f]$, we get a function $$\begin{array}{rcl}T_{[P,f]}\colon\Omega_c^k (M)&\to &\mathbb{R}\\
+        \alpha&\mapsto&\int_{P_{reg}} f^{\ast}\alpha 
+        \end{array}$$Define differential $\partial T_{[P,f]} (\alpha) =T_{[P,f]} (d\alpha)$. This gives the cohomology $H_{Sing}^{\ast} (M)$. If $[P,f]$ is such that $\dim f(P)<\dim P$, then $[P,f]$ is the zero map on $\Omega^{\ast} (M)$.</p>
+        <p>Now consider the pair $(M,L)$ where $M$ is a symplectic manifold and $L\subseteq M$ a Lagrangian submanifold of $M$. For $\beta\in\pi_2 (M,L)$, we can define $$\mathrm{Aut}\ (D)\curvearrowright\tilde{\mathcal{M}}_n (L,J;\beta)=\left\{\begin{array}{l}w\colon (\mathbb{D},\partial\mathbb{D};z_1,\dotsb, z_n)\to (M,L)\\
+            \bar{\partial}_Jw=0\end{array}\right\}$$
+            and the quotient $\mathcal{M}_n =\tilde{\mathcal{M}}_n/\mathrm{Aut}\ (D)$ admits a compactification $\overline{\mathcal{M}}_n$.
+        </p>
+    <h2 id="References">References</h2>
+    <p id="Abo11">[Abo11] Abouzaid, M. (2011). A cotangent fibre generates the Fukaya category. Advances in Mathematics, 228(2), 894–939. doi:10.1016/j.aim.2011.06.007</p>
+    <p id="Abo12">[Abo12] Abouzaid, M. (2012). On the wrapped Fukaya category and based loops. The Journal of Symplectic Geometry, 10(1), 27–79. doi:10.4310/jsg.2012.v10.n1.a3</p>
+    <p id="Abo14">[Abo14] Abouzaid, M. (2014). Family Floer cohomology and
+        mirror symmetry. Proceedings of the International Congress of
+        Mathematicians---Seoul 2014. Vol. II, 813–836P. Retrieved from
+        http://www.ams.org/mathscinet-getitem?mr=3728639</p>
+    <p id="Abo21">[Abo21] Abouzaid, M. (2021). Homological mirror symmetry
+        without correction. Journal of the American Mathematical Society,
+        34(4), 1059–1173. doi:10.1090/jams/973</p>
+        <p id="Ati82">[Ati82] Atiyah, M. F. (1982). Convexity and commuting Hamiltonians. The Bulletin of the London Mathematical Society, 14(1), 1–15. doi:10.1112/blms/14.1.1</p>
+    <p id="AEK16">[AEK16] Abouzaid, M., Auroux, D., & Katzarkov, L. (2016).
+        Lagrangian fibrations on blowups of toric varieties and mirror
+        symmetry for hypersurfaces. Publications Mathématiques. Institut de
+        Hautes Études Scientifiques, 123, 199–282.
+        doi:10.1007/s10240-016-0081-9</p>
+    <p id="AS21">[AS21] Abouzaid, M., & Sylvan, Z. (2021). Homological
+        mirror symmetry for local SYZ singularities. arXiv. Retrieved from
+        http://arxiv.org/abs/2107.05068</p>
+    <p id="Aur07">[Aur07] Auroux, D. (2007). Mirror symmetry and T-duality
+        in the complement of an anticanonical divisor. <i>Journal of Gökova
+            Geometry Topology</i>, <i>1</i>, 51–91. Retrieved from
+        http://www.ams.org/mathscinet-getitem?mr=2386535</p>
+    <p id="Aur25">[Aur25] Auroux, D. (2025). Holomorphic discs of negative
+        Maslov index and extended deformations in mirror symmetry. arXiv.
+        Retrieved from http://arxiv.org/abs/2309.13010</p>
+    <p id="BO01">[BO01] Bondal, A., & Orlov, D. (2001). Reconstruction of a
+        variety from the derived category and groups of autoequivalences.
+        <i>Compositio Mathematica</i>, <i>125</i>(3), 327–344.
+        doi:10.1023/A:1002470302976</p>
+    <p id="CO06">[CO06] Cho, C.-H., & Oh, Y.-G. (2006). Floer cohomology and
+        disc instantons of Lagrangian torus fibers in Fano toric manifolds.
+        <i>Asian Journal of Mathematics</i>, <i>10</i>(4), 773–814.
+        doi:10.4310/AJM.2006.v10.n4.a10</p>
+    <p id="Eva23">[Eva23] Evans, J. (2023). <i>Lectures on Lagrangian torus
+            fibrations</i> (p. xiii+225). doi:10.1017/9781009372671</p>
+    <p id="Floer89">[Flo89] Floer, A. (1989). Witten's complex and
+        infinite-dimensional Morse theory. <i>Journal of Differential
+            Geometry</i>, <i>30</i>(1), 207–221. Retrieved from
+        http://projecteuclid.org/euclid.jdg/1214443291</p>
+    <p id="FLTZ11">[FLTZ11] Fang, B., Liu, C.-C. M., Treumann, D., & Zaslow,
+        E. (2011). A categorification of Morelli's theorem. <i>Inventiones
+            Mathematicae</i>, <i>186</i>(1), 79–114.
+        doi:10.1007/s00222-011-0315-x</p>
+    <p id="FOOO09">[FOOO09] Fukaya, K., Oh, Y.-G., Ohta, H., & Ono, K.
+        (2009). <i>Lagrangian intersection Floer theory: anomaly and
+            obstruction. Part I</i> (p. xii+396).
+        doi:10.1090/amsip/046.1</p>
+    <p id="Fuk09">[Fuk09] Fukaya, K. (2009). Lagrangian surgery and rigid
+        analytic family of Floer homologies. Retrieved from
+        https://www.math.kyoto-u.ac.jp/~fukaya/Berkeley.pdf</p>
+        <p id="GPS24">[GPS24] Ganatra, S., Pardon, J., & Shende, V. (2024). Sectorial descent for wrapped Fukaya categories. Journal of the American Mathematical Society, 37(2), 499–635. doi:10.1090/jams/1035</p>
+        <p id="GS82">[GS82] Guillemin, V., & Sternberg, S. (1982). Convexity properties of the moment mapping. Inventiones Mathematicae, 67(3), 491–513. doi:10.1007/BF01398933</p>
+    <p id="Jin25">[Jin25] Jing, H. (2025). On SYZ mirrors of Hirzebruch
+        surfaces. arXiv. Retrieved from http://arxiv.org/abs/2504.01889</p>
+    <p id="Kontsevich94">[Kon94] Kontsevich, M. (1994). Homological algebra
+        of mirror symmetry. arXiv. Retrieved from
+        https://arxiv.org/abs/alg-geom/9411018v1</p>
+    <p id="KS06">[KS06] Kontsevich, M., & Soibelman, Y. (2006). Affine
+        structures and non-Archimedean analytic spaces. In <i>The unity of
+            mathematics</i> (pp. 321–385). doi:10.1007/0-8176-4467-9_9</p>
+    <p id="Kuw20">[Kuw20] Kuwagaki, T. (2020). The nonequivariant coherent-constructible correspondence for toric stacks. <i>Duke Mathematical Journal</i>, <i>169</i>(11), 2125–2197. doi:10.1215/00127094-2020-0011</p>
+    <p id="LS03">[LS03] Leung, N. C., & Symington, M. (2010). Almost toric symplectic four-manifolds. <i>The Journal of Symplectic Geometry</i>, <i>8</i>(2), 143–187. doi:10.4310/jsg.2010.v8.n2.a2</p>
+    <p id="LZ20">[LZ20] Lau, S.-C., & Zheng, X. (2020). SYZ mirror symmetry
+        for hypertoric varieties. <i>Communications in Mathematical
+            Physics</i>, <i>373</i>(3), 1133–1166.
+        doi:10.1007/s00220-019-03535-z</p>
+        <p id="MS04">[MS04] McDuff, D., & Salamon, D. (2004). J-holomorphic curves and symplectic topology (p. xii+669). doi:10.1090/coll/052</p>
+    <p id="ND20">[ND20] nowhere dense. (2020). The Zariski topology of a
+        variety is determined by its principal Cartier divisors.
+        MathOverflow. Retrieved from https://mathoverflow.net/q/355978</p>
+        <p id="Ngoc03">[Ngoc03] Vũ Ngọc, S. (2003). On semi-global invariants for focus-focus singularities. Topology. An International Journal of Mathematics, 42(2), 365–380. doi:10.1016/S0040-9383(01)00026-X</p>
+    <p id="Oh96">[Oh96] Oh, Y.-G. (1996). Floer cohomology, spectral
+        sequences, and the Maslov class of Lagrangian embeddings.
+        <i>International Mathematics Research Notices</i>, <i>1996</i>(7),
+        305–346. doi:10.1155/S1073792896000219</p>
+    <p id="PZ98">[PZ98] Polishchuk, A., & Zaslow, E. (1998). Categorical
+        mirror symmetry: The elliptic curve. <i>Advances in Theoretical and
+            Mathematical Physics</i>, <i>2</i>(2), 443–470.
+        doi:10.4310/ATMP.1998.v2.n2.a9</p>
+    <p id="SYZ96">[SYZ96] Strominger, A., Yau, S. T., & Zaslow, E. (1996).
+        Mirror symmetry is T-duality. <i>Nuclear Physics B</i>,
+        <i>479</i>(1-2), 243–259.</p>
+    <p id="Sym03">[Sym03] Symington, M. (2003). Four dimensions from two in
+        symplectic topology. In <i>Topology and geometry of manifolds
+            (Athens, GA, 2001)</i> (pp. 153–208).
+        doi:10.1090/pspum/071/2024634</p>
+    <p id="TY02">[TY02] Thomas, R. P., & Yau, S.-T. (2002). Special
+        Lagrangians, stable bundles and mean curvature flow.
+        <i>Communications in Analysis and Geometry</i>, <i>10</i>(5),
+        1075–1113. doi:10.4310/CAG.2002.v10.n5.a8</p>
+    <p></p>

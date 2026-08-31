@@ -1,0 +1,690 @@
+<html>
+    <head>
+    <meta charset="utf-8">
+    <script id="MathJax-script" async="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<style>
+    article{
+        color: darkcyan;
+        font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+    h1 {
+        /* font-family: 'STIX Two', 'STIX Two Math', serif; */
+        text-align: center;
+    counter-reset: sec;
+        }
+    
+    h2.sec {
+        counter-increment: sec;
+        counter-reset: subsec;
+    }
+    h2.sec::before {
+        content: counter(sec) '. ';
+    }
+    h3 {
+        counter-increment: subsec;
+        counter-reset: dfn;
+    }
+    h3::before {
+        content: counter(sec) '.' counter(subsec) '. ';
+    }
+
+    h4{
+        display: inline;
+        /* font-family: 'STIX Two', 'STIX Two Math', serif; */
+    }
+
+    h4::after{
+        content: ' ';
+    }
+
+    p {
+        /* font-family: 'STIX Two', 'STIX Two Math', serif; */
+        text-indent: 2em;
+    }
+
+    a.section {
+        /* font-size: medium; */
+        color: yellowgreen;
+        counter-increment: sidesec;
+    }
+    a.side{
+        /* font-size: medium; */
+        color: yellowgreen;
+    }
+    a.section::before {
+        content: 'Chapter ' counter(sidesec) '. ';
+    }
+    
+
+    body {
+        counter-reset: footnotes;
+        counter-reset: statement;
+        counter-reset: sec;
+        margin-left: 140px;
+        margin-right: 10px;
+        font-size: 12pt;
+        padding: 0px 10px;
+        width: 9in;
+    }
+    .theorem {
+    max-width: 640px;
+    padding: 2rem 2.5rem;
+    line-height: 1.75;
+    font-size: 1.05rem;
+  }
+ 
+  .theorem-label {
+    font-variant: small-caps;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    margin-right: 0.4em;
+  }
+
+    .sidenav {
+        width: 130px;
+        position: fixed;
+        z-index: 1;
+        top: 20px;
+        left: 10px;
+        background: white;
+        overflow-x: hidden;
+        padding: 8px 0;
+        font-size: 12pt;
+        counter-reset: sidesec;
+    }
+
+    .sidenav a {
+        padding: 6px 8px 6px 16px;
+        text-decoration: none;
+        font-size: 12pt;
+        color: slateblue;
+        display: block;
+        position: relative;
+    }
+    
+    .fig{
+        float: right;
+    }
+
+    .hov{
+        display: none;
+        width: 400px;
+        position: absolute;
+        background-color: white;
+        color: slateblue;
+        border-style: dotted;
+        padding: 6px 8px 6px 16px;
+    }
+    
+    a{
+        color: slateblue;
+    }
+
+    a.citedfn::after{
+        content: target-counter(attr(href), dfn)
+    }
+    table {
+            position: relative;
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12pt;
+        }
+
+    td {
+            border: 1px solid;
+            text-align:center;
+        }
+        td:last-child {
+            text-align: left;
+        }
+
+        th{
+            border: 1px solid;
+            text-align: center;
+        }
+        .reference {
+    display: flex;
+    gap: 1.5rem;
+    max-width: 640px;
+    line-height: 1.75;
+  }
+ 
+  .ref-label {
+    flex-shrink: 0;
+    font-weight: 700;
+  }
+ 
+  .ref-body a {
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+    .topright {
+  position: absolute;
+  top: 8px;
+  right: 16px;
+  font-size: 18px;
+}
+div.env{
+    counter-increment: dfn;
+}
+strong::before{
+    content: counter(sec) '.' counter(subsec) '.' counter(dfn) '. ';
+    font-weight: bold;
+}
+</style>
+<link rel="stylesheet" type="text/css" href="button.css">
+<script> 
+        MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\(', '\)']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+</script>
+<script>
+    // Define a counter shared across all <auto-number> instances
+    let autoNumberCounter = 0;
+
+    class AutoNumber extends HTMLElement {
+      constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+      }
+
+      connectedCallback() {
+        autoNumberCounter++;
+        this.shadowRoot.innerHTML = `<span>${autoNumberCounter}</span>`;
+      }
+    }
+
+    // Register the custom element
+    customElements.define('auto-number', AutoNumber);
+  </script>
+</head>
+<body>
+    <div class="sidenav">
+        <a href="index.html">Home</a>
+        <a href="#intro">Introduction</a>
+    </div>
+    <article>
+    <h1>Introduction to Symplectic Topology</h1>
+    <h2 class="sec" id="intro">Introduction</h2>
+        <p>This is a semester-long Master course at the University of Bonn. This course aims at providing students with a sense of symplectic topology: how it comes from and gradually becomes an interesting and connects to various areas of mathematics. We will roughly follow the historical timeline, starting with the "main branch" of symplectic topology: from Arnold's classical mechanics perspective to Floer's revolutionary theory that is regarded as a common ground of symplectic topology. Then we will select and discuss some other selected branches of symplectic topology, particularly the study of flexibility, Viterbo's isomorphism and the resolution of nearby Lagrangian conjecture.
+</p>
+<h3>Prerequisites.</h3> 
+<p>The students are required to have a basic understanding of differential geometry, particularly about smooth manifolds, differential forms, and Lie groups. Some knowledge of algebraic topology are also expected, including familiarity with homology and cohomology theories. Some basic knowledge of complex geometry will be helpful, but not required. Knowledges about partial differential equations, particularly on elliptic PDEs will also be very helpful.
+</p>
+<h3>Assessment.</h3>
+<p>The course will have no problem sets or assignments. The assessment will be based on an oral exam at the end of the course. Students registering for the oral exam should take one of the following two options:
+    <ol style="font-weight: bold; font-size: large; line-height: 2;">
+        <li>General Exam. Students will be asked to solve some problems that are related to the course materials <span>&#40;</span>listed below<span>&#41;</span>.</li>
+        <li>Specified Exam. Students will be asked to explain and understand one of the topics listed below as "problems". This usually involves paper reading but the exam will be mostly based on the topic and contents in the lecture related to the topic. Selecting this option, students are required to inform the examiner at least one week before the exam.</li>
+    </ol>
+</p>
+<h2 class="sec">Schedule of the Course</h2>
+<p>Lecture will start 14 Apr., from 14 to 16 on Tues and Thurs. Below is a table of topics covered per lecture.</p>
+<table>
+    <tr>
+        <th>Lecture</th>
+        <th>Date</th>
+        <th>Topics Covered</th>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>14.04</td>
+        <td>Hamiltonian formulation of Classical Mechanics. Symplectic Manifolds. Cotangent Bundles.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>16.04</td>
+        <td>Integrable systems. Little Arnold-Liouville Theorem. Complex manifolds and almost complex structures.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>21.04</td>
+        <td>Existence and contractibility of almost complex structures. Moser's argument.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>23.04</td>
+        <td>Special submanifolds and their neighbourhood theorem. Big Arnold-Liouville theorem.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>28.04</td>
+        <td>Moment map. Marsden-Weinstein-Meyer theorem. Gromov's non-squeezing theorem.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>30.04</td>
+        <td>Regularity and compactness of the moduli space of $J$-holomorphic curves.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>05.05</td>
+        <td>Proof of the Gromovs Non-squeezing Theorem.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>07.05</td>
+        <td>Proof of the Gromovs Non-squeezing Theorem, Continued. Poincaré-Birkhoff Theorem. Liouville Domain.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>12.05</td>
+        <td>Morse function. Morse lemma. Morse complex.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>19.05</td>
+        <td>Morse-Smale pairs. Compactness of the space of trajectories.</td>
+    </tr>
+    <tr>
+        <td><auto-number></auto-number></td>
+        <td>21.05</td>
+        <td>Gluing trajectories. Orientation. Invariance of Morse homology. Morse inequality.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>02.06</td>
+      <td>Arnold's Conjecture. Sketch of proof of Arnold's Conjecture.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>09.06</td>
+      <td>Lagrangian Grassmannian. Maslov index of paths. Conley-Zehnder index.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>11.06</td>
+      <td>Construction of Floer homology: Orientations, compactness, gluing trajectories.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>16.06</td>
+      <td>Continuation map. Invariance of Floer homology. Proof of Arnold's Conjecture.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>18.06</td>
+      <td>Lagrangian Floer homology. Gradings. Compactness.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>23.06</td>
+      <td>Invariance under Hamiltonian isotopies. Lagrangian Floer homology on the cotangent bundle.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>30.06</td>
+      <td>Liouville manifold. Admissible Hamiltonians. Maximum principle.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>02.07</td>
+      <td>Floer homology of exact symplectomorphisms. Proof of Poincaré-Birkhoff theorem.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>07.07</td>
+      <td>Symplectic homology. Weinstein conjecture.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>09.07</td>
+      <td>Proof of Weinstein conjecture. Viterbo's isomorphism. Maslov conjecture.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>14.07</td>
+      <td>Donaldson hypersurface. Lefschetz pencils. Giroux-Pardon.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>16.07</td>
+      <td>Contact manifolds and contact homology.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>21.07</td>
+      <td>McKay correspondence. Legendrian knots.</td>
+    </tr>
+    <tr>
+      <td><auto-number></auto-number></td>
+      <td>23.07</td>
+      <td>Classical invariants. Legendrian contact homology. Chekanov-Eliashberg algebra.</td>
+    </tr>
+    </table>
+    <p>Notes are available <a href="IntroSymp_Notes.pdf">here</a>.</p>
+    <p>Please click <a href="https://forms.gle/dtaH8w3KeK5Q62pk7">this link</a> to fill in your available time slots for the exam.</p>
+<h2 class="sec">Oral Exam Problems</h2>
+<p>We will list model problems for the oral exam here, just for Students convenience. Solutions will not be shown on this website.</p>
+<h3>General Exam.</h3>
+    <ol style="font-weight: bold; font-size: large;line-height: 2;">
+       <li>Let $(M,\omega)$ be a symplectic manifold and $G,H\in C^{\infty} (M,\mathbb{R})$ smooth Hamiltonian functions on $M$.
+    <span>&#40;</span>a<span>&#41;</span> Show that $G$ is a conserved quantity for $H$ if and only if $\{G, H\} = 0$.
+    <div><span>&#40;</span>b<span>&#41;</span> Let $G$ be a conserved quantity for $H$, then any integral curve of the hamiltonian vector field $X_H$ lies on the level set $G^{-1}(c)$ for some real number $c$.</div>
+</li>
+        <li>Show that $\mathbb{S}^6$ is not a symplectic manifold.</li>
+        <li>Run Moser's argument for any one of the neighbourhood theorems.</li>
+        <li>Show that an isotropic submanifold $N\subseteq M^{2n}$ has to have dimension at most $n$, a coisotropic submanifold has to have dimension at least $n$, and in particular, a Lagrangian submanifold $L\subseteq M$ has to have dimension $n$.</li>
+        <li><span>&#40;</span>a<span>&#41;</span> Inside the cotangent bundle $T^{\ast}L$, find the equivalence condition for a graph
+            $$\Gamma (\alpha) = \{(x, \alpha_x)\in T^{\ast}L | x\in L\}$$
+            of a differential $1$-form $\alpha\in C^{\infty} (L,T^{\ast}L)$ to be Lagrangian in $T^{\ast} L$.
+            <div><span>&#40;</span>b<span>&#41;</span> Show that $\Gamma (\alpha)$, once being Lagrangian, is always Lagrangian isotopic to the zero section. Show that it's furthermore Hamiltonian isotopic to the zero section $L\hookrightarrow T^{\ast}L$ iff $\alpha$ is an exact $1$-form.</div>
+        </li>
+        <li>Show that there exists a volume-preserving embedding $D_r\hookrightarrow Z_R$ for any $r,R>0$, where $D_r$ is the open ball of radius $r$ in $\mathbb{R}^{2n}$ and $Z_R$ is the product of a disk of radius $R$ and an Euclidean space $\mathbb{R}^{2n-2}$, both with the standard symplectic structure.</li>
+        <li>Show that any complex structure $j$ on a Riemann surface $\Sigma$ is compatible with some symplecticc structure $\omega_{\Sigma}$ on $\Sigma$. In other words, $\Sigma$ is always Kähler.</li>
+        <li>Try to determine the compactification of the moduli space of $4$ marked points on $\mathbb{P}^1$, i.e. $\overline{\mathcal{M}}_{0,4}$.
+            <div><span style="color: darkred;">Hard:</span> What about the space of $5$ marked points?</div>
+        </li>
+        <li>Recall that the twist condition for a self-diffeomorphism $f\colon A\to A$ of the annulus $A=\mathbb{S}^1\times [0,1]$ means that $f$ rotates the outer boundary circle of $A$ counter-clockwise while the inner boundary circle clockwise. Show that the twisting condition is essential, i.e. there exists an area-preserving diffeomorphism $f\colon A\to A$ such that $f$ has no fixed point. Why does it violate the twist condition?</li>
+        <li>Show that $H\colon A\to\mathbb{R}$ defined by $H(q,p)=\frac{1}{2}p^2$ has a well-defined Hamiltonian flow and satisfies the twist condition.</li>
+        <li>Verify that the codisk bundle $(\mathbb{D}^*M, \lambda_{\text{tau}})$ of a closed manifold $M$ defined by
+  </p>
+  <div class="display-math">
+    $$\{(x,v) \in T^*M \mid \|v\| \le 1\},$$
+  </div>
+  <p>
+    where we choose a compatible almost complex structure $J$ on $T^*M$ and use the induced Riemannian metric to define the norm, is a Liouville domain with tautological 1-form as the Liouville 1-form.</li>
+    <li>Show that the cotangent bundle $T^*G$ of a Lie group $G$ is trivial, i.e. there is a bundle isomorphism $T^*G \cong G \times \mathbb{R}^n$ where $n = \dim G$. Moreover, what is the symplectic form on $G \times \mathbb{R}^n$ under this isomorphism?</li>
+    <li>Show that $\mathrm{Diff}^+ (A)$, the orientation-preserving diffeomorphism group of $A$, deformation retracts to the group $\mathrm{Symp} (A)$ of symplectomorphism groups of $A$.
+        </li>
+        <li>
+            Show that the group of compactly supported symplectomorphisms of $A$ isotopic to identity $\mathrm{Symp}_{c,0} (A)$ is the same as $\mathrm{Ham}_c (A)$, where $\mathrm{Ham}_c (A)$ is the group of Hamiltonian diffeomorphisms of $A$ which are identity near $\partial A$.
+        </li>
+        <li>Show that an exact Lagrangian isotopy is a Hamiltonian isotopy, i.e. for given one-parameter family of exact Lagrangian submanifolds $\{i_t\colon L\hookrightarrow M\}_{t \in [0,1]}$ in an exact symplectic manifold $(M,\omega=d\lambda)$, there exists smooth functions $H_t \colon M \to \mathbb{R}$ such that the Hamiltonian flow $\varphi^t_{H_t}$ generated by $H_t$ satisfies $\varphi^t_{H_t}(L) = i_t(L)$ for each $t \in [0,1]$.
+        </li>
+        <li>Show that the set of Morse functions on $M$ is dense in $C^{\infty} (M)$ with respect to the $C^{\infty}$-topology.
+        </li>
+        <li>Let $f\colon M\to\mathbb{R}$ be a Morse function on a smooth manifold $M$ with a chosen gradient-like vector field $V$, and let $p\in\mathrm{Crit}(f)$ be a critical point. For the stable and unstable manifolds of $p$, denoted by $W^s(p)$ and $W^u(p)$, show that $W^s(p)$ is an embedded <span>&#40;</span>not closed<span>&#41;</span> submanifold of $M$ of dimension $\\mathrm{Ind}(p)$, the Morse index of $p$, and $W^u(p)$ is an embedded submanifold of $M$ of dimension $\\dim M - \\mathrm{Ind}(p)$.
+        </li>
+        <li>Consider the two-dimensional torus $\mathbb{T}^2$ with a height function $h\colon\mathbb{T}^2\to\mathbb{R}$ defined by firstly embed $\mathbb{T}^2$ into $\mathbb{R}^3$ via the map <div class="display-math">
+            $$(\theta,\vartheta)\mapsto ((2+\cos\theta)\cos\vartheta, \sin\theta, (2+\cos\theta)\sin\vartheta)$$
+        </div>
+    and consider the projection $h(x,y,z)=z$. Compute the Morse index of all critical points of $h$.</li>
+        <li>For $Q=\mathbb{T}^n$, compute the sum of Betti numbers of $Q$.</li>
+        <li>For $M=\mathbb{C}P^n$, determine its singular homology $H_{\ast} (M;\mathbb{Z})$ as a $\mathbb{Z}$-module.</li>
+        <li>Let $M$ be a symplectic manifold and $L\subseteq M$ a Lagrangian submanifold. Show that $\pi_2(M,L) = 0$ implies that $M$ is symplectically aspherical.
+        </li>
+        <li>Suppose that $H_t \colon M \times \mathbb{S}^1 \to \mathbb{R}$ is a smooth time-dependent Hamiltonian function on a compact symplectic manifold $M$, show that all its non-degenerate periodic orbits of $H$ are isolated.
+        </li>
+        <li>Show that 1-periodic orbits of a time-dependent Hamiltonian function $H_t \colon \mathbb{R} \times M \to \mathbb{R}$ are the same as 1-periodic orbits of another time-dependent Hamiltonian function $K_t \colon \mathbb{S}^1 \times M \to \mathbb{R}$, and hence it suffices to consider a $\mathbb{S}^1$-family of Hamiltonian functions.
+        </li>
+        <li>$\mathrm{Sp}(2n)$ acts transitively on $\mathcal{L}Gr(V)$, and the stabilizer of a given Lagrangian subspace $L \in \mathcal{L}Gr(V)$ can be identified with the group $\mathrm{St}(V)$ of "upper-triangular" symplectic matrices.
+        </li>
+        <li>Suppose that $V\cong\mathbb{R}^{2n}$ is the standard symplectic vector space and $L_0=\mathbb{R}^n\times\{0\}\subseteq V$ is a given Lagrangian subspace with direct sum complement $L_0^{\oplus}=\{0\}\times\mathbb{R}^n$. For $\Lambda\in\hom (L_0,L_0^{\oplus})$, define $L_\Lambda = \{(x, \Lambda x) \in V \mid x \in L_0\}$. Prove that $L_\Lambda$ is a Lagrangian subspace of $V$ iff $\Lambda$ is symmetric regarded as a square matrix.
+        </li>
+        <li>Let $(M,\omega)$ be a symplectic manifold and $H_t\colon M\to\mathbb{R}$ be a Hamiltonian function.
+          <ol>
+            <li>Given a contractible Hamiltonian orbit $\gamma$ of $H_t$, explain the definition of the Conley-Zehnder index $\mu_{CZ}(\gamma)$.</li>
+            <li>Suppose that $H$ is time-independent with non-degenerate critical point $p$. Show that $\mu_{CZ}(p) = \frac{1}{2}\operatorname{sgn} d^2 H_p = n - \mathrm{Ind}_p(p)$ for a non-degenerate constant orbit $p$ of a time-independent Hamiltonian function $H$.</li>
+          </ol>
+        </li>
+        <li>Show that $\mathrm{Sp}(2n) \cap O(2n) = U(n)$, where $U(n)$ is the unitary group of $n \times n$ complex matrices by identifying $\mathbb{R}^{2n} \cong \mathbb{C}^n$.
+        </li>
+        <li>Show that for a symplectic matrix $S \in Sp(2n) \subseteq GL(2n,\mathbb{R})$, under the polar decomposition
+            $$S = Ue^X$$
+            where $U$ is unitary and $X$ should furthermore satisfy $X\omega + \omega X = 0$.
+        </li>
+        <li>Show that $H^1(\mathcal{L}Gr(V);\mathbb{Z}) \cong \mathbb{Z}$ for any symplectic vector space $(V,\omega)$.
+        </li>
+        <li>Show that a Lagrangian submanifold $L$ is gradable iff the pull-back $\mu_L = i^*\mu_M \in H^1(L;\mathbb{Z})$ of the Maslov class $\mu_M$ vanishes.
+        </li>
+    </ol>
+    <h3>Specified Exam.</h3>
+    <ol style="font-weight: bold; font-size: large; line-height: 2;">
+        <li>Understand and explain the proof of the following theorem of Atiyah and Guillemin-Sternberg:
+            <div class="theorem">
+    <span class="theorem-label">Theorem.</span>
+    Let $(M, \omega)$ be a compact connected symplectic manifold with an effective
+    hamiltonian $T$-action, then the image $\mu_T(M)$ of the moment map is a convex
+    polytope in $\mathfrak{t}^*$, and the fibres of $\mu_T$ are connected.
+  </div>
+  References: [<a href="MS17">MS17</a>, Theorem 5.5.1] and [<a href="Aud91">Aud91</a>, Theorem 4.2.1].
+        </li>
+        <li>A symplectic $4$-manifold is said to be <em>minimal</em> if it does not contain any symplectically embedded spheres with negative self-intersection number. Classify all compact minimal symplectic $4$-manifolds containing a symplectically embedded sphere with non-negative self-intersection number.
+        <div>References: [<a href="McD90">McD90</a>].</div></li>
+        <li>Consider the symplectic manifold $(\mathbb{P}^1\times\mathbb{P}^1,a\omega_{FS}\oplus b\omega_{FS})$ where $a,b>0$ are not necessarily equal. Compute $H^{\ast}(\mathrm{Symp}_0 (\mathbb{P}^1\times\mathbb{P}^1,a\omega_{FS}\oplus b\omega_{FS});\mathbb{R})$.
+            <div>Reference: [<a href="Abr98">Abr98</a>].</div>
+        </li>
+        <li>Compute the symplectic mapping class group of $T^{\ast}\mathbb{S}^2$.
+            <div>Reference: [<a href="Sei98">Sei98</a>].</div>
+        </li>
+        <li>This is a sequence of problems that lead to the proof of an almost hundred-year-long problem via symplectic geometry.
+            <ol>
+                <li>Suppose that $(M,\omega)$ is a symplectic manifold that is symplectomorphic to $\mathbb{R}^4$ outside a compact subset and is symplectically aspherical. Show that $M$ is diffeomorphic to $\mathbb{R}^4$ ([<a href="#Gro85">Gro85</a>]).</li>
+                <li>Show that there does not exist Lagrangian embedding of a Klein bottle into $\mathbb{R}^4$ ([<a href="#Nem09">Nem09</a>]).</li>
+                <li>Let $\gamma$ be a smooth Jordan curve in $\mathbb{R}^2$ and $R \subseteq \mathbb{R}^2$ a rectangle. Show that there exists a rectangle similar to $R$ whose vertices lie on $\gamma$ ([<a href="#GL21">GL21</a>]).</li>
+            </ol>
+        </li>
+        <li>Consider the complex manifold $\mathbb{P}^n$. We know that the only non-trivial spherical class in $\mathbb{P}^n$ is the embedded $\mathbb{P}^1 \hookrightarrow \mathbb{P}^n$. We denote it by $L$ and write $N_d = GW_{0,3d-1,dL}^{\mathbb{P}^2}([\mathrm{pt}],\cdots,[\mathrm{pt}];[\overline{\mathcal{M}}_{0,3d-1}])$ for the number of degree $d$ rational curves in $\mathbb{P}^2$ passing through $3d-1$ generic points. Verify that the number $N_d$ is determined by the initial condition $N_1 = 1$ and the recursion formula
+            $$N_d = \sum_{d_1+d_2=d} \left( d_1^2 d_2^2 N_{d_1} N_{d_2} \binom{3d-4}{3d_1-2} - d_1^3 d_2 N_{d_1} N_{d_2} \binom{3d-4}{3d_1-1} \right).$$
+            <div>Reference: [<a href="#MS12">MS12</a>, Section 7.5].</div>
+        </li>
+        <li>A fibre bundle $F \to P \to B$ is <strong>hamiltonian</strong> if the structure group of $P$ can be reduced to $\mathrm{Ham}(F)$, the group of Hamiltonian diffeomorphisms of $F$. Show that if $B = \mathbb{P}^n$, then there is an additive isomorphism of rational cohomology groups
+            $$H^*(P;\mathbb{Q}) \cong H^*(B;\mathbb{Q}) \otimes H^*(F;\mathbb{Q}).$$
+            <div>Reference: [<a href="#LM03">LM03</a>].</div>
+        </li>
+        <li>Compute the quantum cohomology of $\mathbb{P}^n$.
+            <div>Reference: [<a href="#MS12">MS12</a>, Example 11.1.12].</div>
+        </li>
+        <li>As we have seen, Morse homology is built out from a sequence of spaces coming from trajectories between critical points of Morse functions. We should be able to get more information from the topology of these spaces than simply singular homology. In fact, there is a notion of <em style="color: darkblue; text-decoration: none;">flow category</em> that can be built out from the data of Morse homology, and by taking "homology" of this flow category we can recover the Morse homology. Explain the construction of this flow category and how it recovers the Morse homology.
+            <div>References: [<a href="#CJS95">CJS95</a>], [<a href="#AB24">AB24</a>].</div>
+        </li>
+        <li>There is an interesting $A_\infty$-structure on the Morse complex $C_*(M,f;\mathbb{k})$ for a given Morse function $f$, which requires a deeper look at the moduli spaces of trajectories. Explain this operadic structure and the construction of this $A_\infty$-structure on the Morse complex.
+            <div>References: [<a href="#Fuk97">Fuk97</a>], [<a href="#Hic17">Hic17</a>].</div>
+        </li>
+        <li>An alternative proof to this Hamiltonian invariance, which also has close relationship to algebraic $K$-theory, is to understand all the possible points in this family of Lagrangian submanifolds where they fail to intersect transversely. This is Floer's original proof, where we were able to provide a classification of all the possible situations. Then we can figure out how chain complexes change for these "elementary moves". This bifurcation analysis is related to Whitehead torsions of Floer complexes. State this result of Sullivan [<a href="#Sul02">Sul02</a>] and explain the proof.
+        </li>
+        <li>An alternative approach, due to Piunikin-Salamon-Schwarz [<a href="#PSS96">PSS96</a>], is to construct directly a chain map
+            $$CF_*(M;\mathcal{F};\Lambda_\mathbf{k}) \to CM_*(M;H;\Lambda_\mathbf{k})$$
+            for some Floer datum $\mathcal{F}$ and some Morse-Smale function $H$, by counting holomorphic "spines", which are unions of a pseudo-holomorphic plane and a gradient trajectory of $H$ attached to it. Show that this map is a quasi-isomorphism of chain complexes, and moreover intertwines the pair-of-pants product on Floer cohomology with the quantum product on Morse cohomology, and therefore establishes the equivalence between Floer homology and quantum cohomology.
+        </li>
+        <li>A slightly more general situation is when $M$ is monotone and $L \subseteq M$ is also <em>monotone</em>, i.e. we can find a positive constant $\tau > 0$ so that for all disks $u \colon (\mathbb{D}^2, \mathbb{S}^1) \to (M, L)$, we have $\omega(u) = \tau \mu_L(u)$ where $\mu_L$ is the Maslov index on $L$. One special case is when $M = \mathbb{C}P^n$ with standard symplectic structure $\omega_{FS}$ and $L = \mathbb{R}P^n$ is the real locus of $M$. Show that for any Hamiltonian diffeomorphism $\phi$ of $M$ such that $\phi(L) \cap L$ transversely, we have
+            $$\#\,(L \cap \phi(L)) \geq n + 1 = \sum_{i=0}^{n} \dim H_i(\mathbb{R}P^n; \mathbb{Z}/2\mathbb{Z}).$$
+            <div>Reference: [<a href="#Oh93b">Oh93b</a>].</div>
+        </li>
+        <li>Another situation that is similar is when $M = \mathbb{C}P^n$ and
+            $$L = T^n = \left(\mathbb{S}^1\left(\frac{1}{\sqrt{n+1}}\right) \times \cdots \times \mathbb{S}^1\left(\frac{1}{\sqrt{n+1}}\right)\right) / \mathbb{S}^1 \hookrightarrow \mathbb{S}^{2n+1}/\mathbb{S}^1 = \mathbb{C}P^n$$
+            is the famously called <em>Clifford torus</em>. Show that no Hamiltonian diffeomorphism $\phi$ of $M$ can separate $L$ from itself. This is called <em>non-displaceability</em> of Lagrangian submanifolds, which can be obviously detected by Floer cohomology.
+            <br>&nbsp;&nbsp;As an application, show that given any pairs of orthonormal bases $\{v_1, \cdots, v_N\}$ and $\{w_1, \cdots, w_N\}$ of a unitary vector space $(V, \omega, J)$ of dimension $N$, there exists a vector $x \in V$ such that
+            $$\langle x, v_i \rangle \langle v_i, x \rangle = \langle x, w_i \rangle \langle w_i, x \rangle = 1/N$$
+            for all $1 \leq i \leq N$.
+            <div>Reference: [<a href="#Oh93a">Oh93a</a>], [<a href="#Lis26">Lis26</a>].</div>
+        </li>
+        <li>Show that for any monotone Lagrangian submanifold $L$ of $\mathbb{C}^n$, we must have
+            $$1 \leq \min\{\mu_L(u) | u \in \pi_2(M,L),\; \mu_L(u) > 0\} \leq n.$$
+            <div>Reference: [<a href="#Oh96">Oh96</a>].</div>
+        </li>
+        <li>For Lagrangian Floer theory we also have a similar result to Piunikin-Salamon-Schwarz. For a monotone Lagrangian submanifold $L \subseteq M$ in a monotone symplectic manifold, we can define the <em>Lagrangian quantum homology</em> $QH_*(L;\Lambda_{\mathbb{Z}/2})$ whose underlying module is $C_*(L;\mathbb{Z}/2)$ together with "quantized" product structure, counting the so-called <em>pearly trajectories</em>. Show that there is an isomorphism
+            $$HF_*(L,L;\Lambda_{\mathbb{Z}/2}) \simeq QH_*(L;\Lambda_{\mathbb{Z}/2}).$$
+            <div>Reference: [<a href="#BC09">BC09</a>].</div>
+        </li>
+    </ol>
+<h2>References</h2>
+<div class="reference" id="Abr98">
+    <span class="ref-label">[Abr98]</span>
+    <span class="ref-body">
+      Miguel Abreu.
+      <cite>Topology of symplectomorphism groups of S² × S².</cite>
+      Invent. Math., 131(1):1–23, 1998.
+      <a href="https://doi.org/10.1007/s002220050196">doi:10.1007/s002220050196</a>.
+    </span>
+  </div>
+  <div class="reference" id="AB24">
+    <span class="ref-label">[AB24]</span>
+    <span class="ref-body">
+      Mohammed Abouzaid and Andrew J. Blumberg.
+      <cite>Foundation of floer homotopy theory i: Flow categories.</cite>
+      2024.
+      <a href="https://arxiv.org/abs/2404.03193">arXiv:2404.03193</a>.
+    </span>
+  </div>
+<div class="reference" id="Aud91">
+  <span class="ref-label">[Aud91]</span>
+  <span class="ref-body">
+    Michèle Audin.
+    <cite>The topology of torus actions on symplectic manifolds</cite>,
+    volume 93 of <cite>Progress in Mathematics</cite>.
+    Birkhäuser Verlag, Basel, 1991.
+    Translated from the French by the author.
+    <a href="https://doi.org/10.1007/978-3-0348-7221-8">doi:10.1007/978-3-0348-7221-8</a>.
+  </span>
+</div>
+<div class="reference" id="BC09">
+    <span class="ref-label">[BC09]</span>
+    <span class="ref-body">
+      Paul Biran and Octav Cornea.
+      <cite>A Lagrangian quantum homology.</cite>
+      In <cite>New perspectives and challenges in symplectic field theory</cite>, volume 49 of <cite>CRM Proc. Lecture Notes</cite>, pages 1–44. Amer. Math. Soc., Providence, RI, 2009.
+      <a href="https://doi.org/10.1090/crmp/049/01">doi:10.1090/crmp/049/01</a>.
+    </span>
+  </div>
+<div class="reference" id="CJS95">
+    <span class="ref-label">[CJS95]</span>
+    <span class="ref-body">
+      Ralph L. Cohen, J. D. S. Jones, and Graeme Segal.
+      <cite>Morse theory and classifying spaces.</cite>
+      January 1995. [Online; accessed 30 Apr. 2026].
+      <a href="https://www.math.toronto.edu/mgualt/Morse%20Theory/CohenJonesSegal.pdf">URL</a>.
+    </span>
+  </div>
+  <div class="reference" id="Fuk97">
+    <span class="ref-label">[Fuk97]</span>
+    <span class="ref-body">
+      Kenji Fukaya.
+      <cite>Morse homotopy and its quantization.</cite>
+      In <cite>Geometric topology <span>&#40;</span>Athens, GA, 1993<span>&#41;</span></cite>, volume 2.1 of <cite>AMS/IP Stud. Adv. Math.</cite>, pages 409–440. Amer. Math. Soc., Providence, RI, 1997.
+      <a href="https://doi.org/10.1090/amsip/002.1/23">doi:10.1090/amsip/002.1/23</a>.
+    </span>
+  </div>
+  <div class="reference" id="GL21">
+    <span class="ref-label">[GL21]</span>
+    <span class="ref-body">
+      Joshua Evan Greene and Andrew Lobb.
+      <cite>The rectangular peg problem.</cite>
+      <cite>Ann. of Math. (2)</cite>, 194(2):509–517, 2021.
+      <a href="https://doi.org/10.4007/annals.2021.194.2.4">doi:10.4007/annals.2021.194.2.4</a>.
+    </span>
+  </div>
+   <div class="reference" id="Gro85">
+    <span class="ref-label">[Gro85]</span>
+    <span class="ref-body">
+      M. Gromov.
+      <cite>Pseudo holomorphic curves in symplectic manifolds.</cite>
+      <cite>Invent. Math.</cite>, 82(2):307–347, 1985.
+      <a href="https://doi.org/10.1007/BF01388806">doi:10.1007/BF01388806</a>.
+    </span>
+  </div>
+  <div class="reference" id="Hic17">
+    <span class="ref-label">[Hic17]</span>
+    <span class="ref-body">
+      Jeff Hicks.
+      <cite>An exposition on the fukaya-morse algebra.</cite>
+      August 2017. [Online; accessed 30 Apr. 2026].
+      <a href="https://math.berkeley.edu/~jhicks/files/FukayaMorse.pdf">URL</a>.
+    </span>
+  </div>
+  <div class="reference" id="Lis26">
+    <span class="ref-label">[Lis26]</span>
+    <span class="ref-body">
+      Given two basis sets for a finite Hilbert space, does an unbiased vector exist?
+      <cite>Mathematics Stack Exchange.</cite>
+      [Online; accessed 10 May 2026].
+      <a href="https://math.stackexchange.com/questions/28413/given-two-basis-sets-for-a-finite-hilbert-space-does-an-unbiased-vector-exist/29819#29819">URL</a>.
+    </span>
+  </div>
+  <div class="reference" id="LM03">
+    <span class="ref-label">[LM03]</span>
+    <span class="ref-body">
+      François Lalonde and Dusa McDuff.
+      <cite>Symplectic structures on fiber bundles.</cite>
+      <cite>Topology</cite>, 42(2):309–347, 2003.
+      <a href="https://doi.org/10.1016/S0040-9383(01)00020-9">doi:10.1016/S0040-9383(01)00020-9</a>.
+    </span>
+  </div>
+  <div class="reference" id="Oh93a">
+    <span class="ref-label">[Oh93a]</span>
+    <span class="ref-body">
+      Yong-Geun Oh.
+      <cite>Floer cohomology of Lagrangian intersections and pseudo-holomorphic disks. I.</cite>
+      <cite>Comm. Pure Appl. Math.</cite>, 46(7):949–993, 1993.
+      <a href="https://doi.org/10.1002/cpa.3160460702">doi:10.1002/cpa.3160460702</a>.
+    </span>
+  </div>
+  <div class="reference" id="Oh93b">
+    <span class="ref-label">[Oh93b]</span>
+    <span class="ref-body">
+      Yong-Geun Oh.
+      <cite>Floer cohomology of Lagrangian intersections and pseudo-holomorphic disks. II. $(\mathbb{C}P^n, \mathbb{R}P^n)$.</cite>
+      <cite>Comm. Pure Appl. Math.</cite>, 46(7):995–1012, 1993.
+      <a href="https://doi.org/10.1002/cpa.3160460703">doi:10.1002/cpa.3160460703</a>.
+    </span>
+  </div>
+  <div class="reference" id="PSS96">
+    <span class="ref-label">[PSS96]</span>
+    <span class="ref-body">
+      S. Piunikhin, D. Salamon, and M. Schwarz.
+      <cite>Symplectic Floer-Donaldson theory and quantum cohomology.</cite>
+      In <cite>Contact and symplectic geometry (Cambridge, 1994)</cite>, volume 8 of <cite>Publ. Newton Inst.</cite>, pages 171–200. Cambridge Univ. Press, Cambridge, 1996.
+    </span>
+  </div>
+<div class="reference" id="McD90">
+    <span class="ref-label">[McD90]</span>
+    <span class="ref-body">
+      Dusa McDuff.
+      <cite>The structure of rational and ruled symplectic 4-manifolds.</cite>
+      J. Amer. Math. Soc., 3(3):679–712, 1990.
+      <a href="https://doi.org/10.2307/1990934">doi:10.2307/1990934</a>.
+    </span>
+  </div>
+  <div class="reference" id="MS12">
+    <span class="ref-label">[MS12]</span>
+    <span class="ref-body">
+      Dusa McDuff and Dietmar Salamon.
+      <cite>J-holomorphic curves and symplectic topology.</cite>
+      Volume 52 of <cite>American Mathematical Society Colloquium Publications</cite>. American Mathematical Society, Providence, RI, second edition, 2012.
+    </span>
+  </div>
+ <div class="reference" id="MS17">
+    <span class="ref-label">[MS17]</span>
+    <span class="ref-body">
+      Dusa McDuff and Dietmar Salamon.
+      <cite>Introduction to symplectic topology.</cite>
+      Oxford Graduate Texts in Mathematics. Oxford University Press, Oxford, third edition, 2017.
+      <a href="https://doi.org/10.1093/oso/9780198794899.001.0001">doi:10.1093/oso/9780198794899.001.0001</a>.
+    </span>
+  </div>
+   <div class="reference" id="Nem09">
+    <span class="ref-label">[Nem09]</span>
+    <span class="ref-body">
+      Stefan Nemirovski.
+      <cite>Lagrangian Klein bottles in $\mathbb{R}^{2n}$.</cite>
+      <cite>Geom. Funct. Anal.</cite>, 19(3):902–909, 2009.
+      <a href="https://doi.org/10.1007/s00039-009-0014-6">doi:10.1007/s00039-009-0014-6</a>.
+    </span>
+  </div>
+  <div class="reference" id="Sei98">
+    <span class="ref-label">[Sei98]</span>
+    <span class="ref-body">
+      Paul Seidel.
+      <cite>Symplectic automorphisms of $T^*S^2$.</cite>
+      1998.
+      <a href="https://arxiv.org/abs/math/9803084">arXiv:math/9803084</a>.
+    </span>
+  </div>
+  <div class="reference" id="Sul02">
+    <span class="ref-label">[Sul02]</span>
+    <span class="ref-body">
+      M. G. Sullivan.
+      <cite>K-theoretic invariants for Floer homology.</cite>
+      <cite>Geom. Funct. Anal.</cite>, 12(4):810–872, 2002.
+      <a href="https://doi.org/10.1007/s00039-002-8267-3">doi:10.1007/s00039-002-8267-3</a>.
+    </span>
+  </div>
+</body>
+</html>
