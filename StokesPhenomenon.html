@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Stokes Phenomena</title>
+  <style>
+    :root { color-scheme: light; }
+    body { margin: 0; min-height: 100vh; display: grid; place-items: center; background: #f5f7fb; font: 16px system-ui, sans-serif; color: #152033; }
+    main { width: min(800px, calc(100vw - 32px)); background: white; border-radius: 16px; padding: 22px; box-shadow: 0 12px 35px #1a31501c; }
+    h1 { font-size: 1.3rem; margin: 0 0 8px; }
+    .formula { margin: 0 0 8px; color: #536176; font-size: .92rem; overflow-wrap: anywhere; }
+    canvas { width: 100%; aspect-ratio: 16 / 10; display: block; border: 1px solid #d8dfeb; border-radius: 10px; background: #fff; }
+    .controls { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; margin-top: 18px; }
+    input { width: 100%; accent-color: #b83232; }
+    output { min-width: 118px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+    p { color: #536176; margin: 13px 0 0; font-size: .92rem; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1><math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi>c</mi>
+</math>-Filtrations on Local System <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mi mathvariant="script">L</mi>
+</math> associated to solutions to Airy systems.</h1>
+<p class="formula">The Airy system has two eigen-solutions with asymptotics <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mo>±</mo>
+  <mn>1</mn>
+</math>. The red regions correspond to stalks <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msub>
+    <mi mathvariant="script">L</mi>
+    <mrow>
+        <mo>≤</mo>
+      <mi>c</mi>
+      <mo>,</mo>
+      <mi>θ</mi>
+    </mrow>
+  </msub>
+  <mo>=</mo>
+  <mn>0</mn>
+</math>, the purple one corresponds to <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msub>
+    <mi mathvariant="script">L</mi>
+    <mrow>
+        <mo>≤</mo>
+      <mi>c</mi>
+      <mo>,</mo>
+      <mi>θ</mi>
+    </mrow>
+  </msub>
+</math> having rank <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <mn>1</mn>
+</math>, and the blue region corresponds to <math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msub>
+    <mi mathvariant="script">L</mi>
+    <mrow>
+        <mi></mi>
+        <mo>≤</mo>
+      <mi>c</mi>
+      <mo>,</mo>
+      <mi>θ</mi>
+    </mrow>
+  </msub>
+  <mo>=</mo>
+  <msub>
+    <mi mathvariant="script">L</mi>
+    <mrow>
+      <mi>θ</mi>
+    </mrow>
+  </msub>
+</math>.</p>
+    <!-- <p class="formula">Single-hatched: min{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))} &gt; 0</p>
+    <p class="formula">Cross-hatched: max{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))} &lt; 0</p>
+     <p class="formula">Purple cross-hatched: min{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))} &lt; 0 &lt; max{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))}</p> -->
+    <canvas id="graph" width="1200" height="750" aria-label="Coordinate plane with two points, parallel lines, and three hatched complex regions"></canvas> 
+    <div class="controls">
+      <input id="theta" type="range" min="0" max="6.283185307179586" step="0.001" value="0.55" aria-label="Theta from zero to two pi" />
+      <output id="readout"></output>
+    </div>
+    <p>The lines have slope −cot(θ). The single-hatched min-positive region is red except blue for π/2 &lt; θ &lt; 3π/2. The cross-hatched max-negative region is blue for 0 ≤ θ &lt; π/2 and 3π/2 &lt; θ ≤ 2π, and red for π/2 &lt; θ &lt; 3π/2. The region strictly between the two lines is cross-hatched in purple.</p>
+  </main>
+
+  <script>
+    const canvas = document.getElementById('graph');
+    const ctx = canvas.getContext('2d');
+    const slider = document.getElementById('theta');
+    const readout = document.getElementById('readout');
+    const W = canvas.width, H = canvas.height, scale = 90;
+    const origin = { x: W / 2, y: H / 2 };
+
+    function px(x) { return origin.x + x * scale; }
+    function py(y) { return origin.y - y * scale; }
+    function labelTheta(t) {
+      const p = t / Math.PI;
+      return `θ = ${t.toFixed(3)} rad (${p.toFixed(3)}π)`;
+    }
+    function point(x, y, color, text) {
+      const dotX = px(x), dotY = py(y);
+      const labelX = dotX + 16, labelY = dotY - 17;
+
+      ctx.save();
+      ctx.font = 'bold 22px system-ui';
+      const width = ctx.measureText(text).width;
+      const padX = 7, padY = 5;
+      const panelX = labelX - padX, panelY = labelY - 22 - padY;
+      const panelW = width + 2 * padX, panelH = 28 + 2 * padY;
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.96)';
+      ctx.fillRect(panelX, panelY, panelW, panelH);
+      ctx.strokeStyle = color + '55';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(panelX + 0.5, panelY + 0.5, panelW - 1, panelH - 1);
+
+      ctx.fillStyle = color;
+      ctx.beginPath(); ctx.arc(dotX, dotY, 10, 0, Math.PI * 2); ctx.fill();
+      ctx.fillText(text, labelX, labelY);
+      ctx.restore();
+    }
+    function lineThrough(x0, m, color, vertical) {
+      ctx.strokeStyle = color; ctx.lineWidth = 5; ctx.beginPath();
+      if (vertical) {
+        ctx.moveTo(px(x0), 0); ctx.lineTo(px(x0), H);
+      } else {
+        const leftX = (0 - origin.x) / scale;
+        const rightX = (W - origin.x) / scale;
+        ctx.moveTo(px(leftX), py(m * (leftX - x0)));
+        ctx.lineTo(px(rightX), py(m * (rightX - x0)));
+      }
+      ctx.stroke();
+    }
+    function clipToHalfPlane(poly, a, b, d) {
+      const result = [];
+      for (let i = 0; i < poly.length; i++) {
+        const P = poly[i], Q = poly[(i + 1) % poly.length];
+        const fp = a * P.x + b * P.y + d;
+        const fq = a * Q.x + b * Q.y + d;
+        const insideP = fp >= 0, insideQ = fq >= 0;
+        if (insideP) result.push(P);
+        if (insideP !== insideQ) {
+          const u = fp / (fp - fq);
+          result.push({ x: P.x + u * (Q.x - P.x), y: P.y + u * (Q.y - P.y) });
+        }
+      }
+      return result;
+    }
+    function viewportPolygon() {
+      const xmin = (0 - origin.x) / scale, xmax = (W - origin.x) / scale;
+      const ymin = (H - origin.y) / scale, ymax = (0 - origin.y) / scale;
+      return [{ x: xmin, y: ymin }, { x: xmax, y: ymin }, { x: xmax, y: ymax }, { x: xmin, y: ymax }];
+    }
+    function minPositiveRegion(theta) {
+      const c = Math.cos(theta), s = Math.sin(theta);
+      let polygon = viewportPolygon();
+      polygon = clipToHalfPlane(polygon, c, s, -c);
+      polygon = clipToHalfPlane(polygon, c, s, c);
+      return polygon;
+    }
+    function maxNegativeRegion(theta) {
+      const c = Math.cos(theta), s = Math.sin(theta);
+      let polygon = viewportPolygon();
+      polygon = clipToHalfPlane(polygon, -c, -s, c);
+      polygon = clipToHalfPlane(polygon, -c, -s, -c);
+      return polygon;
+    }
+    function betweenRegion(theta) {
+      const c = Math.cos(theta), s = Math.sin(theta);
+      if (Math.abs(c) < 1e-10) return [];
+      let polygon = viewportPolygon();
+      if (c > 0) {
+        polygon = clipToHalfPlane(polygon, -c, -s, c);
+        polygon = clipToHalfPlane(polygon, c, s, c);
+      } else {
+        polygon = clipToHalfPlane(polygon, c, s, -c);
+        polygon = clipToHalfPlane(polygon, -c, -s, -c);
+      }
+      return polygon;
+    }
+    function polygonPath(polygon) {
+      if (!polygon.length) return false;
+      ctx.beginPath();
+      ctx.moveTo(px(polygon[0].x), py(polygon[0].y));
+      for (let i = 1; i < polygon.length; i++) ctx.lineTo(px(polygon[i].x), py(polygon[i].y));
+      ctx.closePath();
+      return true;
+    }
+    function colorsFor(minRegion) {
+      return minRegion
+        ? { fill: 'rgba(220, 40, 40, 0.075)', hatch: 'rgba(205, 30, 30, 0.62)' }
+        : { fill: 'rgba(25, 118, 210, 0.075)', hatch: 'rgba(25, 100, 190, 0.62)' };
+    }
+    function drawSingleHatchedMinRegion(theta) {
+      const polygon = minPositiveRegion(theta);
+      if (!polygonPath(polygon)) return;
+      const colors = colorsFor(true);
+      ctx.save();
+      ctx.fillStyle = colors.fill;
+      ctx.fill();
+      ctx.clip();
+      ctx.strokeStyle = colors.hatch;
+      ctx.lineWidth = 1.5;
+      const spacing = 16;
+      for (let k = -H; k < W + H; k += spacing) {
+        ctx.beginPath(); ctx.moveTo(k, H); ctx.lineTo(k + H, 0); ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function drawCrossHatchedMaxRegion(theta) {
+      const polygon = maxNegativeRegion(theta);
+      if (!polygonPath(polygon)) return;
+      const colors = colorsFor(false);
+      ctx.save();
+      ctx.fillStyle = colors.fill;
+      ctx.fill();
+      ctx.clip();
+      ctx.strokeStyle = colors.hatch;
+      ctx.lineWidth = 1.25;
+      const spacing = 16;
+      for (let k = -H; k < W + H; k += spacing) {
+        ctx.beginPath(); ctx.moveTo(k, H); ctx.lineTo(k + H, 0); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(k, 0); ctx.lineTo(k + H, H); ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function drawPurpleBetweenRegion(theta) {
+      const polygon = betweenRegion(theta);
+      if (!polygonPath(polygon)) return;
+      ctx.save();
+      ctx.fillStyle = 'rgba(132, 59, 170, 0.075)';
+      ctx.fill();
+      ctx.clip();
+      ctx.strokeStyle = 'rgba(112, 35, 153, 0.67)';
+      ctx.lineWidth = 1.25;
+      const spacing = 15;
+      for (let k = -H; k < W + H; k += spacing) {
+        ctx.beginPath(); ctx.moveTo(k, H); ctx.lineTo(k + H, 0); ctx.stroke();
+        ctx.beginPath(); ctx.moveTo(k, 0); ctx.lineTo(k + H, H); ctx.stroke();
+      }
+      ctx.restore();
+    }
+    function drawAxes() {
+      ctx.save();
+      ctx.strokeStyle = '#bdc9d8'; ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(0, py(0)); ctx.lineTo(W, py(0)); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(px(0), 0); ctx.lineTo(px(0), H); ctx.stroke();
+      ctx.restore();
+    }
+    function draw(theta) {
+      ctx.clearRect(0, 0, W, H);
+      drawAxes();
+      drawSingleHatchedMinRegion(theta);
+      drawCrossHatchedMaxRegion(theta);
+      drawPurpleBetweenRegion(theta);
+
+      const c = Math.cos(theta), s = Math.sin(theta);
+      const vertical = Math.abs(s) < 1e-8;
+      const m = vertical ? 0 : -c / s;
+      lineThrough(1, m, '#d62728', vertical);
+      lineThrough(-1, m, '#1976d2', vertical);
+      point(1, 0, '#d62728', '(1, 0)');
+      point(-1, 0, '#1976d2', '(-1, 0)');
+      readout.value = labelTheta(theta);
+    }
+    slider.addEventListener('input', () => draw(Number(slider.value)));
+    draw(Number(slider.value));
+  </script>
+</body>
+</html>
