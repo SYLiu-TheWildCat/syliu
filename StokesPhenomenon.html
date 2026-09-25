@@ -11,10 +11,21 @@
     h1 { font-size: 1.3rem; margin: 0 0 8px; }
     .formula { margin: 0 0 8px; color: #536176; font-size: .92rem; overflow-wrap: anywhere; }
     canvas { width: 100%; aspect-ratio: 16 / 10; display: block; border: 1px solid #d8dfeb; border-radius: 10px; background: #fff; }
-    .controls { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 14px; margin-top: 18px; }
-    input { width: 100%; accent-color: #b83232; }
-    output { min-width: 118px; text-align: right; font-variant-numeric: tabular-nums; font-weight: 700; }
+    .controls { display: grid; grid-template-columns: auto 1fr; align-items: center; justify-content: center; gap: 24px; margin-top: 18px; }
+    .circle-control { width: 204px; height: 204px; padding: 0; border: 0; border-radius: 50%; background: transparent; cursor: grab; touch-action: none; }
+    .circle-control:active { cursor: grabbing; }
+    .circle-control:focus-visible { outline: 3px solid #2f80ed; outline-offset: 5px; }
+    .circle-control svg { width: 100%; height: 100%; display: block; overflow: visible; }
+    .circle-ring { fill: #f8fafc; stroke: #b8c6d8; stroke-width: 2; }
+    .circle-axis { stroke: #d4dde8; stroke-width: 1.5; }
+    .circle-ray { stroke: #b83232; stroke-width: 4; stroke-linecap: round; }
+    .circle-handle { fill: #b83232; stroke: white; stroke-width: 3; }
+    .circle-label { fill: #536176; font: 600 13px system-ui, sans-serif; text-anchor: middle; dominant-baseline: middle; }
+    .theta-display { display: grid; gap: 7px; }
+    .theta-display strong { font-size: 1.12rem; }
+    output { font-variant-numeric: tabular-nums; font-weight: 700; color: #152033; }
     p { color: #536176; margin: 13px 0 0; font-size: .92rem; }
+    @media (max-width: 540px) { .controls { grid-template-columns: 1fr; justify-items: center; gap: 12px; } .theta-display { text-align: center; } }
   </style>
 </head>
 <body>
@@ -75,8 +86,28 @@
      <p class="formula">Purple cross-hatched: min{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))} &lt; 0 &lt; max{Re(e<sup>−iθ</sup>(z−1)), Re(e<sup>−iθ</sup>(z+1))}</p> -->
     <canvas id="graph" width="1200" height="750" aria-label="Coordinate plane with two points, parallel lines, and three hatched complex regions"></canvas> 
     <div class="controls">
-      <input id="theta" type="range" min="0" max="6.283185307179586" step="0.001" value="0.55" aria-label="Theta from zero to two pi" />
-      <output id="readout"></output>
+      <button id="thetaControl" class="circle-control" type="button" role="slider"
+        aria-label="Theta unit circle control" aria-valuemin="0" aria-valuemax="6.283185307179586"
+        aria-valuenow="0.55" aria-valuetext="theta equals 0.55 radians">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <circle class="circle-ring" cx="100" cy="100" r="76"></circle>
+          <line class="circle-axis" x1="18" y1="100" x2="182" y2="100"></line>
+          <line class="circle-axis" x1="100" y1="18" x2="100" y2="182"></line>
+          <text class="circle-label" x="188" y="100">0</text>
+          <text class="circle-label" x="100" y="12">π/2</text>
+          <text class="circle-label" x="12" y="100">π</text>
+          <text class="circle-label" x="100" y="188">3π/2</text>
+          <path id="thetaArc" d="" fill="none" stroke="#b83232" stroke-width="3" opacity=".35"></path>
+          <line id="thetaRay" class="circle-ray" x1="100" y1="100" x2="165" y2="65"></line>
+          <circle id="thetaHandle" class="circle-handle" cx="165" cy="65" r="8"></circle>
+          <circle cx="100" cy="100" r="4" fill="#536176"></circle>
+        </svg>
+      </button>
+      <div class="theta-display">
+        <strong>Choose θ on the unit circle</strong>
+        <output id="readout"></output>
+        <span>Click or drag the red point. Use arrow keys for fine adjustment.</span>
+      </div>
     </div>
     <!-- <p>The lines have slope −cot(θ). The single-hatched min-positive region is red except blue for π/2 &lt; θ &lt; 3π/2. The cross-hatched max-negative region is blue for 0 ≤ θ &lt; π/2 and 3π/2 &lt; θ ≤ 2π, and red for π/2 &lt; θ &lt; 3π/2. The region strictly between the two lines is cross-hatched in purple.</p> -->
   </main>
@@ -84,8 +115,13 @@
   <script>
     const canvas = document.getElementById('graph');
     const ctx = canvas.getContext('2d');
-    const slider = document.getElementById('theta');
+    const thetaControl = document.getElementById('thetaControl');
+    const thetaRay = document.getElementById('thetaRay');
+    const thetaHandle = document.getElementById('thetaHandle');
+    const thetaArc = document.getElementById('thetaArc');
     const readout = document.getElementById('readout');
+    const TWO_PI = Math.PI * 2;
+    let theta = 0.55;
     const W = canvas.width, H = canvas.height, scale = 90;
     const origin = { x: W / 2, y: H / 2 };
 
@@ -98,7 +134,6 @@
     function point(x, y, color, text) {
       const dotX = px(x), dotY = py(y);
       const labelX = dotX + 16, labelY = dotY - 17;
-
       ctx.save();
       ctx.font = 'bold 22px system-ui';
       const width = ctx.measureText(text).width;
@@ -110,7 +145,6 @@
       ctx.strokeStyle = color + '55';
       ctx.lineWidth = 1;
       ctx.strokeRect(panelX + 0.5, panelY + 0.5, panelW - 1, panelH - 1);
-
       ctx.fillStyle = color;
       ctx.beginPath(); ctx.arc(dotX, dotY, 10, 0, Math.PI * 2); ctx.fill();
       ctx.fillText(text, labelX, labelY);
@@ -237,6 +271,30 @@
       }
       ctx.restore();
     }
+    function drawPositiveDirectionArrow(theta) {
+      const centerX = W - 118, centerY = 100, halfLength = 46;
+      const ux = Math.cos(theta), uy = -Math.sin(theta);
+      const startX = centerX - halfLength * ux, startY = centerY - halfLength * uy;
+      const endX = centerX + halfLength * ux, endY = centerY + halfLength * uy;
+      ctx.save();
+    //   ctx.fillStyle = 'rgba(255, 255, 255, 0.88)';
+    //   ctx.fillRect(W - 255, 20, 235, 150);
+    //   ctx.strokeStyle = '#b9c5d3'; ctx.lineWisdth = 1;
+    //   ctx.strokeRect(W - 254.5, 20.5, 234, 149);
+    //   ctx.fillStyle = '#26374b'; ctx.font = '600 18px system-ui';
+    //   ctx.fillText('Positive direction', W - 235, 52);
+    //   ctx.strokeStyle = '#26374b'; ctx.fillStyle = '#26374b';
+    //   ctx.lineWidth = 4; ctx.lineCap = 'round';
+    //   ctx.beginPath(); ctx.moveTo(startX, startY); ctx.lineTo(endX, endY); ctx.stroke();
+      const headLength = 16, headAngle = Math.PI / 7;
+      const angle = Math.atan2(uy, ux);
+      ctx.beginPath();
+      ctx.moveTo(endX, endY);
+      ctx.lineTo(endX - headLength * Math.cos(angle - headAngle), endY - headLength * Math.sin(angle - headAngle));
+    //   ctx.lineTo(endX - headLength * Math.cos(angle + headAngle), endY - headLength * Math.sin(angle + headAngle));
+      ctx.closePath(); ctx.fill();
+      ctx.restore();
+    }
     function drawAxes() {
       ctx.save();
       ctx.strokeStyle = '#bdc9d8'; ctx.lineWidth = 1.5;
@@ -250,7 +308,6 @@
       drawSingleHatchedMinRegion(theta);
       drawCrossHatchedMaxRegion(theta);
       drawPurpleBetweenRegion(theta);
-
       const c = Math.cos(theta), s = Math.sin(theta);
       const vertical = Math.abs(s) < 1e-8;
       const m = vertical ? 0 : -c / s;
@@ -258,10 +315,57 @@
       lineThrough(-1, m, '#1976d2', vertical);
       point(1, 0, '#d62728', '(1, 0)');
       point(-1, 0, '#1976d2', '(-1, 0)');
+      drawPositiveDirectionArrow(theta);
+      updateCircleControl(theta);
       readout.value = labelTheta(theta);
     }
-    slider.addEventListener('input', () => draw(Number(slider.value)));
-    draw(Number(slider.value));
+    function updateCircleControl(value) {
+      const cx = 100 + 76 * Math.cos(value);
+      const cy = 100 - 76 * Math.sin(value);
+      thetaRay.setAttribute('x2', cx);
+      thetaRay.setAttribute('y2', cy);
+      thetaHandle.setAttribute('cx', cx);
+      thetaHandle.setAttribute('cy', cy);
+      const largeArc = value > Math.PI ? 1 : 0;
+      thetaArc.setAttribute('d', value < 0.002 ? '' : `M 124 100 A 24 24 0 ${largeArc} 0 ${100 + 24 * Math.cos(value)} ${100 - 24 * Math.sin(value)}`);
+      thetaControl.setAttribute('aria-valuenow', value.toFixed(3));
+      thetaControl.setAttribute('aria-valuetext', labelTheta(value));
+    }
+    function setTheta(value) {
+      theta = ((value % TWO_PI) + TWO_PI) % TWO_PI;
+      if (Math.abs(theta - TWO_PI) < 1e-9) theta = 0;
+      draw(theta);
+    }
+    function thetaFromPointer(event) {
+      const rect = thetaControl.getBoundingClientRect();
+      const x = (event.clientX - rect.left) * 200 / rect.width;
+      const y = (event.clientY - rect.top) * 200 / rect.height;
+      return Math.atan2(100 - y, x - 100);
+    }
+    let dragging = false;
+    thetaControl.addEventListener('pointerdown', event => {
+      dragging = true;
+      thetaControl.setPointerCapture(event.pointerId);
+      setTheta(thetaFromPointer(event));
+    });
+    thetaControl.addEventListener('pointermove', event => {
+      if (dragging) setTheta(thetaFromPointer(event));
+    });
+    thetaControl.addEventListener('pointerup', () => { dragging = false; });
+    thetaControl.addEventListener('pointercancel', () => { dragging = false; });
+    thetaControl.addEventListener('keydown', event => {
+      const step = event.shiftKey ? Math.PI / 12 : Math.PI / 180;
+      if (event.key === 'ArrowRight' || event.key === 'ArrowUp') {
+        event.preventDefault(); setTheta(theta + step);
+      } else if (event.key === 'ArrowLeft' || event.key === 'ArrowDown') {
+        event.preventDefault(); setTheta(theta - step);
+      } else if (event.key === 'Home') {
+        event.preventDefault(); setTheta(0);
+      } else if (event.key === 'End') {
+        event.preventDefault(); setTheta(TWO_PI - 0.001);
+      }
+    });
+    draw(theta);
   </script>
 </body>
 </html>
